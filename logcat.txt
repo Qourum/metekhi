@@ -1,0 +1,234 @@
+10-06 21:15:12.012   518  2333 I ActivityTaskManager: START u0 {flg=0x10000000 cmp=io.github.qourum.metekhi/.LauncherActivity} with LAUNCH_MULTIPLE from uid 0 (BAL_ALLOW_ALLOWLISTED_UID) result code=0
+10-06 21:15:12.012   827   859 V WindowManagerShell: Transition requested: android.os.BinderProxy@b0f9907 TransitionRequestInfo { type = OPEN, triggerTask = TaskInfo{userId=0 taskId=9 displayId=0 isRunning=true baseIntent=Intent { flg=0x10000000 cmp=io.github.qourum.metekhi/.LauncherActivity } baseActivity=ComponentInfo{io.github.qourum.metekhi/io.github.qourum.metekhi.LauncherActivity} topActivity=ComponentInfo{io.github.qourum.metekhi/io.github.qourum.metekhi.LauncherActivity} origActivity=null realActivity=ComponentInfo{io.github.qourum.metekhi/io.github.qourum.metekhi.LauncherActivity} numActivities=1 lastActiveTime=72981 supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=220 token=WCT{android.window.IWindowContainerToken$Stub$Proxy@8ae7a34} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=Rect(0, 128 - 0, 0) topActivityInfo=ActivityInfo{3be105d io.github.qourum.metekhi.LauncherActivity} launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=false isVisible=false isVisibleRequested=false isSleeping=false topActivityInSizeCompat=false topActivityEligibleForLetterboxEducation= false topActivityLetterboxed= false isFromDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=-1 topActivityLetterboxHeight=-1 locusId=null displayAreaFeatureId=1 cameraCompatControlState=hidden}, remoteTransition = null, displayChange = null }
+10-06 21:15:12.058   518   548 I ActivityManager: Start proc 4819:io.github.qourum.metekhi/u0a192 for next-top-activity {io.github.qourum.metekhi/io.github.qourum.metekhi.LauncherActivity}
+10-06 21:15:12.079  4819  4819 I .qourum.metekhi: Using CollectorTypeCC GC.
+10-06 21:15:12.080  4819  4819 W .qourum.metekhi: Unexpected CPU variant for x86: x86_64.
+10-06 21:15:12.080  4819  4819 W .qourum.metekhi: Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, tremont, kabylake, default
+10-06 21:15:12.082  4819  4819 E .qourum.metekhi: Not starting debugger since process cannot load the jdwp agent.
+10-06 21:15:12.140  4819  4819 W ziparchive: Unable to open '/data/app/~~vxwpqxX2ekoGlVwqJIK-0g==/io.github.qourum.metekhi-YeAeHjyc-7TBxeOn_G1roQ==/base.dm': No such file or directory
+10-06 21:15:12.140  4819  4819 W ziparchive: Unable to open '/data/app/~~vxwpqxX2ekoGlVwqJIK-0g==/io.github.qourum.metekhi-YeAeHjyc-7TBxeOn_G1roQ==/base.dm': No such file or directory
+10-06 21:15:12.216  4819  4819 D nativeloader: Configuring clns-6 for other apk /data/app/~~vxwpqxX2ekoGlVwqJIK-0g==/io.github.qourum.metekhi-YeAeHjyc-7TBxeOn_G1roQ==/base.apk. target_sdk_version=36, uses_libraries=, library_path=/data/app/~~vxwpqxX2ekoGlVwqJIK-0g==/io.github.qourum.metekhi-YeAeHjyc-7TBxeOn_G1roQ==/lib/x86_64, permitted_path=/data:/mnt/expand:/data/user/0/io.github.qourum.metekhi
+10-06 21:15:12.244  4819  4819 V GraphicsEnvironment: ANGLE GameManagerService for io.github.qourum.metekhi: false
+10-06 21:15:12.244  4819  4819 V GraphicsEnvironment: io.github.qourum.metekhi is not listed in per-application setting
+10-06 21:15:12.284  4819  4819 D TWALauncherActivity: Using url from Manifest: https://qourum.github.io/metekhi/
+10-06 21:15:12.905   518  2268 D CoreBackPreview: Window{54980fc u0 io.github.qourum.metekhi/io.github.qourum.metekhi.LauncherActivity}: Setting back callback OnBackInvokedCallbackInfo{mCallback=android.window.IOnBackInvokedCallback$Stub$Proxy@68c5e30, mPriority=0, mIsAnimationCallback=false}
+10-06 21:15:13.279   518   532 I WindowManager: finishDrawing of relaunch: Window{54980fc u0 io.github.qourum.metekhi/io.github.qourum.metekhi.LauncherActivity} 567ms
+10-06 21:15:13.345   518  2333 D CoreBackPreview: Window{54980fc u0 io.github.qourum.metekhi/io.github.qourum.metekhi.LauncherActivity}: Setting back callback null
+10-06 21:15:13.347   518  1845 W InputManager-JNI: Input channel object '54980fc io.github.qourum.metekhi/io.github.qourum.metekhi.LauncherActivity (client)' was disposed without first being removed with the input manager!
+10-06 21:15:13.403  4819  4819 D TWALauncherActivity: Using url from Manifest: https://qourum.github.io/metekhi/
+10-06 21:15:13.509   518  2268 D CoreBackPreview: Window{dad8486 u0 io.github.qourum.metekhi/io.github.qourum.metekhi.LauncherActivity}: Setting back callback OnBackInvokedCallbackInfo{mCallback=android.window.IOnBackInvokedCallback$Stub$Proxy@d168ce0, mPriority=0, mIsAnimationCallback=false}
+10-06 21:15:14.069   518   535 W ziparchive: Unable to open '/data/app/~~vxwpqxX2ekoGlVwqJIK-0g==/io.github.qourum.metekhi-YeAeHjyc-7TBxeOn_G1roQ==/base.dm': No such file or directory
+10-06 21:15:14.141   518   535 I ActivityTaskManager: Displayed io.github.qourum.metekhi/.LauncherActivity for user 0: +1s331ms
+10-06 21:15:14.141   518   535 V WindowManager: Sent Transition #8 createdAt=10-06 21:15:11.953 via request=TransitionRequestInfo { type = OPEN, triggerTask = TaskInfo{userId=0 taskId=9 displayId=0 isRunning=true baseIntent=Intent { flg=0x10000000 cmp=io.github.qourum.metekhi/.LauncherActivity } baseActivity=ComponentInfo{io.github.qourum.metekhi/io.github.qourum.metekhi.LauncherActivity} topActivity=ComponentInfo{io.github.qourum.metekhi/io.github.qourum.metekhi.LauncherActivity} origActivity=null realActivity=ComponentInfo{io.github.qourum.metekhi/io.github.qourum.metekhi.LauncherActivity} numActivities=1 lastActiveTime=72981 supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=220 token=WCT{RemoteToken{7872e83 Task{a5d4361 #9 type=standard A=10192:io.github.qourum.metekhi}}} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=Rect(0, 128 - 0, 0) topActivityInfo=ActivityInfo{10ce800 io.github.qourum.metekhi.LauncherActivity} launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=false isVisible=false isVisibleRequested=false isSleeping=false topActivityInSizeCompat=false topActivityEligibleForLetterboxEducation= false topActivityLetterboxed= false isFromDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=-1 topActivityLetterboxHeight=-1 locusId=null displayAreaFeatureId=1 cameraCompatControlState=hidden}, remoteTransition = null, displayChange = null }
+10-06 21:15:14.141   518   535 V WindowManager:     info={id=8 t=OPEN f=0x0 trk=0 r=[0@Point(0, 0)] c=[{WCT{RemoteToken{7872e83 Task{a5d4361 #9 type=standard A=10192:io.github.qourum.metekhi}}} m=OPEN f=TRANSLUCENT p=WCT{RemoteToken{12ef839 DefaultTaskDisplayArea@106220726}} leash=Surface(name=Task=9)/@0x7be70da sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 2400, 1080) d=0 r=0->1:0},{WCT{RemoteToken{5b73e7e Task{626489 #1 type=home}}} m=CHANGE f=SHOW_WALLPAPER p=WCT{RemoteToken{12ef839 DefaultTaskDisplayArea@106220726}} leash=Surface(name=Task=1)/@0x9a03334 sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 2400, 1080) d=0 r=0->1:0},{WCT{RemoteToken{12ef839 DefaultTaskDisplayArea@106220726}} m=CHANGE f=SHOW_WALLPAPER p=WCT{RemoteToken{7842fdf Display{#0 state=ON size=2400x1080 ROTATION_90}}} leash=Surface(name=DefaultTaskDisplayArea)/@0x409607 sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 2400, 1080) d=0 r=0->1:-1},{null m=CHANGE f=IS_WALLPAPER p=WCT{RemoteToken{7842fdf Display{#0 state=ON size=2400x1080 ROTATION_90}}} leash=Surface(name=WallpaperWindowToken{9630ec3 token=android.os.Binder@2552727})/@0x136efa sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 2400, 1080) d=0 r=0->1:-1},{WCT{RemoteToken{7842fdf Display{#0 state=ON size=2400x1080 ROTATION_90}}} m=CHANGE f=SHOW_WALLPAPER|IS_DISPLAY leash=Surface(name=WindowedMagnification:0:31)/@0x1aa1af5 sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 2400, 1080) d=0 r=0->1:-1}]}
+10-06 21:15:14.201   518  2330 I ImeTracker: io.github.qourum.metekhi:461715f1: onRequestHide at ORIGIN_SERVER_HIDE_INPUT reason HIDE_UNSPECIFIED_WINDOW
+10-06 21:15:14.201   518  2330 I ImeTracker: io.github.qourum.metekhi:461715f1: onCancelled at PHASE_SERVER_SHOULD_HIDE
+10-06 21:15:14.208  1513  1513 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1877 onStartInput(EditorInfo{inputType=0x0(NULL) imeOptions=0x0 privateImeOptions=null actionName=UNSPECIFIED actionLabel=null actionId=0 initialSelStart=-1 initialSelEnd=-1 initialCapsMode=0x0 hintText=null label=null packageName=io.github.qourum.metekhi fieldId=0 fieldName=null extras=null}, false)
+10-06 21:15:15.003  4819  4819 D TwaLauncher: Launching Trusted Web Activity.
+10-06 21:15:15.040   827   859 V WindowManagerShell: Transition requested: android.os.BinderProxy@809046b TransitionRequestInfo { type = OPEN, triggerTask = TaskInfo{userId=0 taskId=9 displayId=0 isRunning=true baseIntent=Intent { flg=0x10000000 cmp=io.github.qourum.metekhi/.LauncherActivity } baseActivity=ComponentInfo{io.github.qourum.metekhi/io.github.qourum.metekhi.LauncherActivity} topActivity=ComponentInfo{com.android.chrome/org.chromium.chrome.browser.document.ChromeLauncherActivity} origActivity=null realActivity=ComponentInfo{io.github.qourum.metekhi/io.github.qourum.metekhi.LauncherActivity} numActivities=2 lastActiveTime=76008 supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=220 token=WCT{android.window.IWindowContainerToken$Stub$Proxy@f1abc8} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=Rect(128, 0 - 0, 0) topActivityInfo=ActivityInfo{ded4461 com.google.android.apps.chrome.IntentDispatcher} launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=true isVisible=true isVisibleRequested=true isSleeping=false topActivityInSizeCompat=false topActivityEligibleForLetterboxEducation= false topActivityLetterboxed= false isFromDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=-1 topActivityLetterboxHeight=-1 locusId=null displayAreaFeatureId=1 cameraCompatControlState=hidden}, remoteTransition = null, displayChange = null }
+10-06 21:15:15.698  1513  1513 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1877 onStartInput(EditorInfo{inputType=0x0(NULL) imeOptions=0x0 privateImeOptions=null actionName=UNSPECIFIED actionLabel=null actionId=0 initialSelStart=-1 initialSelEnd=-1 initialCapsMode=0x0 hintText=null label=null packageName=io.github.qourum.metekhi fieldId=0 fieldName=null extras=null}, true)
+10-06 21:15:16.067  4002  4002 I cr_SplitCompatClassLoader: Splits: null
+10-06 21:15:16.134  4002  4002 I cr_CompositorSurfaceMgr: Transitioning to surface with format: -1
+10-06 21:15:16.135  4002  4002 W cr_SplitCompatClassLoader: No class android.widget.View amongst android.util.MapCollections$KeySet@0
+10-06 21:15:16.135  4002  4002 W cr_SplitCompatClassLoader: No class android.webkit.View amongst android.util.MapCollections$KeySet@0
+10-06 21:15:16.135  4002  4002 W cr_SplitCompatClassLoader: No class android.app.View amongst android.util.MapCollections$KeySet@0
+10-06 21:15:16.418  4002  4002 I cr_StartSurfaceConfig: Recorded Startup.Android.FirstDrawCompletedTime.NoInstant = 362 ms
+10-06 21:15:16.680  4927  4927 I cr_ZygotePreload: Loaded Zygote. version=113.0.5672.136 minSdkVersion=29 isBundle=true
+10-06 21:15:16.789   518   535 V WindowManager: Sent Transition #9 createdAt=10-06 21:15:15.028 via request=TransitionRequestInfo { type = OPEN, triggerTask = TaskInfo{userId=0 taskId=9 displayId=0 isRunning=true baseIntent=Intent { flg=0x10000000 cmp=io.github.qourum.metekhi/.LauncherActivity } baseActivity=ComponentInfo{io.github.qourum.metekhi/io.github.qourum.metekhi.LauncherActivity} topActivity=ComponentInfo{com.android.chrome/org.chromium.chrome.browser.document.ChromeLauncherActivity} origActivity=null realActivity=ComponentInfo{io.github.qourum.metekhi/io.github.qourum.metekhi.LauncherActivity} numActivities=2 lastActiveTime=76008 supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=220 token=WCT{RemoteToken{7872e83 Task{a5d4361 #9 type=standard A=10192:io.github.qourum.metekhi}}} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=Rect(128, 0 - 0, 0) topActivityInfo=ActivityInfo{b81528 com.google.android.apps.chrome.IntentDispatcher} launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=true isVisible=true isVisibleRequested=true isSleeping=false topActivityInSizeCompat=false topActivityEligibleForLetterboxEducation= false topActivityLetterboxed= false isFromDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=-1 topActivityLetterboxHeight=-1 locusId=null displayAreaFeatureId=1 cameraCompatControlState=hidden}, remoteTransition = null, displayChange = null }
+10-06 21:15:16.789   518   535 V WindowManager:     info={id=9 t=OPEN f=0x0 trk=0 r=[0@Point(0, 0)] c=[{null m=OPEN f=TRANSLUCENT|FILLS_TASK|NO_ANIMATION p=WCT{RemoteToken{7872e83 Task{a5d4361 #9 type=standard A=10192:io.github.qourum.metekhi}}} leash=Surface(name=ActivityRecord{c731b8e u0 com.android.chrome/org.chromium.chrome.browser.customtabs.TranslucentCustomTabActivity)/@0x96bd01a sb=Rect(0, 0 - 0, 0) eb=Rect(0, 0 - 1080, 2400) d=-1->0 r=-1->0:-1},{null m=CLOSE f=TRANSLUCENT p=WCT{RemoteToken{7872e83 Task{a5d4361 #9 type=standard A=10192:io.github.qourum.metekhi}}} leash=Surface(name=ActivityRecord{f3646c8 u0 io.github.qourum.metekhi/.LauncherActivity)/@0xad29ec5 sb=Rect(0, 0 - 2400, 1080) eb=Rect(0, 0 - 1080, 2400) d=0 r=1->0:-1},{WCT{RemoteToken{7872e83 Task{a5d4361 #9 type=standard A=10192:io.github.qourum.metekhi}}} m=CHANGE f=TRANSLUCENT p=WCT{RemoteToken{12ef839 DefaultTaskDisplayArea@106220726}} leash=Surface(name=Task=9)/@0x7be70da sb=Rect(0, 0 - 2400, 1080) eb=Rect(0, 0 - 1080, 2400) d=0 r=1->0:0},{WCT{RemoteToken{5b73e7e Task{626489 #1 type=home}}} m=CHANGE f=SHOW_WALLPAPER p=WCT{RemoteToken{12ef839 DefaultTaskDisplayArea@106220726}} leash=Surface(name=Task=1)/@0x9a03334 sb=Rect(0, 0 - 2400, 1080) eb=Rect(0, 0 - 1080, 2400) d=0 r=1->0:0},{WCT{RemoteToken{12ef839 DefaultTaskDisplayArea@106220726}} m=CHANGE f=SHOW_WALLPAPER p=WCT{RemoteToken{7842fdf Display{#0 state=ON size=1080x2400 ROTATION_0}}} leash=Surface(name=DefaultTaskDisplayArea)/@0x409607 sb=Rect(0, 0 - 2400, 1080) eb=Rect(0, 0 - 1080, 2400) d=0 r=1->0:-1},{null m=CHANGE f=IS_WALLPAPER p=WCT{RemoteToken{7842fdf Display{#0 state=ON size=1080x2400 ROTATION_0}}} leash=Surface(name=WallpaperWindowToken{9630ec3 token=android.os.Binder@2552727})/@0x136efa sb=Rect(0, 0 - 2400, 1080) eb=Rect(0, 0 - 1080, 2400) d=0 r=1->0:-1},{WCT{RemoteToken{7842fdf Display{#0 state=ON size=1080x2400 ROTATION_0}}} m=CHANGE f=SHOW_WALLPAPER|IS_DISPLAY leash=Surface(name=WindowedMagnification:0:31)/@0x1aa1af5 sb=Rect(0, 0 - 2400, 1080) eb=Rect(0, 0 - 1080, 2400) d=0 r=1->0:-1}]}
+10-06 21:15:16.792   827   859 V WindowManagerShell: onTransitionReady android.os.BinderProxy@809046b: {id=9 t=OPEN f=0x0 trk=0 r=[0@Point(0, 0)] c=[{null m=OPEN f=TRANSLUCENT|FILLS_TASK|NO_ANIMATION p=WCT{android.window.IWindowContainerToken$Stub$Proxy@8e05b89} leash=Surface(name=ActivityRecord{c731b8e u0 com.android.chrome/org.chromium.chrome.browser.customtabs.TranslucentCustomTabActivity)/@0xe12078 sb=Rect(0, 0 - 0, 0) eb=Rect(0, 0 - 1080, 2400) d=-1->0 r=-1->0:-1},{null m=CLOSE f=TRANSLUCENT p=WCT{android.window.IWindowContainerToken$Stub$Proxy@860e78e} leash=Surface(name=ActivityRecord{f3646c8 u0 io.github.qourum.metekhi/.LauncherActivity)/@0xc8f9351 sb=Rect(0, 0 - 2400, 1080) eb=Rect(0, 0 - 1080, 2400) d=0 r=1->0:-1},{WCT{android.window.IWindowContainerToken$Stub$Proxy@da40baf} m=CHANGE f=TRANSLUCENT p=WCT{android.window.IWindowContainerToken$Stub$Proxy@2c27bbc} leash=Surface(name=Task=9)/@0x9aa97b6 sb=Rect(0, 0 - 2400, 1080) eb=Rect(0, 0 - 1080, 2400) d=0 r=1->0:0},{WCT{android.window.IWindowContainerToken$Stub$Proxy@dea2745} m=CHANGE f=SHOW_WALLPAPER p=WCT{android.window.IWindowContainerToken$Stub$Proxy@907ee9a} leash=Surface(name=Task=1)/@0x4a03cb7 sb=Rect(0, 0 - 2400, 1080) eb=Rect(0, 0 - 1080, 2400) d=0 r=1->0:0},{WCT{android.window.IWindowContainerToken$Stub$Proxy@82fb3cb} m=CHANGE f=SHOW_WALLPAPER p=WCT{android.window.IWindowContainerToken$Stub$Proxy@f1997a8} leash=Surface(name=DefaultTaskDisplayArea)/@0x743cc24 sb=Rect(0, 0 - 2400, 1080) eb=Rect(0, 0 - 1080, 2400) d=0 r=1->0:-1},{null m=CHANGE f=IS_WALLPAPER p=WCT{android.window.IWindowContainerToken$Stub$Proxy@e0af2c1} leash=Surface(name=WallpaperWindowToken{9630ec3 token=android.os.Binder@2552727})/@0x7e9138d sb=Rect(0, 0 - 2400, 1080) eb=Rect(0, 0 - 1080, 2400) d=0 r=1->0:-1},{WCT{android.window.IWindowContainerToken$Stub$Proxy@2e65a66} m=CHANGE f=SHOW_WALLPAPER|IS_DISPLAY leash=Surface(name=WindowedMagnification:0:31)/@0xe407942 sb=Rect(0, 0 - 2400, 1080) eb=Rect(0, 0 - 1080, 2400) d=0 r=1->0:-1 snapshot=Surface(name=RotationLayer)/@0x171ed53}]}
+10-06 21:15:16.803   827   859 V WindowManagerShell: start default transition animation, info = {id=9 t=OPEN f=0x0 trk=0 r=[0@Point(0, 0)] c=[{null m=OPEN f=TRANSLUCENT|FILLS_TASK|NO_ANIMATION p=WCT{android.window.IWindowContainerToken$Stub$Proxy@8e05b89} leash=Surface(name=ActivityRecord{c731b8e u0 com.android.chrome/org.chromium.chrome.browser.customtabs.TranslucentCustomTabActivity)/@0xe12078 sb=Rect(0, 0 - 0, 0) eb=Rect(0, 0 - 1080, 2400) d=-1->0 r=-1->0:-1},{null m=CLOSE f=TRANSLUCENT p=WCT{android.window.IWindowContainerToken$Stub$Proxy@860e78e} leash=Surface(name=ActivityRecord{f3646c8 u0 io.github.qourum.metekhi/.LauncherActivity)/@0xc8f9351 sb=Rect(0, 0 - 2400, 1080) eb=Rect(0, 0 - 1080, 2400) d=0 r=1->0:-1},{WCT{android.window.IWindowContainerToken$Stub$Proxy@da40baf} m=CHANGE f=TRANSLUCENT p=WCT{android.window.IWindowContainerToken$Stub$Proxy@2c27bbc} leash=Surface(name=Task=9)/@0x9aa97b6 sb=Rect(0, 0 - 2400, 1080) eb=Rect(0, 0 - 1080, 2400) d=0 r=1->0:0},{WCT{android.window.IWindowContainerToken$Stub$Proxy@dea2745} m=CHANGE f=SHOW_WALLPAPER p=WCT{android.window.IWindowContainerToken$Stub$Proxy@907ee9a} leash=Surface(name=Task=1)/@0x4a03cb7 sb=Rect(0, 0 - 2400, 1080) eb=Rect(0, 0 - 1080, 2400) d=0 r=1->0:0},{WCT{android.window.IWindowContainerToken$Stub$Proxy@82fb3cb} m=CHANGE f=SHOW_WALLPAPER p=WCT{android.window.IWindowContainerToken$Stub$Proxy@f1997a8} leash=Surface(name=DefaultTaskDisplayArea)/@0x743cc24 sb=Rect(0, 0 - 2400, 1080) eb=Rect(0, 0 - 1080, 2400) d=0 r=1->0:-1},{null m=CHANGE f=IS_WALLPAPER p=WCT{android.window.IWindowContainerToken$Stub$Proxy@e0af2c1} leash=Surface(name=WallpaperWindowToken{9630ec3 token=android.os.Binder@2552727})/@0x7e9138d sb=Rect(0, 0 - 2400, 1080) eb=Rect(0, 0 - 1080, 2400) d=0 r=1->0:-1},{WCT{android.window.IWindowContainerToken$Stub$Proxy@2e65a66} m=CHANGE f=SHOW_WALLPAPER|IS_DISPLAY leash=Surface(name=WindowedMagnification:0:31)/@0xe407942 sb=Rect(0, 0 - 2400, 1080) eb=Rect(0, 0 - 1080, 2400) d=0 r=1->0:-1 snapshot=Surface(name=RotationLayer)/@0x171ed53}]}
+10-06 21:15:16.826  4927  4927 I cr_LibraryLoader: Loading monochrome_64 from within /data/app/~~PMu7TAFFrbtuYvyQ_6paWw==/com.android.chrome-paVM4jmaXMCJ-F07LxjiYA==/Chrome.apk
+10-06 21:15:16.827  4927  4927 I cr_Linker: loadLibraryImplLocked: monochrome_64, relroMode=1
+10-06 21:15:17.136  4286  4425 I cr_CronetLibraryLoader: Cronet version: 113.0.5672.51, arch: x86_64
+10-06 21:15:17.498  1513  1513 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1877 onStartInput(EditorInfo{inputType=0x0(NULL) imeOptions=0x0 privateImeOptions=null actionName=UNSPECIFIED actionLabel=null actionId=0 initialSelStart=-1 initialSelEnd=-1 initialCapsMode=0x0 hintText=null label=null packageName=io.github.qourum.metekhi fieldId=0 fieldName=null extras=null}, true)
+10-06 21:15:17.889  4002  4002 I cr_SmsProviderGms: construction successfull KT2@f6b049f, HT2@1854bbb
+10-06 21:15:17.923  4286  4956 I cr_CronetUrlRequestContext: destroyNativeStreamLocked org.chromium.net.impl.CronetBidirectionalStream@d40af2e
+10-06 21:15:17.944  4002  4098 I cr_PhenotypeFact: Received no configuration for com.google.android.partnersetup
+10-06 21:15:17.994  4002  4098 W cr_PartnerCustomize: Partner homepage must be HTTP(S) or NewTabPage. Got invalid URL ""
+10-06 21:15:18.212  4985  4985 I cr_SplitCompatApp: Launched version=113.0.5672.136 minSdkVersion=29 isBundle=true processName=com.android.chrome:sandboxed_process0:org.chromium.content.app.SandboxedProcessService0:0 isIsolated=true
+10-06 21:15:18.239  4993  4993 I cr_SplitCompatApp: Launched version=113.0.5672.136 minSdkVersion=29 isBundle=true processName=com.android.chrome:privileged_process0 isIsolated=false
+10-06 21:15:18.245  4993  4993 I cr_ChildProcessService: Creating new ChildProcessService pid=4993
+10-06 21:15:18.277  4985  4985 I cr_ChildProcessService: Creating new ChildProcessService pid=4985
+10-06 21:15:18.282  4993  5018 I cr_LibraryLoader: Loading monochrome_64 from within /data/app/~~PMu7TAFFrbtuYvyQ_6paWw==/com.android.chrome-paVM4jmaXMCJ-F07LxjiYA==/Chrome.apk
+10-06 21:15:18.283  4993  5018 I cr_Linker: loadLibraryImplLocked: monochrome_64, relroMode=2
+10-06 21:15:18.312  4819  5015 D ProfileInstaller: Installing profile for io.github.qourum.metekhi
+10-06 21:15:18.325  4002  4002 W cr_KnoxSettingsProvider: Permission to read device policy denied.
+10-06 21:15:18.345  4993  5018 I cr_LibraryLoader: Successfully loaded native library
+10-06 21:15:18.345  4993  5018 I cr_CachingUmaRecorder: Flushed 11 samples from 11 histograms.
+10-06 21:15:18.355  4002  4002 I cr_CompositorSurfaceMgr: Transitioning to surface with format: -1
+10-06 21:15:18.361  4002  4002 I cr_CompositorSurfaceMgr: surfaceCreated format: 0
+10-06 21:15:18.435  4985  5020 I cr_LibraryLoader: Successfully loaded native library
+10-06 21:15:18.435  4985  5020 I cr_CachingUmaRecorder: Flushed 10 samples from 10 histograms.
+10-06 21:15:18.460  4002  4982 W cr_media: BLUETOOTH_CONNECT permission is missing.
+10-06 21:15:18.465  4002  4982 W cr_media: registerBluetoothIntentsIfNeeded: Requires BLUETOOTH permission
+10-06 21:15:18.507  4002  4002 W cr_ContextualSearch: Not allowed to be active! Checking reasons:
+10-06 21:15:18.508  4002  4002 W cr_ContextualSearch: !isIncognito: true getFirstRunFlowComplete: false !isContextualSearchDisabled: true isDefaultSearchEngineGoogle: true !needToCheckForSearchEnginePromo: true !isRunningInCompatibilityMode: true !isShowingErrorPage: true isDeviceOnline: true
+10-06 21:15:18.580  4002  4002 I cr_VideoPersist: Exited picture in picture with reason: 0
+10-06 21:15:18.606  4002  4002 I cr_ChromeOriginVerifier: Verification skipped for https://qourum.github.io due to command line flag.
+10-06 21:15:18.632  4002  4002 W TWAConnectionPool: No TWA candidates for https://qourum.github.io/metekhi/ have been registered.
+10-06 21:15:18.681  4002  4002 W cr_TWAClient: Failed to connect to TWA to execute command
+10-06 21:15:18.681  4002  4002 W cr_TWAClient: java.util.concurrent.ExecutionException: java.lang.IllegalArgumentException: No service exists for scope
+10-06 21:15:18.681  4002  4002 W cr_TWAClient: 	at M0.c(chromium-TrichromeChromeGoogle6432.aab-stable-567263637:21)
+10-06 21:15:18.681  4002  4002 W cr_TWAClient: 	at M0.get(chromium-TrichromeChromeGoogle6432.aab-stable-567263637:115)
+10-06 21:15:18.681  4002  4002 W cr_TWAClient: 	at Ky3.run(chromium-TrichromeChromeGoogle6432.aab-stable-567263637:9)
+10-06 21:15:18.681  4002  4002 W cr_TWAClient: 	at android.os.MessageQueue.nativePollOnce(Native Method)
+10-06 21:15:18.681  4002  4002 W cr_TWAClient: 	at android.os.MessageQueue.next(MessageQueue.java:335)
+10-06 21:15:18.681  4002  4002 W cr_TWAClient: 	at android.os.Looper.loopOnce(Looper.java:162)
+10-06 21:15:18.681  4002  4002 W cr_TWAClient: 	at android.os.Looper.loop(Looper.java:294)
+10-06 21:15:18.681  4002  4002 W cr_TWAClient: 	at android.app.ActivityThread.main(ActivityThread.java:8177)
+10-06 21:15:18.681  4002  4002 W cr_TWAClient: 	at java.lang.reflect.Method.invoke(Native Method)
+10-06 21:15:18.681  4002  4002 W cr_TWAClient: 	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:552)
+10-06 21:15:18.681  4002  4002 W cr_TWAClient: 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:971)
+10-06 21:15:18.681  4002  4002 W cr_TWAClient: Caused by: java.lang.IllegalArgumentException: No service exists for scope
+10-06 21:15:18.681  4002  4002 W cr_TWAClient: 	at Iy3.a(chromium-TrichromeChromeGoogle6432.aab-stable-567263637:67)
+10-06 21:15:18.681  4002  4002 W cr_TWAClient: 	at ud1.a(chromium-TrichromeChromeGoogle6432.aab-stable-567263637:320)
+10-06 21:15:18.681  4002  4002 W cr_TWAClient: 	at Ny3.run(chromium-TrichromeChromeGoogle6432.aab-stable-567263637:28)
+10-06 21:15:18.681  4002  4002 W cr_TWAClient: 	at N50.a(chromium-TrichromeChromeGoogle6432.aab-stable-567263637:29)
+10-06 21:15:18.681  4002  4002 W cr_TWAClient: 	at N50.b(chromium-TrichromeChromeGoogle6432.aab-stable-567263637:33)
+10-06 21:15:18.681  4002  4002 W cr_TWAClient: 	at N50.C(chromium-TrichromeChromeGoogle6432.aab-stable-567263637:7)
+10-06 21:15:18.681  4002  4002 W cr_TWAClient: 	at pi.I(chromium-TrichromeChromeGoogle6432.aab-stable-567263637:98)
+10-06 21:15:18.681  4002  4002 W cr_TWAClient: 	at org.chromium.chrome.browser.app.ChromeActivity.I(chromium-TrichromeChromeGoogle6432.aab-stable-567263637:121)
+10-06 21:15:18.681  4002  4002 W cr_TWAClient: 	at Pq.I(chromium-TrichromeChromeGoogle6432.aab-stable-567263637:27)
+10-06 21:15:18.681  4002  4002 W cr_TWAClient: 	at org.chromium.chrome.browser.customtabs.CustomTabActivity.I(chromium-TrichromeChromeGoogle6432.aab-stable-567263637:45)
+10-06 21:15:18.681  4002  4002 W cr_TWAClient: 	at my.o0(chromium-TrichromeChromeGoogle6432.aab-stable-567263637:1)
+10-06 21:15:18.681  4002  4002 W cr_TWAClient: 	at GH.run(chromium-TrichromeChromeGoogle6432.aab-stable-567263637:38)
+10-06 21:15:18.681  4002  4002 W cr_TWAClient: 	at fE.run(chromium-TrichromeChromeGoogle6432.aab-stable-567263637:52)
+10-06 21:15:18.681  4002  4002 W cr_TWAClient: 	... 8 more
+10-06 21:15:18.901   518   535 V WindowManager:     info={id=10 t=CHANGE f=0x0 trk=0 r=[0@Point(0, 0)] c=[{WCT{RemoteToken{7872e83 Task{a5d4361 #9 type=standard A=10192:io.github.qourum.metekhi}}} m=CHANGE f=TRANSLUCENT p=WCT{RemoteToken{12ef839 DefaultTaskDisplayArea@106220726}} leash=Surface(name=Task=9)/@0x7be70da sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 2400, 1080) d=0 r=0->1:0},{WCT{RemoteToken{5b73e7e Task{626489 #1 type=home}}} m=CHANGE f=SHOW_WALLPAPER p=WCT{RemoteToken{12ef839 DefaultTaskDisplayArea@106220726}} leash=Surface(name=Task=1)/@0x9a03334 sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 2400, 1080) d=0 r=0->1:0},{WCT{RemoteToken{12ef839 DefaultTaskDisplayArea@106220726}} m=CHANGE f=SHOW_WALLPAPER p=WCT{RemoteToken{7842fdf Display{#0 state=ON size=2400x1080 ROTATION_90}}} leash=Surface(name=DefaultTaskDisplayArea)/@0x409607 sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 2400, 1080) d=0 r=0->1:-1},{null m=CHANGE f=IS_WALLPAPER p=WCT{RemoteToken{7842fdf Display{#0 state=ON size=2400x1080 ROTATION_90}}} leash=Surface(name=WallpaperWindowToken{9630ec3 token=android.os.Binder@2552727})/@0x136efa sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 2400, 1080) d=0 r=0->1:-1},{WCT{RemoteToken{7842fdf Display{#0 state=ON size=2400x1080 ROTATION_90}}} m=CHANGE f=SHOW_WALLPAPER|IS_DISPLAY leash=Surface(name=WindowedMagnification:0:31)/@0x1aa1af5 sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 2400, 1080) d=0 r=0->1:-1}]}
+10-06 21:15:18.962   518  2268 D CoreBackPreview: Window{dad8486 u0 io.github.qourum.metekhi/io.github.qourum.metekhi.LauncherActivity}: Setting back callback null
+10-06 21:15:18.965   518  1689 W InputManager-JNI: Input channel object 'dad8486 io.github.qourum.metekhi/io.github.qourum.metekhi.LauncherActivity (client)' was disposed without first being removed with the input manager!
+10-06 21:15:18.968   518  2303 W InputManager-JNI: Input channel object 'Letterbox_left_ActivityRecord{f3646c8 u0 io.github.qourum.metekhi/.LauncherActivity t9} (client)' was disposed without first being removed with the input manager!
+10-06 21:15:18.971   518  2303 W InputManager-JNI: Input channel object 'Letterbox_top_ActivityRecord{f3646c8 u0 io.github.qourum.metekhi/.LauncherActivity t9} (client)' was disposed without first being removed with the input manager!
+10-06 21:15:18.971   518  2303 W InputManager-JNI: Input channel object 'Letterbox_right_ActivityRecord{f3646c8 u0 io.github.qourum.metekhi/.LauncherActivity t9} (client)' was disposed without first being removed with the input manager!
+10-06 21:15:18.971   518  2303 W InputManager-JNI: Input channel object 'Letterbox_bottom_ActivityRecord{f3646c8 u0 io.github.qourum.metekhi/.LauncherActivity t9} (client)' was disposed without first being removed with the input manager!
+10-06 21:15:19.343  1432  3054 I cr_CronetLibraryLoader: Cronet version: 113.0.5672.51, arch: x86_64
+10-06 21:15:19.386  4002  4966 I cr_PhenotypeFact: Received no configuration for com.google.android.partnersetup
+10-06 21:15:19.386  4002  4966 W cr_PartnerCustomize: Partner homepage must be HTTP(S) or NewTabPage. Got invalid URL ""
+10-06 21:15:20.956  4002  4968 W cr_CrashFileManager: /data/user/0/com.android.chrome/cache/Crash Reports does not exist or is not a directory
+10-06 21:15:20.961  4002  4968 W cr_CrashFileManager: /data/user/0/com.android.chrome/cache/Crash Reports does not exist or is not a directory
+10-06 21:15:20.961  4002  4968 W cr_CrashFileManager: /data/user/0/com.android.chrome/cache/Crash Reports does not exist or is not a directory
+10-06 21:15:20.963  4002  4920 I cr_BindingManager: Visible binding enabled: maxSize=-1
+10-06 21:15:21.055  4002  4104 E cr_VariationsSessionInt: Timeout while querying Phenotype experiments
+10-06 21:15:21.110  4002  4002 W TWAConnectionPool: No TWA candidates for https://qourum.github.io/metekhi/ have been registered.
+10-06 21:15:21.120  4002  4002 W cr_TWAClient: Failed to connect to TWA to execute command
+10-06 21:15:21.120  4002  4002 W cr_TWAClient: java.util.concurrent.ExecutionException: java.lang.IllegalArgumentException: No service exists for scope
+10-06 21:15:21.120  4002  4002 W cr_TWAClient: 	at M0.c(chromium-TrichromeChromeGoogle6432.aab-stable-567263637:21)
+10-06 21:15:21.120  4002  4002 W cr_TWAClient: 	at M0.get(chromium-TrichromeChromeGoogle6432.aab-stable-567263637:115)
+10-06 21:15:21.120  4002  4002 W cr_TWAClient: 	at Ky3.run(chromium-TrichromeChromeGoogle6432.aab-stable-567263637:9)
+10-06 21:15:21.120  4002  4002 W cr_TWAClient: 	at android.os.MessageQueue.nativePollOnce(Native Method)
+10-06 21:15:21.120  4002  4002 W cr_TWAClient: 	at android.os.MessageQueue.next(MessageQueue.java:335)
+10-06 21:15:21.120  4002  4002 W cr_TWAClient: 	at android.os.Looper.loopOnce(Looper.java:162)
+10-06 21:15:21.120  4002  4002 W cr_TWAClient: 	at android.os.Looper.loop(Looper.java:294)
+10-06 21:15:21.120  4002  4002 W cr_TWAClient: 	at android.app.ActivityThread.main(ActivityThread.java:8177)
+10-06 21:15:21.120  4002  4002 W cr_TWAClient: 	at java.lang.reflect.Method.invoke(Native Method)
+10-06 21:15:21.120  4002  4002 W cr_TWAClient: 	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:552)
+10-06 21:15:21.120  4002  4002 W cr_TWAClient: 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:971)
+10-06 21:15:21.120  4002  4002 W cr_TWAClient: Caused by: java.lang.IllegalArgumentException: No service exists for scope
+10-06 21:15:21.120  4002  4002 W cr_TWAClient: 	at Iy3.a(chromium-TrichromeChromeGoogle6432.aab-stable-567263637:67)
+10-06 21:15:21.120  4002  4002 W cr_TWAClient: 	at Qf0.a(chromium-TrichromeChromeGoogle6432.aab-stable-567263637:14)
+10-06 21:15:21.120  4002  4002 W cr_TWAClient: 	at eg0.e0(chromium-TrichromeChromeGoogle6432.aab-stable-567263637:53)
+10-06 21:15:21.120  4002  4002 W cr_TWAClient: 	at sg0.H0(chromium-TrichromeChromeGoogle6432.aab-stable-567263637:222)
+10-06 21:15:21.120  4002  4002 W cr_TWAClient: 	at Gy2.S(chromium-TrichromeChromeGoogle6432.aab-stable-567263637:28)
+10-06 21:15:21.120  4002  4002 W cr_TWAClient: 	at MX.a(chromium-TrichromeChromeGoogle6432.aab-stable-567263637:38)
+10-06 21:15:21.120  4002  4002 W cr_TWAClient: 	at LX.a(chromium-TrichromeChromeGoogle6432.aab-stable-567263637:12)
+10-06 21:15:21.120  4002  4002 W cr_TWAClient: 	at org.chromium.mojo.system.impl.WatcherImpl.onHandleReady(chromium-TrichromeChromeGoogle6432.aab-stable-567263637:3)
+10-06 21:15:21.120  4002  4002 W cr_TWAClient: 	... 8 more
+10-06 21:15:21.482  4002  4966 I cr_ADCP : No customization source found
+10-06 21:15:21.780  4002  4966 E cr_PartnerBMReader: ATTENTION: not using partner bookmarks as none were provided
+10-06 21:15:21.841  5088  5088 I cr_SplitCompatApp: Launched version=113.0.5672.136 minSdkVersion=29 isBundle=true processName=com.android.chrome:sandboxed_process0:org.chromium.content.app.SandboxedProcessService0:1 isIsolated=true
+10-06 21:15:21.843  5088  5088 I cr_ChildProcessService: Creating new ChildProcessService pid=5088
+10-06 21:15:21.853  5088  5100 I cr_LibraryLoader: Successfully loaded native library
+10-06 21:15:21.854  5088  5100 I cr_CachingUmaRecorder: Flushed 10 samples from 10 histograms.
+10-06 21:15:23.640  4002  4966 I cr_omaha: OmahaBase::generateAndPostRequest(): Sending request to Omaha:
+10-06 21:15:23.640  4002  4966 I cr_omaha: <?xml version='1.0' encoding='UTF-8' standalone='yes' ?><request protocol="3.0" updater="Android" updaterversion="113.0.5672.136" updaterchannel="chrome" ismachine="1" requestid="{3ad25e9c-b672-49f7-8e2b-da355d4c786a}" sessionid="{dc605a60-875c-4739-80b6-e4d735498678}" installsource="system_image" dedup="cr"><os platform="android" version="14" arch="arm" /><app brand="" client="ms-unknown" appid="{387E11AD-7109-45F6-83CF-CAA241ADC9DF}" version="113.0.5672.136" nextversion="" lang="en-US" installage="-1" ap="chrome;google;sdk_gphone64_x86_64"><event eventtype="2" eventresult="1" /></app></request>
+10-06 21:15:23.896  4002  4966 I cr_omaha: OmahaBase::generateAndPostRequest(): Received response from Omaha:
+10-06 21:15:23.896  4002  4966 I cr_omaha: <?xml version="1.0" encoding="UTF-8"?><response protocol="3.0" server="prod"><daystart elapsed_days="7218" elapsed_seconds="51324"/><app appid="{387E11AD-7109-45F6-83CF-CAA241ADC9DF}" status="ok"><event status="ok"/></app></response>
+10-06 21:15:23.900  4002  4966 I cr_omaha: Request to Server Successful. Timestamp for next request:1791324923898
+10-06 21:15:23.914  4002  4966 I cr_omaha: OmahaBase::generateAndPostRequest(): Sending request to Omaha:
+10-06 21:15:23.914  4002  4966 I cr_omaha: <?xml version='1.0' encoding='UTF-8' standalone='yes' ?><request protocol="3.0" updater="Android" updaterversion="113.0.5672.136" updaterchannel="chrome" ismachine="1" requestid="{03002267-8fde-4a09-a9d1-93c4e7bcc374}" sessionid="{dc605a60-875c-4739-80b6-e4d735498678}" installsource="system_image" dedup="cr"><os platform="android" version="14" arch="arm" /><app brand="" client="ms-unknown" appid="{387E11AD-7109-45F6-83CF-CAA241ADC9DF}" version="113.0.5672.136" nextversion="" lang="en-US" installage="0" ap="chrome;google;sdk_gphone64_x86_64"><updatecheck /><ping active="1" ad="7218" rd="7218" /></app></request>
+10-06 21:15:23.951  4002  4966 I cr_omaha: OmahaBase::generateAndPostRequest(): Received response from Omaha:
+10-06 21:15:23.951  4002  4966 I cr_omaha: <?xml version="1.0" encoding="UTF-8"?><response protocol="3.0" server="prod"><daystart elapsed_days="7218" elapsed_seconds="51324"/><app appid="{387E11AD-7109-45F6-83CF-CAA241ADC9DF}" cohort="1:hyx:" cohortname="Stable Chrome" status="ok"><updatecheck status="ok"><urls><url codebase="market://details?id=com.android.chrome/"/></urls><manifest version="150.0.7871.186"><actions><action event="update" run=""/><action event="postinstall"/></actions><packages><package fp="2.150.0.7871.186" name="" required="true"/></packages></manifest></updatecheck><ping status="ok"/></app></response>
+10-06 21:15:23.951  4002  4966 I cr_omaha: Request to Server Successful. Timestamp for next request:1791324923951
+10-06 21:15:23.952  4002  4966 I cr_omaha: Attempting to schedule next job for: Wed Oct 07 02:15:23 UTC 2026
+10-06 21:15:23.983  4002  4002 I cr_omaha: Scheduled using JobService
+10-06 21:15:23.984  4002  4002 E cr_BkgrdTaskJS: Tried finishing non-current BackgroundTask.
+10-06 21:15:30.121  1041  1041 D CarrierSvcBindHelper: onPackageModified: io.github.qourum.metekhi
+10-06 21:15:30.265  1041  1366 D ImsResolver: maybeAddedImsService, packageName: io.github.qourum.metekhi
+10-06 21:15:31.231  5163  5163 I cr_SplitCompatApp: Launched version=113.0.5672.136 minSdkVersion=29 isBundle=true processName=com.android.chrome:sandboxed_process0:org.chromium.content.app.SandboxedProcessService0:2 isIsolated=true
+10-06 21:15:31.234  5163  5163 I cr_ChildProcessService: Creating new ChildProcessService pid=5163
+10-06 21:15:31.321  5163  5194 I cr_LibraryLoader: Successfully loaded native library
+10-06 21:15:31.326  5163  5194 I cr_CachingUmaRecorder: Flushed 10 samples from 10 histograms.
+10-06 21:15:31.506  5178  5178 I cr_SplitCompatApp: Launched version=113.0.5672.136 minSdkVersion=29 isBundle=true processName=com.android.chrome:sandboxed_process0:org.chromium.content.app.SandboxedProcessService0:3 isIsolated=true
+10-06 21:15:31.511  5201  5201 I cr_SplitCompatApp: Launched version=113.0.5672.136 minSdkVersion=29 isBundle=true processName=com.android.chrome:sandboxed_process0:org.chromium.content.app.SandboxedProcessService0:5 isIsolated=true
+10-06 21:15:31.556  5181  5181 I cr_SplitCompatApp: Launched version=113.0.5672.136 minSdkVersion=29 isBundle=true processName=com.android.chrome:sandboxed_process0:org.chromium.content.app.SandboxedProcessService0:4 isIsolated=true
+10-06 21:15:31.736  5217  5217 I cr_SplitCompatApp: Launched version=113.0.5672.136 minSdkVersion=29 isBundle=true processName=com.android.chrome:sandboxed_process0:org.chromium.content.app.SandboxedProcessService0:6 isIsolated=true
+10-06 21:15:31.778  5217  5217 I cr_ChildProcessService: Creating new ChildProcessService pid=5217
+10-06 21:15:31.779  5181  5181 I cr_ChildProcessService: Creating new ChildProcessService pid=5181
+10-06 21:15:31.783  5178  5178 I cr_ChildProcessService: Creating new ChildProcessService pid=5178
+10-06 21:15:31.827  5201  5201 I cr_ChildProcessService: Creating new ChildProcessService pid=5201
+10-06 21:15:31.849  5217  5239 I cr_LibraryLoader: Successfully loaded native library
+10-06 21:15:31.862  5217  5239 I cr_CachingUmaRecorder: Flushed 10 samples from 10 histograms.
+10-06 21:15:31.965  5181  5240 I cr_LibraryLoader: Successfully loaded native library
+10-06 21:15:31.979  5178  5241 I cr_LibraryLoader: Successfully loaded native library
+10-06 21:15:32.006  5201  5253 I cr_LibraryLoader: Successfully loaded native library
+10-06 21:15:32.008  5181  5240 I cr_CachingUmaRecorder: Flushed 10 samples from 10 histograms.
+10-06 21:15:32.014  5178  5241 I cr_CachingUmaRecorder: Flushed 10 samples from 10 histograms.
+10-06 21:15:32.035  5201  5253 I cr_CachingUmaRecorder: Flushed 10 samples from 10 histograms.
+10-06 21:15:32.061  5236  5236 I cr_SplitCompatApp: Launched version=113.0.5672.136 minSdkVersion=29 isBundle=true processName=com.android.chrome:sandboxed_process0:org.chromium.content.app.SandboxedProcessService0:7 isIsolated=true
+10-06 21:15:32.164  5236  5236 I cr_ChildProcessService: Creating new ChildProcessService pid=5236
+10-06 21:15:32.327  5236  5270 I cr_LibraryLoader: Successfully loaded native library
+10-06 21:15:32.339  5236  5270 I cr_CachingUmaRecorder: Flushed 10 samples from 10 histograms.
+10-06 21:15:37.691  1582  1582 I AiAiEcho: AppFetcherImpl onPackageChanged io.github.qourum.metekhi.
+10-06 21:15:37.694  1582  3438 I AiAiEcho: AppIndexer Package:[io.github.qourum.metekhi] UserProfile:[0] Enabled:[true].
+10-06 21:15:37.694  1582  3438 I AiAiEcho: AppFetcherImplV2 updateApps package:[io.github.qourum.metekhi], userId:[0], reason:[package is updated.].
+10-06 21:15:41.180  4819  4826 W .qourum.metekhi: Cleared Reference was only reachable from finalizer (only reported once)
+10-06 21:15:41.180  4819  4826 I .qourum.metekhi: Background concurrent copying GC freed 22205(1090KB) AllocSpace objects, 6(312KB) LOS objects, 49% free, 2748KB/5496KB, paused 31us,7us total 140.984ms
+10-06 21:15:46.384  5425  5425 I cr_WebViewApkApp: Launched version=113.0.5672.136 minSdkVersion=29 isBundle=false processName=com.google.android.webview
+10-06 21:15:59.357   518   607 D ActivityManager: freezing 4819 io.github.qourum.metekhi
+10-06 21:16:17.834  4002  4979 I cr_media: Create MediaDrmBridge with level L3 and origin AE024544223367555909B77123E5C199
+10-06 21:16:18.473  4002  4002 E cr_media: EventListener: No session for event 1.
+10-06 21:16:18.537  4002  4979 I cr_media: Provisioning origin ID AE024544223367555909B77123E5C199
+10-06 21:16:19.141  4002  4979 I cr_media: Create MediaDrmBridge with level L1 and origin AE024544223367555909B77123E5C199
+10-06 21:16:19.167  4002  4979 E cr_media: Security level L1 not supported!
+10-06 21:16:19.174  4002  4979 I cr_media: Create MediaDrmBridge with level L3 and origin D8A5C7FEBFB8BAE0630ED9F63D4EE55D
+10-06 21:16:19.301  4002  4002 E cr_media: EventListener: No session for event 1.
+10-06 21:16:19.516  5676  5676 I cr_SplitCompatApp: Launched version=113.0.5672.136 minSdkVersion=29 isBundle=true processName=com.android.chrome:sandboxed_process0:org.chromium.content.app.SandboxedProcessService0:8 isIsolated=true
+10-06 21:16:19.521  4002  4979 I cr_media: Provisioning origin ID D8A5C7FEBFB8BAE0630ED9F63D4EE55D
+10-06 21:16:19.607  5676  5676 I cr_ChildProcessService: Creating new ChildProcessService pid=5676
+10-06 21:16:19.690  5676  5696 I cr_LibraryLoader: Successfully loaded native library
+10-06 21:16:19.704  5676  5696 I cr_CachingUmaRecorder: Flushed 10 samples from 10 histograms.
+10-06 21:16:19.756  4002  4979 I cr_media: Create MediaDrmBridge with level L1 and origin D8A5C7FEBFB8BAE0630ED9F63D4EE55D
+10-06 21:16:19.767  4002  4979 E cr_media: Security level L1 not supported!
+10-06 21:16:22.378  5719  5719 I cr_SplitCompatApp: Launched version=113.0.5672.136 minSdkVersion=29 isBundle=true processName=com.android.chrome:sandboxed_process0:org.chromium.content.app.SandboxedProcessService0:9 isIsolated=true
+10-06 21:16:22.381  5719  5719 I cr_ChildProcessService: Creating new ChildProcessService pid=5719
+10-06 21:16:22.611  5719  5730 I cr_LibraryLoader: Successfully loaded native library
+10-06 21:16:22.612  5719  5730 I cr_CachingUmaRecorder: Flushed 10 samples from 10 histograms.
+10-06 21:16:22.747  5719  5719 W ThreadPoolForeg: type=1400 audit(0.0:58): avc:  denied  { setattr } for  name="cr_en-us_100000_index.bin" dev="dm-40" ino=320424 scontext=u:r:isolated_app:s0:c512,c768 tcontext=u:object_r:app_data_file:s0:c150,c256,c512,c768 tclass=file permissive=0
+10-06 21:16:26.049  5803  5803 I cr_SplitCompatApp: Launched version=113.0.5672.136 minSdkVersion=29 isBundle=true processName=com.android.chrome:sandboxed_process0:org.chromium.content.app.SandboxedProcessService0:10 isIsolated=true
+10-06 21:16:26.064  5803  5803 I cr_ChildProcessService: Creating new ChildProcessService pid=5803
+10-06 21:16:26.098  5803  5819 I cr_LibraryLoader: Successfully loaded native library
+10-06 21:16:26.103  5803  5819 I cr_CachingUmaRecorder: Flushed 10 samples from 10 histograms.
+10-06 21:16:30.167  5881  5881 I cr_SplitCompatApp: Launched version=113.0.5672.136 minSdkVersion=29 isBundle=true processName=com.android.chrome:sandboxed_process0:org.chromium.content.app.SandboxedProcessService0:11 isIsolated=true
+10-06 21:16:30.205  5881  5881 I cr_ChildProcessService: Creating new ChildProcessService pid=5881
+10-06 21:16:30.269  5881  5904 I cr_LibraryLoader: Successfully loaded native library
+10-06 21:16:30.269  5881  5904 I cr_CachingUmaRecorder: Flushed 10 samples from 10 histograms.
+10-06 21:16:30.337  5895  5895 I cr_SplitCompatApp: Launched version=113.0.5672.136 minSdkVersion=29 isBundle=true processName=com.android.chrome:sandboxed_process0:org.chromium.content.app.SandboxedProcessService0:12 isIsolated=true
+10-06 21:16:30.385  5895  5895 I cr_ChildProcessService: Creating new ChildProcessService pid=5895
+10-06 21:16:30.587  5895  5914 I cr_LibraryLoader: Successfully loaded native library
+10-06 21:16:30.587  5895  5914 I cr_CachingUmaRecorder: Flushed 10 samples from 10 histograms.
+10-06 21:16:33.760  5937  6101 I cr_CronetLibraryLoader: Cronet version: 113.0.5672.51, arch: x86_64
+10-06 21:16:34.538  6234  6234 I cr_SplitCompatApp: Launched version=113.0.5672.136 minSdkVersion=29 isBundle=true processName=com.android.chrome:sandboxed_process0:org.chromium.content.app.SandboxedProcessService0:13 isIsolated=true
+10-06 21:16:34.540  6234  6234 I cr_ChildProcessService: Creating new ChildProcessService pid=6234
+10-06 21:16:34.555  6234  6249 I cr_LibraryLoader: Successfully loaded native library
+10-06 21:16:34.559  6234  6249 I cr_CachingUmaRecorder: Flushed 10 samples from 10 histograms.
+10-06 21:16:34.582  6234  6234 I cr_ChildProcessService: Destroying ChildProcessService pid=6234
+10-06 21:16:34.737  6260  6260 I cr_SplitCompatApp: Launched version=113.0.5672.136 minSdkVersion=29 isBundle=true processName=com.android.chrome:sandboxed_process0:org.chromium.content.app.SandboxedProcessService0:14 isIsolated=true
+10-06 21:16:34.739  6260  6260 I cr_ChildProcessService: Creating new ChildProcessService pid=6260
+10-06 21:16:34.758  6260  6271 I cr_LibraryLoader: Successfully loaded native library
+10-06 21:16:34.758  6260  6271 I cr_CachingUmaRecorder: Flushed 10 samples from 10 histograms.
+10-06 21:16:34.795  6260  6260 I cr_ChildProcessService: Destroying ChildProcessService pid=6260
+10-06 21:16:35.153  6281  6281 I cr_SplitCompatApp: Launched version=113.0.5672.136 minSdkVersion=29 isBundle=true processName=com.android.chrome:sandboxed_process0:org.chromium.content.app.SandboxedProcessService0:15 isIsolated=true
+10-06 21:16:35.154  6281  6281 I cr_ChildProcessService: Creating new ChildProcessService pid=6281
+10-06 21:16:35.159  6281  6292 I cr_LibraryLoader: Successfully loaded native library
+10-06 21:16:35.159  6281  6292 I cr_CachingUmaRecorder: Flushed 10 samples from 10 histograms.

@@ -1,0 +1,31 @@
+{
+ "tabs": [
+  [
+   "page",
+   "https://qourum.github.io/metekhi/"
+  ]
+ ],
+ "pages": [
+  {
+   "state": {
+    "url": "https://qourum.github.io/metekhi/",
+    "ref": "android-app://io.github.qourum.metekhi/",
+    "app": "1",
+    "w": 915,
+    "h": 412,
+    "dpr": 2.625,
+    "loaded": true,
+    "dgs": true,
+    "title": "Metekhi",
+    "fullscreen": true,
+    "sw": true
+   },
+   "shop": {
+    "wallet": true,
+    "shopOpen": true,
+    "moneyItems": 0,
+    "note": "Diamonds come from the daily gifts, quests, the Campaign Book and the chronicle's pages."
+   }
+  }
+ ]
+}

@@ -1,0 +1,2 @@
+    topResumedActivity=ActivityRecord{c731b8e u0 com.android.chrome/org.chromium.chrome.browser.customtabs.TranslucentCustomTabActivity t9}
+  ResumedActivity: ActivityRecord{c731b8e u0 com.android.chrome/org.chromium.chrome.browser.customtabs.TranslucentCustomTabActivity t9}

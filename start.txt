@@ -1,0 +1,7 @@
+Starting: Intent { cmp=io.github.qourum.metekhi/.LauncherActivity }
+Status: ok
+LaunchState: COLD
+Activity: io.github.qourum.metekhi/.LauncherActivity
+TotalTime: 1331
+WaitTime: 1358
+Complete
