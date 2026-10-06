@@ -356,6 +356,153 @@ img{max-width:100%;display:block}
   #resBody .ledger{grid-template-columns:1fr auto 1fr auto;gap:4px 16px;padding:8px 12px;font-size:13px} #resBody .ledger b{font-size:15px} #resBody .ledger .tot{border:0;padding-top:0}
   .rescoach{margin-top:2px;padding:6px 10px} .rescoach img{width:34px;height:34px} .rescoach p{font-size:12.5px;line-height:1.35} }
 @media (max-height:460px){ .logo{font-size:clamp(42px,10vh,72px)} .title-wrap{gap:9px} .tagline{font-size:14px} .lineup img{width:36px;height:36px} }
+/* ---------- the bazaar ---------- */
+.wallet{display:flex;align-items:center;gap:8px}
+.wchip{border:0;display:inline-flex;align-items:center;gap:6px;height:38px;padding:0 12px 0 4px;border-radius:99px;background:linear-gradient(180deg,var(--wood-3),var(--wood-2));box-shadow:inset 0 0 0 2px var(--gold-lo);font-family:var(--f-num);font-size:17px;color:var(--cream)}
+.wchip img{width:30px;height:30px;object-fit:contain}
+.wchip b{font-weight:400}
+.wchip.dia{padding-right:4px}
+.wchip.dia i{font-style:normal;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;background:var(--gold-hi);color:#2c1b10;font-size:17px;line-height:1;margin-left:2px}
+.topwallet{position:absolute;top:max(12px,var(--st));left:max(16px,var(--sl));z-index:2}
+.bzr{position:relative}
+.bdg{position:absolute;top:-7px;right:-7px;min-width:20px;height:20px;padding:0 5px;box-sizing:border-box;border-radius:99px;background:#e0574a;color:#fff;font:400 13px/20px var(--f-num);font-style:normal;box-shadow:0 0 0 2px #2a1704}
+.mi{width:20px;height:20px;object-fit:contain;vertical-align:-5px;margin-right:2px;display:inline-block}
+.rmini{display:inline-flex;align-items:center;gap:2px;font-family:var(--f-num);font-size:15px;color:var(--cream);white-space:nowrap}
+.rmini img{width:22px;height:22px;object-fit:contain}
+.shopban{position:relative;border-radius:18px;overflow:hidden;box-shadow:inset 0 0 0 1px var(--line-2),0 10px 30px rgba(0,0,0,.4);aspect-ratio:1600/679;max-height:300px}
+.shopban img{width:100%;height:100%;object-fit:cover;object-position:60% 40%}
+.shopsay{position:absolute;right:30%;top:12%;max-width:min(320px,45%);margin:0;padding:10px 14px;border-radius:16px 16px 4px 16px;background:rgba(255,248,230,.95);color:#2a1704;font-weight:800;font-size:14px;line-height:1.35;box-shadow:0 6px 16px rgba(0,0,0,.35)}
+.tabs button{position:relative}
+.tabs .dot{position:absolute;top:6px;right:6px;width:9px;height:9px;border-radius:50%;background:#e0574a;box-shadow:0 0 0 2px var(--panel-2)}
+.note{margin:14px 2px 0;font-size:13px;line-height:1.5;color:var(--muted)}
+.linkb{border:0;background:none;color:var(--gold);font-weight:800;font-size:13px;text-decoration:underline;padding:4px}
+.starter{display:flex;align-items:center;gap:14px;padding:12px 16px;border-radius:18px;margin-bottom:6px;background:linear-gradient(90deg,rgba(232,180,76,.22),rgba(232,180,76,.05));box-shadow:inset 0 0 0 2px var(--gold)}
+.starter img{width:110px;flex:none}
+.starter .bd{flex:1;display:flex;flex-direction:column;gap:6px;min-width:0}
+.starter h3{margin:0;font-family:var(--f-display);font-weight:900;font-size:22px;color:var(--gold-hi)}
+.rlist{display:flex;flex-wrap:wrap;gap:4px 12px}
+.btn.buy{min-width:110px;font-family:var(--f-num);font-weight:400;font-size:19px}
+.login{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px}
+.lday{display:flex;flex-direction:column;align-items:center;gap:6px;padding:10px 4px;border-radius:14px;background:var(--panel);box-shadow:inset 0 0 0 1px var(--line-2);font-size:12px;font-weight:800;color:var(--muted);text-align:center}
+.lday .rlist{justify-content:center}
+.lday.now{box-shadow:inset 0 0 0 2px var(--gold-hi),0 0 16px rgba(255,214,90,.35);color:var(--gold-hi)}
+.lday.got{opacity:.45}
+.quests{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.quest{display:flex;flex-direction:column;gap:8px;padding:12px;border-radius:16px;background:var(--panel);box-shadow:inset 0 0 0 1px var(--line-2)}
+.quest>b{font-size:14px;line-height:1.35;color:var(--text)}
+.quest.ready{box-shadow:inset 0 0 0 2px var(--gold),0 0 14px rgba(255,214,90,.25)}
+.quest.got{opacity:.55}
+.qrow{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.qrow .btn,.qrow .sub{margin-left:auto}
+.qbar{position:relative;height:16px;border-radius:99px;background:rgba(0,0,0,.35);box-shadow:inset 0 0 0 1px var(--line-2);overflow:hidden}
+.qbar i{position:absolute;inset:0 auto 0 0;background:linear-gradient(90deg,var(--gold-lo),var(--gold-hi));border-radius:99px}
+.qbar span{position:relative;display:block;text-align:center;font:400 12px/16px var(--f-num);color:#fff;text-shadow:0 1px 0 #000}
+.qbar.big{height:20px} .qbar.big span{line-height:20px;font-size:14px}
+.qstrip{display:flex;flex-direction:column;gap:8px}
+.qhead{display:flex;align-items:center;justify-content:space-between}
+.qhead b{font-family:var(--f-display);font-weight:900;font-size:17px;color:var(--gold-hi)}
+.quests.res{grid-template-columns:repeat(auto-fill,minmax(190px,1fr))}
+.quests.res .quest{padding:8px 10px;gap:6px} .quests.res .quest>b{font-size:12.5px}
+.offers{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px}
+.offer{position:relative;display:flex;flex-direction:column;align-items:center;gap:6px;padding:12px 10px;border-radius:16px;background:var(--panel);box-shadow:inset 0 0 0 1px var(--line-2),inset 0 -3px 0 var(--rc);text-align:center}
+.offer b{font-size:13.5px;line-height:1.3;color:var(--text)}
+.offer.sold{opacity:.45}
+.offer .off{position:absolute;top:8px;left:8px;padding:2px 8px;border-radius:99px;background:#e0574a;color:#fff;font:400 14px/20px var(--f-num)}
+.oimg{width:96px;height:96px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.oimg img{max-width:96px;max-height:92px;object-fit:contain;filter:drop-shadow(0 6px 8px rgba(0,0,0,.4))}
+.oimg.fig{border-radius:12px;background:radial-gradient(circle at 50% 70%,#3a4a3a,#1c2420)}
+.btn s{opacity:.6;font-weight:600}
+.chests{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+.chest{display:flex;flex-direction:column;align-items:center;gap:8px;padding:16px;border-radius:20px;background:var(--panel);box-shadow:inset 0 0 0 1px var(--line-2);text-align:center}
+.chest img{width:min(220px,90%);filter:drop-shadow(0 12px 14px rgba(0,0,0,.5));transition:transform .2s}
+.chest:hover img{transform:translateY(-4px) rotate(-2deg)}
+.chest h3{margin:0;font-family:var(--f-display);font-weight:900;font-size:21px;color:var(--gold-hi)}
+.chest p{margin:0;font-size:13px;color:var(--muted)}
+.chest .pity{color:var(--gold);font-weight:700}
+.c-gold{box-shadow:inset 0 0 0 2px var(--gold-lo),0 0 30px rgba(232,180,76,.12)}
+.cbtns{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;align-items:center}
+.cbtns .btn{font-family:var(--f-num);font-weight:400;font-size:18px}
+table.odds{width:100%;border-collapse:collapse;font-size:13px}
+table.odds th,table.odds td{padding:7px 8px;border-bottom:1px solid var(--line-2);text-align:left;vertical-align:top;color:var(--text)}
+table.odds th{color:var(--gold);font-size:12px;letter-spacing:.06em}
+.hrow{display:flex;flex-direction:column;gap:8px;margin-bottom:16px}
+.hhead{display:flex;align-items:center;gap:10px}
+.hhead img{width:40px;height:40px;border-radius:50%;object-fit:cover;box-shadow:0 0 0 2px var(--gold-lo)}
+.hhead b{font-family:var(--f-display);font-weight:900;font-size:18px;color:var(--gold-hi)}
+.items{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px}
+.icard{display:flex;flex-direction:column;align-items:center;gap:6px;padding:10px;border-radius:16px;background:var(--panel);box-shadow:inset 0 0 0 1px var(--line-2),inset 0 -3px 0 var(--rc);text-align:center}
+.icard.on{box-shadow:inset 0 0 0 2px var(--rc),0 0 16px color-mix(in srgb,var(--rc) 35%,transparent)}
+.icard b{font-size:14px;color:var(--text);line-height:1.25}
+.icard .rar{font-size:11.5px;font-weight:800;letter-spacing:.06em;color:var(--rc)}
+.icard .sk{margin:0;font-size:12px;line-height:1.4}
+.iimg{width:100%;height:120px;display:flex;align-items:flex-end;justify-content:center;overflow:hidden}
+.iimg img{max-height:112px;max-width:100%;object-fit:contain;filter:drop-shadow(0 6px 8px rgba(0,0,0,.4))}
+.iimg:not(.fig){align-items:center}
+.iimg.fig{border-radius:12px;background:radial-gradient(circle at 50% 75%,color-mix(in srgb,var(--rc) 30%,#2a3328),#161c18);padding:6px 4px 0;box-sizing:border-box}
+.iacts{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin-top:auto}
+.iacts .btn{font-family:var(--f-num);font-weight:400;font-size:15px}
+.packs{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:12px}
+.pack{position:relative;display:flex;flex-direction:column;align-items:center;gap:6px;padding:14px 10px;border-radius:18px;background:linear-gradient(180deg,#22304a,var(--panel));box-shadow:inset 0 0 0 1px var(--line-2);text-align:center}
+.pack>img{height:110px;object-fit:contain;filter:drop-shadow(0 8px 10px rgba(0,0,0,.45))}
+.packs.small .pack>img{height:72px}
+.pack>b{font-family:var(--f-num);font-weight:400;font-size:22px;color:var(--cream)}
+.pack .tag{position:absolute;top:8px;left:8px;padding:2px 9px;border-radius:99px;background:var(--gold);color:#2a1704;font-size:11px;font-weight:800}
+.pack .x2{padding:2px 9px;border-radius:99px;background:#e0574a;color:#fff;font-size:11px;font-weight:800}
+.passhead{display:flex;align-items:center;gap:14px;padding:14px;border-radius:18px;background:var(--panel);box-shadow:inset 0 0 0 1px var(--line-2);flex-wrap:wrap}
+.passhead>img{width:84px}
+.passhead .bd{flex:1;min-width:220px;display:flex;flex-direction:column;gap:8px}
+.passhead h3{margin:0;font-family:var(--f-display);font-weight:900;font-size:22px;color:var(--gold-hi)}
+.pbuy{display:flex;flex-direction:column;gap:6px;align-items:stretch}
+.badge2{padding:8px 14px;border-radius:99px;background:rgba(134,212,110,.15);color:var(--green);font-weight:800;font-size:13px;box-shadow:inset 0 0 0 1px var(--green)}
+.ptrack{display:flex;gap:6px;overflow-x:auto;padding:12px 2px 10px;margin-top:10px;scroll-behavior:smooth}
+.prow.lbl,.pcol{flex:none;display:flex;flex-direction:column;gap:6px;align-items:center}
+.prow.lbl{justify-content:flex-end;position:sticky;left:0;z-index:1;background:var(--ink);padding-right:6px}
+.prow.lbl b{height:68px;display:grid;place-items:center;font-size:12px;color:var(--gold)}
+.pn{font:400 14px var(--f-num);color:var(--muted)}
+.pcol.reach .pn{color:var(--gold-hi)}
+.pcell{position:relative;width:68px;height:68px;border:0;border-radius:14px;padding:4px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--panel-2);box-shadow:inset 0 0 0 1px var(--line-2)}
+.pcell img{width:40px;height:40px;object-fit:contain}
+.pcell span{font:400 12px var(--f-num);color:var(--cream)}
+.pcell.ready{box-shadow:inset 0 0 0 2px var(--gold-hi),0 0 14px rgba(255,214,90,.45);animation:ready 1s ease-in-out infinite alternate;cursor:pointer}
+.pcell.got{opacity:.35}
+.pcell.lock::after{content:'';position:absolute;inset:0;border-radius:14px;background:rgba(10,10,16,.45) no-repeat center/26px url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='5' y='10' width='14' height='10' rx='2' fill='%23e8b44c'/%3E%3Cpath d='M8 10V7a4 4 0 0 1 8 0v3' fill='none' stroke='%23e8b44c' stroke-width='2.4'/%3E%3C/svg%3E")}
+.wbtn{display:inline-flex;align-items:center;gap:6px}
+.wbtn img{width:22px;height:22px;object-fit:contain}
+.sw{width:12px;height:12px;border-radius:50%;background:var(--rc);box-shadow:0 0 6px var(--rc)}
+.hpor .hwp{position:absolute;right:calc(-6px*var(--hs));bottom:calc(-4px*var(--hs));width:calc(24px*var(--hs));height:calc(24px*var(--hs));border-radius:50%;background:#1a0f06;box-shadow:0 0 0 calc(2px*var(--hs)) var(--gold-lo);padding:2px;box-sizing:border-box;object-fit:contain}
+/* reward cards (rewards, chests) */
+.rcards{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.rcard{position:relative;width:140px;display:flex;flex-direction:column;align-items:center;gap:4px;padding:12px 8px;border-radius:16px;background:linear-gradient(180deg,color-mix(in srgb,var(--rc) 22%,var(--panel-2)),var(--panel));box-shadow:inset 0 0 0 2px var(--rc);text-align:center;animation:cardin .45s cubic-bezier(.2,1.4,.4,1) backwards}
+.rcard b{font-size:14px;color:var(--cream);line-height:1.25;font-family:var(--f-num);font-weight:400}
+.rcard span{font-size:11.5px;color:var(--muted);font-weight:700}
+.rimg{width:96px;height:96px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.rimg img{max-width:96px;max-height:92px;object-fit:contain;filter:drop-shadow(0 6px 8px rgba(0,0,0,.4))}
+.rimg.fig{border-radius:12px;background:radial-gradient(circle at 50% 75%,color-mix(in srgb,var(--rc) 35%,#2a3328),#161c18)}
+.rcard.r-leg{box-shadow:inset 0 0 0 2px var(--rc),0 0 24px rgba(240,194,76,.55)}
+.rcard .new{position:absolute;top:-8px;right:-6px;padding:2px 8px;border-radius:99px;background:#e0574a;color:#fff;font-size:11px;font-weight:800;font-style:normal}
+@keyframes cardin{from{opacity:0;transform:translateY(30px) scale(.6)}}
+.sheet.rewards{align-items:center;text-align:center}
+.sheet.wardrobe{width:min(900px,100%)}
+.sheet.revive{width:min(480px,100%)}
+/* the chest opening */
+#chestFx{position:absolute;inset:0;z-index:25;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:20px;background:radial-gradient(ellipse at 50% 40%,rgba(60,40,14,.92),rgba(6,8,12,.96) 70%);overflow:auto}
+.cf-title{margin:0;font-family:var(--f-display);font-weight:900;font-size:26px;color:var(--gold-hi);text-shadow:0 3px 0 rgba(0,0,0,.6)}
+.cf-stage{position:relative;width:min(320px,70vw);aspect-ratio:320/280;display:grid;place-items:center}
+.cf-chest{position:relative;width:100%;cursor:pointer;filter:drop-shadow(0 20px 24px rgba(0,0,0,.6));animation:cfbob 1s ease-in-out infinite alternate}
+@keyframes cfbob{to{transform:translateY(-8px)}}
+#chestFx.shake .cf-chest{animation:cfshake .09s linear infinite}
+@keyframes cfshake{0%{transform:rotate(-4deg) translateX(-3px)}50%{transform:rotate(4deg) translateX(3px)}100%{transform:rotate(-4deg) translateX(-3px)}}
+#chestFx.open .cf-chest{animation:cfpop .4s ease-out}
+@keyframes cfpop{from{transform:scale(1.25)}}
+.cf-rays{position:absolute;inset:-60%;opacity:0;background:repeating-conic-gradient(from 0deg,rgba(255,230,150,.35) 0deg 10deg,rgba(255,230,150,0) 10deg 22deg);-webkit-mask:radial-gradient(circle,#000 20%,transparent 62%);mask:radial-gradient(circle,#000 20%,transparent 62%);transition:opacity .4s}
+#chestFx.open .cf-rays{opacity:1;animation:spin 9s linear infinite}
+#chestFx.legend .cf-rays{background:repeating-conic-gradient(from 0deg,rgba(255,200,80,.6) 0deg 10deg,rgba(255,200,80,0) 10deg 22deg)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.cf-hint{border:0;background:none;color:var(--cream);font-weight:800;font-size:15px;animation:pulse2 1s ease-in-out infinite alternate}
+@keyframes pulse2{to{opacity:.5}}
+.cf-cards{min-height:20px}
+@media (max-width:640px){ .shopsay{font-size:12px;right:34%;padding:7px 10px} .login{grid-template-columns:repeat(4,minmax(0,1fr))} .starter{flex-wrap:wrap} .starter img{width:80px} .rcard{width:118px} .rimg{width:78px;height:78px} .rimg img{max-width:78px;max-height:74px} .topwallet .wchip{height:32px;font-size:15px} .topwallet .wchip img{width:24px;height:24px} }
+@media (max-height:460px){ #chestFx{gap:6px;padding:10px} .cf-stage{width:min(220px,40vh)} .cf-title{font-size:20px} .rcard{width:110px;padding:8px 6px} .rimg{width:64px;height:64px} .rimg img{max-width:64px;max-height:60px} .shopban{max-height:150px} }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
 </head>
@@ -402,10 +549,12 @@ img{max-width:100%;display:block}
       <div class="row" id="titleBtns">
         <button class="btn" data-go="map">ლაშქრობა</button>
         <button class="btn ghost" data-go="camp">ბანაკი</button>
+        <button class="btn ghost bzr" data-go="shop">ბაზარი<i class="bdg" id="bdgShop" hidden></i></button>
         <button class="btn ghost" data-go="help">როგორ ვითამაშო</button>
       </div>
       <div class="lineup" id="lineup"></div>
     </div>
+    <div class="wallet topwallet"></div>
     <div class="topbtns"><button class="snd" id="btnLang" lang="en">English</button><button class="snd" id="btnFull" hidden>სრული ეკრანი</button><button class="snd" id="btnSound">ხმა ჩართულია</button></div>
     <div class="a2hsbar" id="a2hsBar" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M8 7l4-4 4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 10H5v11h14V10h-3" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><span>სრული ეკრანისთვის: <b>გაზიარება</b> → <b>Add to Home Screen</b></span><button class="btn ghost small" id="a2hsMore">როგორ?</button><button class="x" id="a2hsX" aria-label="დახურვა">×</button></div>
   </section>
@@ -414,8 +563,9 @@ img{max-width:100%;display:block}
     <div class="inner">
       <div class="head">
         <div><p class="eyebrow" id="mEyebrow">ლაშქრობა</p><h2>აირჩიე ბრძოლა</h2></div>
-        <div class="acts"><span class="glory"><i></i><span class="gv">0</span></span><button class="btn ghost small" data-go="camp">ბანაკი</button><button class="btn ghost small" data-go="title">მთავარი</button></div>
+        <div class="acts"><div class="wallet"></div><button class="btn ghost small bzr" data-go="shop">ბაზარი<i class="bdg" id="bdgShop2" hidden></i></button><button class="btn ghost small" data-go="camp">ბანაკი</button><button class="btn ghost small" data-go="title">მთავარი</button></div>
       </div>
+      <div class="qstrip" id="qStrip"></div>
       <div class="maps" id="maps"></div>
     </div>
   </section>
@@ -424,7 +574,7 @@ img{max-width:100%;display:block}
     <div class="inner">
       <div class="head">
         <div><p class="eyebrow" id="cEyebrow">ბანაკი</p><h2>გმირები და კოშკები</h2></div>
-        <div class="acts"><span class="glory"><i></i><span class="gv">0</span></span><button class="btn small" data-go="map">ლაშქრობა</button><button class="btn ghost small" data-go="title">მთავარი</button></div>
+        <div class="acts"><div class="wallet"></div><button class="btn ghost small" data-go="shop">ბაზარი</button><button class="btn small" data-go="map">ლაშქრობა</button><button class="btn ghost small" data-go="title">მთავარი</button></div>
       </div>
       <div class="tabs" role="tablist">
         <button role="tab" aria-selected="true" data-tab="heroes">გმირები</button>
@@ -435,6 +585,17 @@ img{max-width:100%;display:block}
     </div>
   </section>
 
+  <section class="screen solid" id="sShop" hidden>
+    <div class="inner">
+      <div class="head">
+        <div><p class="eyebrow">ბაზარი</p><h2>თბილისის ბაზარი</h2></div>
+        <div class="acts"><div class="wallet"></div><button class="btn small" data-go="map">ლაშქრობა</button><button class="btn ghost small" data-go="camp">ბანაკი</button><button class="btn ghost small" data-go="title">მთავარი</button></div>
+      </div>
+      <div class="shopban"><img src="art/ui_bazaar.webp" alt=""><p class="shopsay" id="shopSay"></p></div>
+      <div class="tabs" role="tablist" id="shopTabs"></div>
+      <div id="shopBody"></div>
+    </div>
+  </section>
   <section class="screen modal" id="sPre" hidden><div class="sheet" id="preBody"></div></section>
   <section class="screen modal" id="sResult" hidden><div class="sheet" id="resBody"></div></section>
   <section class="screen modal" id="sPause" hidden>
@@ -463,6 +624,7 @@ img{max-width:100%;display:block}
         <li><b>გამოძახება:</b> ბრძოლის დროს ქვემოთ, კოშკების გვერდით, „+“ ღილაკია. შიგ გმირები და რაზმებია: მთიულები, გურული მეისრეები, ხევსურები, გურული მხედრები და 9 ძმა ხერხეულიძე. აირჩიე — ფერადია, თუ ოქრო გყოფნის — მერე დააჭირე ველზე და იქ ჩამოვა. რაზმი ცოტა ხანს იბრძვის, მერე ისვენებს. როცა 9 ძმა ხერხეულიძე დაეცემა, მათი დედა დროშით გამოჩნდება და 5 წამი ჭექა-ქუხილს დაატეხს მტერს.</li>
         <li><b>დავითის ცხენი:</b> დავითი ცხენით დადის; ბრძოლისას ჩამოხტება, ცხენი გვერდით ებრძვის მტერს და ყალყზე შედგება, ბრძოლის მერე მეფე ისევ შეჯდება.</li>
         <li><b>ძალა:</b> დააჭირე ძალის ღილაკს, გამოჩნდება წრე — მერე დააჭირე ადგილს. ორჯერ დაჭერა თავად არჩევს მიზანს. გორგასალი კოშკებს ზემოდან გადაევლება და ცხენოსანს ცხენიანად ისვრის, დავითი თავის რაზმს მიეშველება, თამარი სვანთა ლაშქარს და მხარგრძელს გამოგზავნის, ტარიელი კი ლეოპარდივით შეიჭრება მტრის რაზმში, გაქრება და ჩრდილივით აქეთ-იქიდან ურტყამს.</li>
+        <li><b>ბაზარი:</b> ბრძოლებით მონეტებს იღებ, ანდამატები კი იშვიათია. ბაზარში სკივრებს ხსნი (შანსები ყოველთვის ჩანს), გმირებს სკინებსა და იარაღს უყიდი — იარაღი გმირის ძალას ცვლის. ყოველდღე საჩუქარი და სამი დავალება გელოდება, ბრძოლები კი ლაშქრობის წიგნს გივსებს.</li>
         <li><b>ტალღები:</b> „შემდეგი" ღილაკით ტალღას ადრე გამოიძახებ და დარჩენილი წამებისთვის ოქროს მიიღებ.</li>
         <li><b>კლავიატურა:</b> <kbd>1</kbd>–<kbd>6</kbd> კოშკი, <kbd>Q</kbd> <kbd>W</kbd> <kbd>E</kbd> <kbd>R</kbd> ძალა, <kbd>Space</kbd> ტალღა, <kbd>U</kbd> გაძლიერება, <kbd>S</kbd> გაყიდვა, <kbd>H</kbd> გამოძახება, <kbd>Esc</kbd> გაუქმება, <kbd>F</kbd> სისწრაფე, <kbd>G</kbd> ბადე, <kbd>P</kbd> პაუზა.</li>
       </ul>
@@ -497,6 +659,14 @@ img{max-width:100%;display:block}
       </div>
     </div>
   </div>
+  <section class="screen modal" id="sBox" hidden><div class="sheet" id="boxBody"></div></section>
+  <div id="chestFx" hidden>
+    <p class="cf-title" id="cfTitle"></p>
+    <div class="cf-stage"><div class="cf-rays"></div><img id="cfChest" class="cf-chest" src="" alt=""></div>
+    <button class="cf-hint" id="cfHint">დააჭირე სკივრს</button>
+    <div class="cf-cards rcards" id="cfCards"></div>
+    <button class="btn" id="cfOk" hidden>კარგი</button>
+  </div>
   <div id="toast" role="status"></div>
 </div>
 <script>
@@ -505,7 +675,7 @@ img{max-width:100%;display:block}
 // the text in the code stays Georgian; tr() looks it up in EN when the game runs in English and trf() does the same for a
 // template with {0}, {1}… slots. The data tables are translated in place at start (localizeData), the page text by
 // localizeDom; a block with rich markup (the help list) has its English HTML under '#<id>'. Switching reloads the page.
-const EN = {"ღობე":"Fence","იაფი ხის ღობე. არ ისვრის, მაგრამ მტერს გზას უგრძელებს — ააგე ლაბირინთი.":"A cheap wooden fence. It doesn't shoot, but it makes the enemy's path longer — build a maze.","სვანური კოშკი":"Svan Tower","კოშკი":"Tower","მშვილდოსნები სწრაფად ისვრიან ერთ მიზანში.":"Archers shoot fast at a single target.","კატაპულტა":"Catapult","ქვა ჯგუფს ერთად აზიანებს. ჯავშანს ნახევრად ხვრეტს.":"The stone hits a whole group at once and pierces half of the armor.","ბალისტა":"Ballista","ყველაზე შორს ისვრის. ისარი რიგს ხვრეტს და ჯავშანს არ ცნობს.":"The longest range. The bolt pierces a whole line and ignores armor.","მდუღარე ფისი":"Boiling Pitch","ფისი":"Pitch","ახლოს მყოფ მტერს წვავს და ანელებს. წვა ჯავშანს არ ცნობს.":"Burns and slows nearby enemies. Burning ignores armor.","სამრეკლო":"Bell Tower","ზარის ხმა გარშემო კოშკებს ზიანს უმატებს.":"The ringing bell boosts the damage of nearby towers.","ქვეითი":"Footman","მშვილდოსანი":"Archer","მხედარი":"Rider","მძიმე მეომარი":"Heavy Warrior","სარდალი":"Commander","ქარიშხლის ურდო":"Storm Horde","სტეპის სწრაფი მხედრები და ცხენოსანი მშვილდოსნები.":"Swift steppe riders and mounted archers.","შუბოსანი":"Spearman","ქარის მხედარი":"Wind Rider","ლახტოსანი":"Mace Bearer","ურდოს ბელადი":"Horde Chief","ალისფერი ლაშქარი":"Scarlet Host","რკინის მხედრები და საბრძოლო სპილოები, რომლებიც გზაზე ყველას თელავენ.":"Iron riders and war elephants that trample everything on the road.","ფარიანი შუბოსანი":"Shield Spearman","რკინის მხედარი":"Iron Rider","საბრძოლო სპილო":"War Elephant","ოქროსჩაფხუტა":"Goldhelm","ყვავთა ხროვა":"Raven Pack","ორი მხრიდან ერთად თავდასხმას ეჩვევიან. მეთაურს შავი ცხენი ჰყავს.":"They like to attack from two sides at once. Their leader rides a black horse.","ხმლოსანი":"Swordsman","შუბოსანი მხედარი":"Lancer","ჯავშნოსანი":"Armored Warrior","ყვავთა მეფე":"Raven King","ცეცხლქუდები":"Firecaps","თოფოსნები გმირებს შორიდან ესვრიან, ცულოსნები ჯავშანში არიან.":"Musketeers shoot the heroes from afar; the axemen wear heavy armor.","თოფოსანი":"Musketeer","ცულოსანი":"Axeman","ცეცხლისთვალა":"Fire-Eye","რკინის ლეგიონი":"Iron Legion","ზარბაზნებით მოდიან — ზარბაზანი გმირებსა და მოკავშირეებს შორიდან ესვრის.":"They come with cannons — the cannon shells heroes and allies from afar.","ხმლოსანი მხედარი":"Sword Rider","ზარბაზანი":"Cannon","რკინის სარდალი":"Iron Marshal","დავით აღმაშენებელი":"David the Builder","საქართველოს მეფე":"King of Georgia","თეთრი ცხენი":"White Horse","დავითი ცხენით დადის და სწრაფად მიდის. ბრძოლისას ჩამოხტება და ფეხით იბრძვის, მისი ცხენიც გვერდით უდგას: მტერს ფლოქვს ურტყამს და დროდადრო ყალყზე შედგება — დაცემისას ახლომახლო მტერს აბრუებს. ბრძოლის მერე მეფე ისევ ცხენზე შეჯდება.":"David rides his horse and moves fast. In a fight he jumps down and fights on foot while his horse stands beside him: it strikes foes with its hooves and now and then rears up — when it comes down, the foes nearby are stunned. After the fight the king mounts again.","მეფის რაზმი":"King's Guard","დავითი არჩეულ ადგილზე მიიჭრება და თან სამ არაგველს გამოიყვანს — 15 წამი ერთად უღობავენ მტერს გზას.":"David charges to the chosen spot and brings three Aragvian warriors — for 15 seconds they block the enemy's path together.","აღმაშენებელი":"The Builder","კოშკები და ღობეები 10%-ით იაფია.":"Towers and fences cost 10% less.","თამარ მეფე":"Tamar the Great","ოქროს ხანის მეფე":"Monarch of the Golden Age","სვანთა ლაშქარი":"Svan Host","სვანების რაზმი მოდის: ოთხი სვანი მეომარი და მათი წინამძღოლი, სამეფო რაზმის უფროსი მხარგრძელი — უძლიერესი ჩემპიონი, რომლის ერთი სილა სამ მტერს ერთად აგდებს. 16 წამი იბრძვიან არჩეულ ადგილზე.":"A band of Svans arrives: four Svan warriors and their leader Mkhargrdzeli, head of the royal guard — the mightiest champion, whose single slap knocks down three foes at once. They fight at the chosen spot for 16 seconds.","ოქროს ხანა":"Golden Age","მოკლულ მტერზე 20%-ით მეტ ოქროს იღებ.":"You get 20% more gold for every enemy killed.","ვახტანგ გორგასალი":"Vakhtang Gorgasali","ქართლის მეფე":"King of Kartli","მგლის ნახტომი":"Wolf Leap","კოშკებს ზემოდან გადაევლება. დაცემისას ტალღა მტერს 140 ზიანს აყენებს და 1.6 წამით აბრუებს, იქვე მდგარ ცხენოსანს კი მაშინვე აიტაცებს.":"Leaps over the towers. His landing deals 140 damage and stuns the foes for 1.6 seconds, and he grabs any horseman standing nearby at once.","გოლიათი":"Giant","ერეკლე II":"Erekle II","პატარა კახი":"The Little Kakhetian","ზარბაზნის ზალპი":"Cannon Salvo","ექვსი ყუმბარა არჩეულ ადგილს ფარავს, თითო 70 ზიანი.":"Six shells cover the chosen spot, 70 damage each.","სარდლის თვალი":"Commander's Eye","მის გვერდით მდგარი კოშკები 15%-ით ხშირად ისვრიან.":"Towers next to him fire 15% faster.","ქაქუცა ჩოლოყაშვილი":"Kakutsa Cholokashvili","შეფიცულების მეთაური":"Leader of the Sworn","შეფიცულების ჩასაფრება":"Ambush of the Sworn","სამი შეფიცული 12 წამით გამოდის და მტერს ესვრის.":"Three sworn riflemen appear for 12 seconds and shoot at the enemy.","მთის მსროლელი":"Mountain Marksman","20% შანსით ორმაგ ზიანს აყენებს.":"20% chance to deal double damage.","ტარიელი":"Tariel","ვეფხისტყაოსანი":"The Knight in the Panther's Skin","შმაგის შემოტევა":"Frenzied Onslaught","ლეოპარდივით მიიჭრება მტრისკენ — კოშკებს ვერ გადაახტება, გარს უვლის. მტერს შეახტება, გაქრება და ჩრდილივით, აქეთ-იქიდან რვაჯერ ჩამოჰკრავს; ბოლოს შუაში დადგება და ნაცემი მტერი აქეთ-იქით მიმოიფანტება.":"Rushes at the enemy like a leopard — he can't jump over towers, he runs around them. He pounces, vanishes and strikes like a shadow from all sides, eight times; at the end he stands in the middle and the beaten foes scatter in every direction.","შიგან ასრე გავერივე, გნოლის ჯოგსა ვითა ქორი":"I plunged into their midst like a hawk among partridges","ტრფობის ცეცხლი":"Fire of Love","ყოველ მოკლულ მტერზე შეტევა +4% (მაქსიმუმ +40%).":"+4% attack for every enemy killed (up to +40%).","ავთანდილი":"Avtandil","არაბეთის სპასპეტი":"Commander of Arabia","ისრების წვიმა":"Rain of Arrows","3 წამი ისრები წვიმს: ზიანი და 30%-ით შენელება.":"Arrows rain for 3 seconds: damage and a 30% slow.","მონადირის თვალი":"Hunter's Eye","გმირებს შორის ყველაზე შორს ისვრის.":"The longest range of all the heroes.","გიორგი გურჯიევი":"George Gurdjieff","ელვის ჯადოქარი":"Lightning Mystic","ჰიპნოზი":"Hypnosis","მტერი 4 წამით უკან, საკუთარი ბანაკისკენ მიდის.":"Enemies walk backwards, toward their own camp, for 4 seconds.","მაგნიტური ველი":"Magnetic Field","მის გარშემო მტერი 15%-ით ნელა დადის. ელვა ჯავშანს ხვრეტს.":"Enemies around him move 15% slower. His lightning pierces armor.","აბრაგი":"The Abrag","სამეგრელოს ტყეების მცველი":"Guardian of the Samegrelo Forests","ზუსტი გასროლა":"Precise Shot","ველზე ყველაზე ძლიერ მტერს 420 ზიანს აყენებს, სადაც არ უნდა იყოს.":"Deals 420 damage to the strongest enemy on the field, wherever it is.","ქორი":"Hawk","ყოველი მესამე გასროლისას ქორი მტერს ერთი წამით აბრუებს.":"Every third shot, his hawk stuns the target for a second.","მხარგრძელი":"Mkhargrdzeli","ხერხეულიძეთა დედა":"Mother of the Kherkheulidzes","მთიულები":"Mtiuli Archers","მშვილდოსნები":"Archers","ოთხი მთიელი მშვილდოსანი შორიდან ესვრის.":"Four mountain archers shoot from afar.","გურული მეისრეები":"Gurian Fire Archers","ცეცხლის ისრები":"Fire arrows","ოთხი მეისარი ცეცხლმოკიდებულ ისრებს ესვრის — ნასროლი მტერი იწვის.":"Four archers shoot flaming arrows — the enemies they hit catch fire.","ხევსურები":"Khevsurs","მთის დამცველები":"Mountain guardians","ოთხი ჯაჭვის პერანგიანი მოფარიკავე: თითო ორ მტერს აჩერებს, ზიანს მეოთხედით ნაკლებად იღებენ.":"Four swordsmen in chain mail: each holds two foes and takes a quarter less damage.","გურული მხედრები":"Gurian Riders","ცხენოსნები":"Cavalry","სამი მხედარი მტრის რიგებში შეიჭრება, გზად ყველას თელავს და აბრუებს, მერე ხმლით იბრძვის.":"Three riders charge into the enemy ranks, trampling and stunning everyone on the way, then fight with swords.","9 ძმა ხერხეულიძე":"9 Kherkheulidze Brothers","ლეგენდარული რაზმი":"Legendary band","ცხრა ძმა ერთმანეთს ზურგს უმაგრებს: სანამ სამი მაინც ერთადაა, ზიანს 30%-ით ნაკლებად იღებენ და ადგილიდან არ იძვრიან. როცა ყველა დაეცემა, მათი დედა დროშით გამოჩნდება და 5 წამი ჭექა-ქუხილს დაატეხს მტერს.":"The nine brothers stand back to back: while at least three are together they take 30% less damage and hold their ground. When they all fall, their mother appears with the banner and brings thunder and lightning down on the enemy for 5 seconds.","ზიანი +10% ყოველ საფეხურზე":"+10% damage per level","წვა +10% ყოველ საფეხურზე":"+10% burning per level","ზარის ძალა +10% ყოველ საფეხურზე":"+10% bell power per level","ციხის გალავანი":"Castle Walls","+3 სიცოცხლე და +25 საწყისი ოქრო ყოველ საფეხურზე":"+3 lives and +25 starting gold per level","მტერი ორი მხრიდან ერთად მოდის — ორივე გზა ერთ ლაბირინთში შეუყვანე.":"The enemy comes from two sides at once — lead both roads into a single maze.","ძველი თბილისი":"Old Tbilisi","შმაგია!":"Frenzy!","ოქრო არ გყოფნის":"Not enough gold","ასე გზას მთლიანად ჩაკეტავ — მტერს გასასვლელი უნდა დარჩეს":"That would block the path completely — the enemy must have a way through","აქ ახლა ვიღაც დგას":"Someone is standing here right now","აქ აშენება არ შეიძლება":"You can't build here","კოშკი უკვე სრულად გაძლიერებულია":"This tower is fully upgraded","ხმა ჩართულია":"Sound on","ხმა გამორთულია":"Sound off","ბრძოლა":"Battle","მტერი":"Enemy","<b>{0}</b> ტალღა":"<b>{0}</b> waves","საწყისი ოქრო <b>{0}</b>":"Starting gold <b>{0}</b>","მეფეები — აირჩიე ერთი ან ორი":"Kings — choose one or two","მეფეებს მხოლოდ ახლა ირჩევ. ტარიელს, ავთანდილს, ქაქუცას, გურჯიევსა და აბრაგს კი ბრძოლის დროს ქვემოდან ოქროთი გამოიძახებ — ერთდროულად ორამდე, რაზმებთან ერთად.":"You choose kings only now. Tariel, Avtandil, Kakutsa, Gurdjieff and the Abrag are called in during the battle with gold from the bottom bar — up to two at a time, together with the squads.","უკან":"Back","ბრძოლის დაწყება":"Start battle","ქაქუცა":"Kakutsa","გურჯიევი":"Gurdjieff","{0} — დააჭირე ველზე, იქ გამოჩნდება":"{0} — tap the field, he'll appear there","{0} — დააჭირე ველზე, რაზმი იქ ჩამოვა":"{0} — tap the field, the squad will arrive there","{0} უკვე ველზეა":"{0} is already on the field","ველზე უკვე ორი გმირია — მესამეს ვერ გამოიძახებ":"Two heroes are already on the field — you can't call a third","{0} — სჭირდება {1} ოქრო":"{0} — needs {1} gold","{0} ისვენებს — {1} წამი":"{0} is resting — {1} s","დააჭირე ადგილს — გმირი იქ გადავა":"Tap a spot — the hero will go there","{0} {1} წამში დაბრუნდება":"{0} returns in {1} s","{0} — კიდევ {1} წამი":"{0} — {1} s left","მიზანი არ ჩანს":"No target in sight","მტერი ძალიან შორსაა":"The enemy is too far away","დააჭირე ადგილს წრის შიგნით · ორჯერ დაჭერა — ავტომატურად":"Tap a spot inside the circle · double-tap — automatic","აირჩიე ადგილი · ორჯერ დაჭერა — ავტომატურად":"Choose a spot · double-click — automatic","ზიანი არ აქვს · გზას უგრძელებს":"No damage · makes the path longer","წვა <i>{0}</i>/წმ · შენელება <i>{1}%</i>":"Burn <i>{0}</i>/s · slow <i>{1}%</i>","კოშკების ზიანი <i>+{0}%</i>":"Tower damage <i>+{0}%</i>","ზიანი <i>{0}</i>{1} · ყოველ <i>{2}</i> წმ · მანძილი <i>{3}</i>":"Damage <i>{0}</i>{1} · every <i>{2}</i> s · range <i>{3}</i>","ღობის ადგილას":"In place of the fence","გაძლიერება":"Upgrade","სრულად გაძლიერებული":"Fully upgraded","გაყიდვა":"Sell","დაგიბრუნდება {0} ოქრო":"You get back {0} gold","დახურვა":"Close","აირჩიე კოშკი":"Choose a tower","ოქრო: <i>{0}</i>":"Gold: <i>{0}</i>","კიდევ ერთხელ დააჭირე — დაგიბრუნდება <i>{0}</i> ოქრო":"Tap again — you get back <i>{0}</i> gold","დააჭირე ველზე — სადაც ეტევა, იქ დადგება":"Tap the field — it goes wherever it fits","დააჭირე ველზე — სადაც ეტევა, იქ დადგება. Esc — გაუქმება":"Click the field — it goes wherever it fits. Esc — cancel","ქვემოთ აირჩიე კოშკი, მერე დააჭირე ველზე":"Pick a tower below, then tap the field","ძალა ჯერ მზად არ არის":"The skill isn't ready yet","ქართული":"ქართული","ადრე გამოძახება: +{0} ოქრო":"Called early: +{0} gold","ბადე მუდმივად ჩართულია":"Grid always on","ბადე მხოლოდ მშენებლობისას ჩანს":"Grid shows only while building","{0} · ტალღა {1}/{2} · სიცოცხლე {3}":"{0} · wave {1}/{2} · lives {3}","ტალღა {0}":"Wave {0}","სარდალი მოდის!":"The commander is coming!","სარდალი დამარცხდა!":"The commander has fallen!","{0} დაეცა — {1} წამში დაბრუნდება":"{0} has fallen — back in {1} s","გამარჯვება!":"Victory!","ციხე დაეცა":"The castle has fallen","ციხეს ერთი ქვაც არ ჩამოცვენია.":"Not a single stone fell from the castle.","მტერი უკუიქცა, მაგრამ კედლები დაზიანდა.":"The enemy retreated, but the walls were damaged.","მტერი ციხეში შეიჭრა. გააძლიერე კოშკები ბანაკში ან სცადე სხვა ლაბირინთი.":"The enemy broke into the castle. Upgrade your towers in the camp or try a different maze.","მოკლული მტერი":"Enemies killed","გაპარული მტერი":"Enemies slipped through","ტალღა":"Wave","დიდება":"Glory","ბანაკი":"Camp","თავიდან":"Restart","შემდეგი: {0}":"Next: {0}","ლაშქრობა":"Campaign","მოგებული":"Won","მტერი: <b>{0}</b>":"Enemy: <b>{0}</b>","ჯერ წინა ბრძოლა მოიგე":"Win the previous battle first","ეკრანიდან გასვლა":"Exit full screen","სრული ეკრანი":"Full screen","გახსნა · {0}":"Unlock · {0}","ლეველი {0} · {1}":"Level {0} · {1}","მაქსიმალური ლეველი":"Max level","ლეველი <b>{0}</b>":"Level <b>{0}</b>","სიცოცხლე <b>{0}</b>":"Health <b>{0}</b>","ზიანი <b>{0}</b>":"Damage <b>{0}</b>","ახლო ბრძოლა":"Melee","მანძილი <b>{0}</b>":"Range <b>{0}</b>","გამოძახება <b>{0}</b> ოქრო":"Call in for <b>{0}</b> gold","{0} წმ":"{0} s","მეფეები":"Kings","ბრძოლის წინ ორს ირჩევ":"You pick two before each battle","გმირები":"Heroes","ბრძოლის დროს ქვემოდან ოქროთი გამოიძახებ, ერთდროულად ორამდე":"Called in during battle with gold from the bottom bar, up to two at a time","{0} შენს ლაშქარს შეუერთდა":"{0} joined your host","გაძლიერება · {0}":"Upgrade · {0}","ციხე":"Castle","მეტეხი":"Metekhi","ბრძოლის ველი":"Battlefield","ოქრო":"Gold","ციხის სიცოცხლე":"Castle lives","შემდეგი ტალღა ახლავე":"Next wave now","შემდეგი":"Next","ბადე (G)":"Grid (G)","სისწრაფე":"Speed","პაუზა":"Pause","კოშკები":"Towers","გმირებისა და რაზმების გამოძახება ოქროთი":"Call in heroes and squads for gold","გმირებისა და რაზმების გამოძახება ოქროთი (H)":"Call in heroes and squads for gold (H)","· ორამდე, ბრძოლის ბოლომდე რჩებიან":"· up to two, they stay to the end","რაზმები":"Squads","· ცოტა ხნით":"· for a while","აირჩიე, მერე დააჭირე ველზე — იქ ჩამოვა":"Pick one, then tap the field — it arrives there","ციხის დაცვა":"Castle Defense","ააშენე ლაბირინთი, დადგი კოშკები და გაუშვი გმირები — ვენახებიდან ძველ თბილისამდე.":"Build a maze, raise towers and send in the heroes — from the vineyards to Old Tbilisi.","როგორ ვითამაშო":"How to play","სრული ეკრანისთვის:":"For full screen:","გაზიარება":"Share","როგორ?":"How?","აირჩიე ბრძოლა":"Choose a battle","მთავარი":"Home","გმირები და კოშკები":"Heroes and towers","მტრები":"Enemies","ბრძოლის დატოვება":"Leave battle","ხმა":"Sound","გაგრძელება":"Resume","გასაგებია":"Got it","მოატრიალე ტელეფონი":"Turn your phone","ბრძოლის ველი ჰორიზონტალურად უკეთ ჩანს.":"The battlefield looks better in landscape.","მაინც გავაგრძელებ":"Continue anyway","სრული ეკრანი iPhone-ზე":"Full screen on iPhone","#helpList":"\n        <li><b>Goal:</b> The enemy comes from the right (in some battles also from the top or bottom) and heads left, to the castle gate. Every enemy that slips through costs the castle a life.</li>\n        <li><b>Building:</b> Pick a tower at the bottom — it's in color when you have enough gold. A grid appears: tap a cell and the tower goes there. You can also drag a tower onto the field. You earn gold for every enemy you kill.</li>\n        <li><b>Maze:</b> The enemy always takes the shortest path and walks around new towers. The white dashed line is its path; the golden one is the path it will take after your new tower. A red cell is where a tower would block the path completely. Make the path longer with cheap fences.</li>\n        <li><b>Towers:</b> Tap a built tower to upgrade it (3 levels) or sell it (70% back). A fence can be turned into any tower.</li>\n        <li><b>Uphill and downhill:</b> on a mountain field the enemy is slow going uphill and fast going downhill, and it picks the way with less climbing. A tower on high ground shoots farther — the lines on the grid show the heights. On Elbrus the chained Amirani now and then heaves at his chains: the ground shakes and nearby enemies stagger.</li>\n        <li><b>Kings and heroes:</b> Before a battle you pick two of the four kings — David, Tamar, Vakhtang Gorgasali and Erekle II. The other heroes — Tariel, Avtandil, Kakutsa, Gurdjieff and the Abrag — are called in during the battle with gold from the bottom bar, up to two at a time, and they stay until the end. When idle, heroes move toward the nearest enemy on their own. Tap a hero or their portrait, then a spot — they go there.</li>\n        <li><b>Calling in:</b> During battle there's a “+” button at the bottom, next to the towers. Inside are heroes and squads: Mtiuli Archers, Gurian Fire Archers, Khevsurs, Gurian Riders and the 9 Kherkheulidze Brothers. Pick one — it's in color when you have enough gold — then tap the field and it arrives there. A squad fights for a while, then rests. When the 9 Kherkheulidze Brothers fall, their mother appears with the banner and brings thunder down on the enemy for 5 seconds.</li>\n        <li><b>David's horse:</b> David rides his horse; in a fight he jumps down, the horse fights beside him and rears up, and after the fight the king mounts again.</li>\n        <li><b>Skills:</b> Tap a skill button and a circle appears — then tap a spot. Double-tap picks the target for you. Gorgasali leaps over towers and hurls horsemen, horse and all; David rushes to his guard; Tamar sends the Svan host with Mkhargrdzeli; Tariel bursts into the enemy ranks like a leopard, vanishes and strikes like a shadow from all sides.</li>\n        <li><b>Waves:</b> The “Next” button calls the next wave early, and you get gold for the seconds left.</li>\n        <li><b>Keyboard:</b> <kbd>1</kbd>–<kbd>6</kbd> towers, <kbd>Q</kbd> <kbd>W</kbd> <kbd>E</kbd> <kbd>R</kbd> skills, <kbd>Space</kbd> wave, <kbd>U</kbd> upgrade, <kbd>S</kbd> sell, <kbd>H</kbd> call in, <kbd>Esc</kbd> cancel, <kbd>F</kbd> speed, <kbd>G</kbd> grid, <kbd>P</kbd> pause.</li>\n      ","#a2hsList":"\n        <li>In Safari, tap the “Share” button <svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 3v12M8 7l4-4 4 4\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M8 10H5v11h14V10h-3\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linejoin=\"round\"/></svg></li>\n        <li>Scroll down and choose <b class=\"en\">Add to Home Screen</b></li>\n        <li>Open “Metekhi” from your home screen — the game opens like an app, without the browser bars.</li>\n      ","მოგესალმები, სარდალო!":"Welcome, commander!","მტერი მარჯვნიდან მოდის და მარცხნივ, ციხის კარისკენ მიიწევს. თეთრი წყვეტილი ხაზი მისი გზაა. ყოველი გაპარული მტერი ციხეს ერთ სიცოცხლეს აკლებს — აქ ჩანს, რამდენი დაგრჩა.":"The enemy comes from the right and marches left, to the castle gate. The white dashed line is its path. Every enemy that slips through costs the castle a life — this shows how many you have left.","ეს შენი ოქროა. ოქროს მოკლული მტრებიდან იღებ და კოშკებზე, გმირებსა და რაზმებზე ხარჯავ.":"This is your gold. You earn it by killing enemies and spend it on towers, heroes and squads.","კოშკის ასაშენებლად ქვემოთ აირჩიე სვანური კოშკი.":"To build a tower, pick the Svan Tower below.","გამოჩნდა ბადე. დააჭირე მონიშნულ უჯრას გზის გვერდით — კოშკი იქ დადგება.":"The grid is showing now. Tap the marked cell beside the road — the tower goes there.","ახლა ლაბირინთი. აირჩიე ღობე — იაფია და მტერს გზას უგრძელებს.":"Now the maze. Pick the fence — it's cheap and makes the enemy's path longer.","დადგი სამი ღობე ცარიელ ველზე, მტრის გზაზე ({0}/3). ოქროსფერი ხაზი მტრის ახალ გზას აჩვენებს, წითელი უჯრა კი იქაა, სადაც გზა მთლიანად ჩაიკეტებოდა.":"Place three fences on open ground, in the enemy's way ({0}/3). The golden line shows the enemy's new path; a red cell is where the path would be blocked completely.","კოშკის გასაძლიერებლად დააჭირე მას.":"To upgrade the tower, tap it.","მზად ხარ? დაიწყე ბრძოლა!":"Ready? Start the battle!","ეს შენი მეფეებია. დააჭირე მეფის პორტრეტს — ან თვითონ მეფეს ველზე.":"These are your kings. Tap a king's portrait — or the king himself on the field.","ახლა დააჭირე ადგილს ველზე — მეფე იქ გადავა. როცა არაფერს აკეთებს, თავად მიიწევს უახლოესი მტრისკენ.":"Now tap a spot on the field — the king goes there. When idle, he moves toward the nearest enemy on his own.","ეს მეფის ძალაა. დააჭირე, გამოჩნდება წრე — მერე დააჭირე ადგილს წრის შიგნით. ორჯერ დაჭერა მიზანს თავად არჩევს.":"This is the king's skill. Tap it and a circle appears — then tap a spot inside the circle. A double-tap picks the target for you.","ოქროთი აქ გმირებს და რაზმებს გამოიძახებ. გახსენი.":"Here you call in heroes and squads with gold. Open it.","ზემოთ გმირებია — ბრძოლის ბოლომდე რჩებიან. ქვემოთ რაზმებია — ცოტა ხანს იბრძვიან. აირჩიე მთიულები.":"Heroes are at the top — they stay until the battle ends. Squads are below — they fight for a while. Pick the Mtiuli Archers.","დააჭირე ველზე, მტრის გზის ახლოს — რაზმი იქ ჩამოვა.":"Tap the field near the enemy's path — the squad arrives there.","მზად ხარ!":"You're ready!","დასრულება":"Finish","ახლა ბრძოლა თავად დაასრულე. ბრძოლის მერე ბანაკში დიდებას მეფეებსა და კოშკებზე დახარჯავ. წესები ყოველთვის გექნება „როგორ ვითამაშო“-ში.":"Now finish the battle on your own. After it, you spend glory on kings and towers in the camp. The rules are always under “How to play”.","სასწავლო ტური":"Tutorial","გამოტოვება":"Skip","მთელი ტალღა უკვე ველზეა. „შემდეგი“ ღილაკი მომდევნო ტალღას ადრე იძახებს და დარჩენილი წამებისთვის ოქროს გაძლევს. თუ არ დააჭერ, წრის დაცლისას თავად მოვა.":"The whole wave is on the field now. The “Next” button calls the next wave early and pays gold for the seconds left. If you don't tap it, the wave comes by itself when the ring runs out.","აქედან ბადეს მუდმივად ჩართავ, თამაშს ააჩქარებ ან პაუზას დააყენებ.":"From here you keep the grid on, speed the game up or pause it.","აქ კოშკს აძლიერებ (სამი საფეხური) ან ყიდი. ღობეზე დაჭერით კი მას ნებისმიერ კოშკად აქცევ. დააჭირე გაძლიერებას.":"Here you upgrade the tower (three levels) or sell it. Tapping a fence turns it into any tower. Tap Upgrade.","ბანაკში დიდებით ახალ მეფეებს იძენ, მეფეებს ლეველს უწევ და კოშკებს აძლიერებ. გაძლიერდი და ისევ სცადე!":"In the camp, glory buys new kings, levels up your kings and strengthens your towers. Grow stronger and try again!","ბანაკში დიდებით ახალ მეფეებს იძენ, მეფეებს ლეველს უწევ და კოშკებს აძლიერებ. მერე შემდეგ ბრძოლაზე წადი!":"In the camp, glory buys new kings, levels up your kings and strengthens your towers. Then on to the next battle!","იალბუზის ფერდობები":"The Slopes of Elbrus","მიჯაჭვული ამირანი":"Chained Amirani","აღმართზე მტერი ნელა მოდის, დაღმართზე — სწრაფად. მაღლობზე დადგმული კოშკი უფრო შორს ისვრის. მე-6 ტალღიდან მტერი მთის ბილიკითაც ჩამოვა.":"Uphill the enemy is slow, downhill fast. A tower on high ground shoots farther. From wave 6 the enemy also comes down the mountain trail.","ქარიშხლის ურდო იალბუზიდან ჩამოეშვა — იქ, სადაც ამირანი კლდეზეა მიჯაჭვული. მტერი ჯერ ხეობაში ეშვება, მერე ციხემდე აღმართს ადის.":"The Storm Horde came down from Elbrus, where Amirani is chained to the rock. The enemy first goes down into the valley, then climbs uphill to the castle.","მაღლობი <i>+{0}%</i> მანძილი":"High ground <i>+{0}%</i> range","აღმართ-დაღმართი":"Uphill and downhill","ეს ველი აღმართ-დაღმართია: აღმართზე მტერი ნელა მოდის, დაღმართზე — სწრაფად. შენი კოშკი მაღლობზე დგას, ამიტომ უფრო შორს ისვრის. ბადეზე სიმაღლეს ხაზები გიჩვენებს.":"This field goes uphill and downhill: uphill the enemy is slow, downhill fast. Your tower stands on high ground, so it shoots farther. The lines on the grid show the heights.","გერგეტი":"Gergeti","მყინვარწვერის ძირას":"At the foot of Kazbek","ველი ფართოა — ღობეებით ლაბირინთი ააშენე და სპილოებს ბალისტა დაახვედრე.":"The field is wide — build a maze with fences and meet the elephants with ballistas.","ალისფერმა ლაშქარმა საბრძოლო სპილოებით გერგეტის თოვლიანი ველის გადმოლახვა სცადა. სამების ქვემოთ, თერგის პირას, ციხის კარამდე მხოლოდ ერთი გზა მიდის.":"The Scarlet Host tried to cross the snowy field of Gergeti with war elephants. Below the Trinity Church, on the bank of the Tergi, only one road leads to the castle gate.","უშგული":"Ushguli","შხარის ძირას":"At the foot of Shkhara","ყვავთა ხროვა უშგულს ორი გზით უტევს. სვანური კოშკების ძირას, ენგურის პირას, ლაბირინთი ააშენე.":"The Raven Pack attacks Ushguli along two roads. Build a maze at the foot of the Svan towers, on the bank of the Enguri.","ვარძია":"Vardzia","კლდეში ნაკვეთი მონასტერი":"The cave monastery","მე-4 ტალღიდან მტერი მდინარის ბილიკიდანაც ამოვა. თოფოსნები გმირებს შორიდან ესვრიან.":"From wave 4 the enemy also climbs the path up from the river. Musketeers shoot the heroes from afar.","ცეცხლქუდები ვარძიას ალყას არტყამენ — აღმოსავლეთის გზიდან და მტკვრის ბილიკიდან.":"The Firecaps besiege Vardzia — from the eastern road and from the path up from the Mtkvari.","ნარიყალას ძირას":"Below Narikala","მტერი აღმოსავლეთის ქუჩიდან მოდის, მე-3 ტალღიდან კი ნარიყალას ჩიხიდანაც ჩამოდის. ორივე გზა ერთ ლაბირინთში შეუყვანე.":"The enemy comes up the eastern street, and from wave 3 also down the lane from Narikala. Lead both roads into a single maze.","რკინის ლეგიონი ზარბაზნებით ძველ თბილისს მოადგა. ნარიყალას ქვემოთ, აბანოებსა და მეტეხს შორის, მოედანი შენზეა.":"The Iron Legion has reached Old Tbilisi with its cannons. Below Narikala, between the baths and Metekhi, the square is yours to hold.","ვახტანგი სპილოს ეჭიდება!":"Vakhtang wrestles the elephant!","ბრძოლა შეჩერდა — ყველა უყურებს":"The battle stops — everyone watches","2 მეტრი და 35 სანტიმეტრი: ხმლის ერთი მოქნევით სამ მტერს ურტყამს, ცხენოსანს კი ცხენიანად აიტაცებს, თავზე შემოიდებს და მტრის რაზმს ესვრის. ხანდახან საბრძოლო სპილოსაც ეჭიდება: კისერში სწვდება, თავზე შემოიქნევს და ზურგზე დაანარცხებს — ამ დროს ბრძოლა ჩერდება და ყველა მათ უყურებს.":"2 meters 35 centimeters tall: one sweep of his sword strikes three foes, and he lifts a horseman together with his horse, raises it overhead and hurls it at the enemy ranks. Now and then he wrestles a war elephant: he grabs it by the neck, swings it over his head and slams it onto its back — the battle stops while everyone watches."};
+const EN = {"ღობე":"Fence","იაფი ხის ღობე. არ ისვრის, მაგრამ მტერს გზას უგრძელებს — ააგე ლაბირინთი.":"A cheap wooden fence. It doesn't shoot, but it makes the enemy's path longer — build a maze.","სვანური კოშკი":"Svan Tower","კოშკი":"Tower","მშვილდოსნები სწრაფად ისვრიან ერთ მიზანში.":"Archers shoot fast at a single target.","კატაპულტა":"Catapult","ქვა ჯგუფს ერთად აზიანებს. ჯავშანს ნახევრად ხვრეტს.":"The stone hits a whole group at once and pierces half of the armor.","ბალისტა":"Ballista","ყველაზე შორს ისვრის. ისარი რიგს ხვრეტს და ჯავშანს არ ცნობს.":"The longest range. The bolt pierces a whole line and ignores armor.","მდუღარე ფისი":"Boiling Pitch","ფისი":"Pitch","ახლოს მყოფ მტერს წვავს და ანელებს. წვა ჯავშანს არ ცნობს.":"Burns and slows nearby enemies. Burning ignores armor.","სამრეკლო":"Bell Tower","ზარის ხმა გარშემო კოშკებს ზიანს უმატებს.":"The ringing bell boosts the damage of nearby towers.","ქვეითი":"Footman","მშვილდოსანი":"Archer","მხედარი":"Rider","მძიმე მეომარი":"Heavy Warrior","სარდალი":"Commander","ქარიშხლის ურდო":"Storm Horde","სტეპის სწრაფი მხედრები და ცხენოსანი მშვილდოსნები.":"Swift steppe riders and mounted archers.","შუბოსანი":"Spearman","ქარის მხედარი":"Wind Rider","ლახტოსანი":"Mace Bearer","ურდოს ბელადი":"Horde Chief","ალისფერი ლაშქარი":"Scarlet Host","რკინის მხედრები და საბრძოლო სპილოები, რომლებიც გზაზე ყველას თელავენ.":"Iron riders and war elephants that trample everything on the road.","ფარიანი შუბოსანი":"Shield Spearman","რკინის მხედარი":"Iron Rider","საბრძოლო სპილო":"War Elephant","ოქროსჩაფხუტა":"Goldhelm","ყვავთა ხროვა":"Raven Pack","ორი მხრიდან ერთად თავდასხმას ეჩვევიან. მეთაურს შავი ცხენი ჰყავს.":"They like to attack from two sides at once. Their leader rides a black horse.","ხმლოსანი":"Swordsman","შუბოსანი მხედარი":"Lancer","ჯავშნოსანი":"Armored Warrior","ყვავთა მეფე":"Raven King","ცეცხლქუდები":"Firecaps","თოფოსნები გმირებს შორიდან ესვრიან, ცულოსნები ჯავშანში არიან.":"Musketeers shoot the heroes from afar; the axemen wear heavy armor.","თოფოსანი":"Musketeer","ცულოსანი":"Axeman","ცეცხლისთვალა":"Fire-Eye","რკინის ლეგიონი":"Iron Legion","ზარბაზნებით მოდიან — ზარბაზანი გმირებსა და მოკავშირეებს შორიდან ესვრის.":"They come with cannons — the cannon shells heroes and allies from afar.","ხმლოსანი მხედარი":"Sword Rider","ზარბაზანი":"Cannon","რკინის სარდალი":"Iron Marshal","დავით აღმაშენებელი":"David the Builder","საქართველოს მეფე":"King of Georgia","თეთრი ცხენი":"White Horse","დავითი ცხენით დადის და სწრაფად მიდის. ბრძოლისას ჩამოხტება და ფეხით იბრძვის, მისი ცხენიც გვერდით უდგას: მტერს ფლოქვს ურტყამს და დროდადრო ყალყზე შედგება — დაცემისას ახლომახლო მტერს აბრუებს. ბრძოლის მერე მეფე ისევ ცხენზე შეჯდება.":"David rides his horse and moves fast. In a fight he jumps down and fights on foot while his horse stands beside him: it strikes foes with its hooves and now and then rears up — when it comes down, the foes nearby are stunned. After the fight the king mounts again.","მეფის რაზმი":"King's Guard","დავითი არჩეულ ადგილზე მიიჭრება და თან სამ არაგველს გამოიყვანს — 15 წამი ერთად უღობავენ მტერს გზას.":"David charges to the chosen spot and brings three Aragvian warriors — for 15 seconds they block the enemy's path together.","აღმაშენებელი":"The Builder","კოშკები და ღობეები 10%-ით იაფია.":"Towers and fences cost 10% less.","თამარ მეფე":"Tamar the Great","ოქროს ხანის მეფე":"Monarch of the Golden Age","სვანთა ლაშქარი":"Svan Host","სვანების რაზმი მოდის: ოთხი სვანი მეომარი და მათი წინამძღოლი, სამეფო რაზმის უფროსი მხარგრძელი — უძლიერესი ჩემპიონი, რომლის ერთი სილა სამ მტერს ერთად აგდებს. 16 წამი იბრძვიან არჩეულ ადგილზე.":"A band of Svans arrives: four Svan warriors and their leader Mkhargrdzeli, head of the royal guard — the mightiest champion, whose single slap knocks down three foes at once. They fight at the chosen spot for 16 seconds.","ოქროს ხანა":"Golden Age","მოკლულ მტერზე 20%-ით მეტ ოქროს იღებ.":"You get 20% more gold for every enemy killed.","ვახტანგ გორგასალი":"Vakhtang Gorgasali","ქართლის მეფე":"King of Kartli","მგლის ნახტომი":"Wolf Leap","კოშკებს ზემოდან გადაევლება. დაცემისას ტალღა მტერს 140 ზიანს აყენებს და 1.6 წამით აბრუებს, იქვე მდგარ ცხენოსანს კი მაშინვე აიტაცებს.":"Leaps over the towers. His landing deals 140 damage and stuns the foes for 1.6 seconds, and he grabs any horseman standing nearby at once.","გოლიათი":"Giant","ერეკლე II":"Erekle II","პატარა კახი":"The Little Kakhetian","ზარბაზნის ზალპი":"Cannon Salvo","ექვსი ყუმბარა არჩეულ ადგილს ფარავს, თითო 70 ზიანი.":"Six shells cover the chosen spot, 70 damage each.","სარდლის თვალი":"Commander's Eye","მის გვერდით მდგარი კოშკები 15%-ით ხშირად ისვრიან.":"Towers next to him fire 15% faster.","ქაქუცა ჩოლოყაშვილი":"Kakutsa Cholokashvili","შეფიცულების მეთაური":"Leader of the Sworn","შეფიცულების ჩასაფრება":"Ambush of the Sworn","სამი შეფიცული 12 წამით გამოდის და მტერს ესვრის.":"Three sworn riflemen appear for 12 seconds and shoot at the enemy.","მთის მსროლელი":"Mountain Marksman","20% შანსით ორმაგ ზიანს აყენებს.":"20% chance to deal double damage.","ტარიელი":"Tariel","ვეფხისტყაოსანი":"The Knight in the Panther's Skin","შმაგის შემოტევა":"Frenzied Onslaught","ლეოპარდივით მიიჭრება მტრისკენ — კოშკებს ვერ გადაახტება, გარს უვლის. მტერს შეახტება, გაქრება და ჩრდილივით, აქეთ-იქიდან რვაჯერ ჩამოჰკრავს; ბოლოს შუაში დადგება და ნაცემი მტერი აქეთ-იქით მიმოიფანტება.":"Rushes at the enemy like a leopard — he can't jump over towers, he runs around them. He pounces, vanishes and strikes like a shadow from all sides, eight times; at the end he stands in the middle and the beaten foes scatter in every direction.","შიგან ასრე გავერივე, გნოლის ჯოგსა ვითა ქორი":"I plunged into their midst like a hawk among partridges","ტრფობის ცეცხლი":"Fire of Love","ყოველ მოკლულ მტერზე შეტევა +4% (მაქსიმუმ +40%).":"+4% attack for every enemy killed (up to +40%).","ავთანდილი":"Avtandil","არაბეთის სპასპეტი":"Commander of Arabia","ისრების წვიმა":"Rain of Arrows","3 წამი ისრები წვიმს: ზიანი და 30%-ით შენელება.":"Arrows rain for 3 seconds: damage and a 30% slow.","მონადირის თვალი":"Hunter's Eye","გმირებს შორის ყველაზე შორს ისვრის.":"The longest range of all the heroes.","გიორგი გურჯიევი":"George Gurdjieff","ელვის ჯადოქარი":"Lightning Mystic","ჰიპნოზი":"Hypnosis","მტერი 4 წამით უკან, საკუთარი ბანაკისკენ მიდის.":"Enemies walk backwards, toward their own camp, for 4 seconds.","მაგნიტური ველი":"Magnetic Field","მის გარშემო მტერი 15%-ით ნელა დადის. ელვა ჯავშანს ხვრეტს.":"Enemies around him move 15% slower. His lightning pierces armor.","აბრაგი":"The Abrag","სამეგრელოს ტყეების მცველი":"Guardian of the Samegrelo Forests","ზუსტი გასროლა":"Precise Shot","ველზე ყველაზე ძლიერ მტერს 420 ზიანს აყენებს, სადაც არ უნდა იყოს.":"Deals 420 damage to the strongest enemy on the field, wherever it is.","ქორი":"Hawk","ყოველი მესამე გასროლისას ქორი მტერს ერთი წამით აბრუებს.":"Every third shot, his hawk stuns the target for a second.","მხარგრძელი":"Mkhargrdzeli","ხერხეულიძეთა დედა":"Mother of the Kherkheulidzes","მთიულები":"Mtiuli Archers","მშვილდოსნები":"Archers","ოთხი მთიელი მშვილდოსანი შორიდან ესვრის.":"Four mountain archers shoot from afar.","გურული მეისრეები":"Gurian Fire Archers","ცეცხლის ისრები":"Fire arrows","ოთხი მეისარი ცეცხლმოკიდებულ ისრებს ესვრის — ნასროლი მტერი იწვის.":"Four archers shoot flaming arrows — the enemies they hit catch fire.","ხევსურები":"Khevsurs","მთის დამცველები":"Mountain guardians","ოთხი ჯაჭვის პერანგიანი მოფარიკავე: თითო ორ მტერს აჩერებს, ზიანს მეოთხედით ნაკლებად იღებენ.":"Four swordsmen in chain mail: each holds two foes and takes a quarter less damage.","გურული მხედრები":"Gurian Riders","ცხენოსნები":"Cavalry","სამი მხედარი მტრის რიგებში შეიჭრება, გზად ყველას თელავს და აბრუებს, მერე ხმლით იბრძვის.":"Three riders charge into the enemy ranks, trampling and stunning everyone on the way, then fight with swords.","9 ძმა ხერხეულიძე":"9 Kherkheulidze Brothers","ლეგენდარული რაზმი":"Legendary band","ცხრა ძმა ერთმანეთს ზურგს უმაგრებს: სანამ სამი მაინც ერთადაა, ზიანს 30%-ით ნაკლებად იღებენ და ადგილიდან არ იძვრიან. როცა ყველა დაეცემა, მათი დედა დროშით გამოჩნდება და 5 წამი ჭექა-ქუხილს დაატეხს მტერს.":"The nine brothers stand back to back: while at least three are together they take 30% less damage and hold their ground. When they all fall, their mother appears with the banner and brings thunder and lightning down on the enemy for 5 seconds.","ზიანი +10% ყოველ საფეხურზე":"+10% damage per level","წვა +10% ყოველ საფეხურზე":"+10% burning per level","ზარის ძალა +10% ყოველ საფეხურზე":"+10% bell power per level","ციხის გალავანი":"Castle Walls","+3 სიცოცხლე და +25 საწყისი ოქრო ყოველ საფეხურზე":"+3 lives and +25 starting gold per level","მტერი ორი მხრიდან ერთად მოდის — ორივე გზა ერთ ლაბირინთში შეუყვანე.":"The enemy comes from two sides at once — lead both roads into a single maze.","ძველი თბილისი":"Old Tbilisi","შმაგია!":"Frenzy!","ოქრო არ გყოფნის":"Not enough gold","ასე გზას მთლიანად ჩაკეტავ — მტერს გასასვლელი უნდა დარჩეს":"That would block the path completely — the enemy must have a way through","აქ ახლა ვიღაც დგას":"Someone is standing here right now","აქ აშენება არ შეიძლება":"You can't build here","კოშკი უკვე სრულად გაძლიერებულია":"This tower is fully upgraded","ხმა ჩართულია":"Sound on","ხმა გამორთულია":"Sound off","ბრძოლა":"Battle","მტერი":"Enemy","<b>{0}</b> ტალღა":"<b>{0}</b> waves","საწყისი ოქრო <b>{0}</b>":"Starting gold <b>{0}</b>","მეფეები — აირჩიე ერთი ან ორი":"Kings — choose one or two","მეფეებს მხოლოდ ახლა ირჩევ. ტარიელს, ავთანდილს, ქაქუცას, გურჯიევსა და აბრაგს კი ბრძოლის დროს ქვემოდან ოქროთი გამოიძახებ — ერთდროულად ორამდე, რაზმებთან ერთად.":"You choose kings only now. Tariel, Avtandil, Kakutsa, Gurdjieff and the Abrag are called in during the battle with gold from the bottom bar — up to two at a time, together with the squads.","უკან":"Back","ბრძოლის დაწყება":"Start battle","ქაქუცა":"Kakutsa","გურჯიევი":"Gurdjieff","{0} — დააჭირე ველზე, იქ გამოჩნდება":"{0} — tap the field, he'll appear there","{0} — დააჭირე ველზე, რაზმი იქ ჩამოვა":"{0} — tap the field, the squad will arrive there","{0} უკვე ველზეა":"{0} is already on the field","ველზე უკვე ორი გმირია — მესამეს ვერ გამოიძახებ":"Two heroes are already on the field — you can't call a third","{0} — სჭირდება {1} ოქრო":"{0} — needs {1} gold","{0} ისვენებს — {1} წამი":"{0} is resting — {1} s","დააჭირე ადგილს — გმირი იქ გადავა":"Tap a spot — the hero will go there","{0} {1} წამში დაბრუნდება":"{0} returns in {1} s","{0} — კიდევ {1} წამი":"{0} — {1} s left","მიზანი არ ჩანს":"No target in sight","მტერი ძალიან შორსაა":"The enemy is too far away","დააჭირე ადგილს წრის შიგნით · ორჯერ დაჭერა — ავტომატურად":"Tap a spot inside the circle · double-tap — automatic","აირჩიე ადგილი · ორჯერ დაჭერა — ავტომატურად":"Choose a spot · double-click — automatic","ზიანი არ აქვს · გზას უგრძელებს":"No damage · makes the path longer","წვა <i>{0}</i>/წმ · შენელება <i>{1}%</i>":"Burn <i>{0}</i>/s · slow <i>{1}%</i>","კოშკების ზიანი <i>+{0}%</i>":"Tower damage <i>+{0}%</i>","ზიანი <i>{0}</i>{1} · ყოველ <i>{2}</i> წმ · მანძილი <i>{3}</i>":"Damage <i>{0}</i>{1} · every <i>{2}</i> s · range <i>{3}</i>","ღობის ადგილას":"In place of the fence","გაძლიერება":"Upgrade","სრულად გაძლიერებული":"Fully upgraded","გაყიდვა":"Sell","დაგიბრუნდება {0} ოქრო":"You get back {0} gold","დახურვა":"Close","აირჩიე კოშკი":"Choose a tower","ოქრო: <i>{0}</i>":"Gold: <i>{0}</i>","კიდევ ერთხელ დააჭირე — დაგიბრუნდება <i>{0}</i> ოქრო":"Tap again — you get back <i>{0}</i> gold","დააჭირე ველზე — სადაც ეტევა, იქ დადგება":"Tap the field — it goes wherever it fits","დააჭირე ველზე — სადაც ეტევა, იქ დადგება. Esc — გაუქმება":"Click the field — it goes wherever it fits. Esc — cancel","ქვემოთ აირჩიე კოშკი, მერე დააჭირე ველზე":"Pick a tower below, then tap the field","ძალა ჯერ მზად არ არის":"The skill isn't ready yet","ქართული":"ქართული","ადრე გამოძახება: +{0} ოქრო":"Called early: +{0} gold","ბადე მუდმივად ჩართულია":"Grid always on","ბადე მხოლოდ მშენებლობისას ჩანს":"Grid shows only while building","{0} · ტალღა {1}/{2} · სიცოცხლე {3}":"{0} · wave {1}/{2} · lives {3}","ტალღა {0}":"Wave {0}","სარდალი მოდის!":"The commander is coming!","სარდალი დამარცხდა!":"The commander has fallen!","{0} დაეცა — {1} წამში დაბრუნდება":"{0} has fallen — back in {1} s","გამარჯვება!":"Victory!","ციხე დაეცა":"The castle has fallen","ციხეს ერთი ქვაც არ ჩამოცვენია.":"Not a single stone fell from the castle.","მტერი უკუიქცა, მაგრამ კედლები დაზიანდა.":"The enemy retreated, but the walls were damaged.","მტერი ციხეში შეიჭრა. გააძლიერე კოშკები ბანაკში ან სცადე სხვა ლაბირინთი.":"The enemy broke into the castle. Upgrade your towers in the camp or try a different maze.","მოკლული მტერი":"Enemies killed","გაპარული მტერი":"Enemies slipped through","ტალღა":"Wave","ბანაკი":"Camp","თავიდან":"Restart","შემდეგი: {0}":"Next: {0}","ლაშქრობა":"Campaign","მოგებული":"Won","მტერი: <b>{0}</b>":"Enemy: <b>{0}</b>","ჯერ წინა ბრძოლა მოიგე":"Win the previous battle first","ეკრანიდან გასვლა":"Exit full screen","სრული ეკრანი":"Full screen","გახსნა · {0}":"Unlock · {0}","ლეველი {0} · {1}":"Level {0} · {1}","მაქსიმალური ლეველი":"Max level","ლეველი <b>{0}</b>":"Level <b>{0}</b>","სიცოცხლე <b>{0}</b>":"Health <b>{0}</b>","ზიანი <b>{0}</b>":"Damage <b>{0}</b>","ახლო ბრძოლა":"Melee","მანძილი <b>{0}</b>":"Range <b>{0}</b>","გამოძახება <b>{0}</b> ოქრო":"Call in for <b>{0}</b> gold","{0} წმ":"{0} s","მეფეები":"Kings","ბრძოლის წინ ორს ირჩევ":"You pick two before each battle","გმირები":"Heroes","ბრძოლის დროს ქვემოდან ოქროთი გამოიძახებ, ერთდროულად ორამდე":"Called in during battle with gold from the bottom bar, up to two at a time","{0} შენს ლაშქარს შეუერთდა":"{0} joined your host","გაძლიერება · {0}":"Upgrade · {0}","ციხე":"Castle","მეტეხი":"Metekhi","ბრძოლის ველი":"Battlefield","ოქრო":"Gold","ციხის სიცოცხლე":"Castle lives","შემდეგი ტალღა ახლავე":"Next wave now","შემდეგი":"Next","ბადე (G)":"Grid (G)","სისწრაფე":"Speed","პაუზა":"Pause","კოშკები":"Towers","გმირებისა და რაზმების გამოძახება ოქროთი":"Call in heroes and squads for gold","გმირებისა და რაზმების გამოძახება ოქროთი (H)":"Call in heroes and squads for gold (H)","· ორამდე, ბრძოლის ბოლომდე რჩებიან":"· up to two, they stay to the end","რაზმები":"Squads","· ცოტა ხნით":"· for a while","აირჩიე, მერე დააჭირე ველზე — იქ ჩამოვა":"Pick one, then tap the field — it arrives there","ციხის დაცვა":"Castle Defense","ააშენე ლაბირინთი, დადგი კოშკები და გაუშვი გმირები — ვენახებიდან ძველ თბილისამდე.":"Build a maze, raise towers and send in the heroes — from the vineyards to Old Tbilisi.","როგორ ვითამაშო":"How to play","სრული ეკრანისთვის:":"For full screen:","გაზიარება":"Share","როგორ?":"How?","აირჩიე ბრძოლა":"Choose a battle","მთავარი":"Home","გმირები და კოშკები":"Heroes and towers","მტრები":"Enemies","ბრძოლის დატოვება":"Leave battle","ხმა":"Sound","გაგრძელება":"Resume","გასაგებია":"Got it","მოატრიალე ტელეფონი":"Turn your phone","ბრძოლის ველი ჰორიზონტალურად უკეთ ჩანს.":"The battlefield looks better in landscape.","მაინც გავაგრძელებ":"Continue anyway","სრული ეკრანი iPhone-ზე":"Full screen on iPhone","#helpList":"\n        <li><b>Goal:</b> The enemy comes from the right (in some battles also from the top or bottom) and heads left, to the castle gate. Every enemy that slips through costs the castle a life.</li>\n        <li><b>Building:</b> Pick a tower at the bottom — it's in color when you have enough gold. A grid appears: tap a cell and the tower goes there. You can also drag a tower onto the field. You earn gold for every enemy you kill.</li>\n        <li><b>Maze:</b> The enemy always takes the shortest path and walks around new towers. The white dashed line is its path; the golden one is the path it will take after your new tower. A red cell is where a tower would block the path completely. Make the path longer with cheap fences.</li>\n        <li><b>Towers:</b> Tap a built tower to upgrade it (3 levels) or sell it (70% back). A fence can be turned into any tower.</li>\n        <li><b>Uphill and downhill:</b> on a mountain field the enemy is slow going uphill and fast going downhill, and it picks the way with less climbing. A tower on high ground shoots farther — the lines on the grid show the heights. On Elbrus the chained Amirani now and then heaves at his chains: the ground shakes and nearby enemies stagger.</li>\n        <li><b>Kings and heroes:</b> Before a battle you pick two of the four kings — David, Tamar, Vakhtang Gorgasali and Erekle II. The other heroes — Tariel, Avtandil, Kakutsa, Gurdjieff and the Abrag — are called in during the battle with gold from the bottom bar, up to two at a time, and they stay until the end. When idle, heroes move toward the nearest enemy on their own. Tap a hero or their portrait, then a spot — they go there.</li>\n        <li><b>Calling in:</b> During battle there's a “+” button at the bottom, next to the towers. Inside are heroes and squads: Mtiuli Archers, Gurian Fire Archers, Khevsurs, Gurian Riders and the 9 Kherkheulidze Brothers. Pick one — it's in color when you have enough gold — then tap the field and it arrives there. A squad fights for a while, then rests. When the 9 Kherkheulidze Brothers fall, their mother appears with the banner and brings thunder down on the enemy for 5 seconds.</li>\n        <li><b>David's horse:</b> David rides his horse; in a fight he jumps down, the horse fights beside him and rears up, and after the fight the king mounts again.</li>\n        <li><b>Skills:</b> Tap a skill button and a circle appears — then tap a spot. Double-tap picks the target for you. Gorgasali leaps over towers and hurls horsemen, horse and all; David rushes to his guard; Tamar sends the Svan host with Mkhargrdzeli; Tariel bursts into the enemy ranks like a leopard, vanishes and strikes like a shadow from all sides.</li>\n        <li><b>Bazaar:</b> Battles earn you coins; diamonds are rare. In the bazaar you open chests (the odds are always shown) and buy skins and weapons for your heroes — a weapon changes how the hero's skill works. Every day there is a gift and three quests waiting, and battles fill your Campaign Book.</li>\n        <li><b>Waves:</b> The “Next” button calls the next wave early, and you get gold for the seconds left.</li>\n        <li><b>Keyboard:</b> <kbd>1</kbd>–<kbd>6</kbd> towers, <kbd>Q</kbd> <kbd>W</kbd> <kbd>E</kbd> <kbd>R</kbd> skills, <kbd>Space</kbd> wave, <kbd>U</kbd> upgrade, <kbd>S</kbd> sell, <kbd>H</kbd> call in, <kbd>Esc</kbd> cancel, <kbd>F</kbd> speed, <kbd>G</kbd> grid, <kbd>P</kbd> pause.</li>\n      ","#a2hsList":"\n        <li>In Safari, tap the “Share” button <svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 3v12M8 7l4-4 4 4\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M8 10H5v11h14V10h-3\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linejoin=\"round\"/></svg></li>\n        <li>Scroll down and choose <b class=\"en\">Add to Home Screen</b></li>\n        <li>Open “Metekhi” from your home screen — the game opens like an app, without the browser bars.</li>\n      ","მოგესალმები, სარდალო!":"Welcome, commander!","მტერი მარჯვნიდან მოდის და მარცხნივ, ციხის კარისკენ მიიწევს. თეთრი წყვეტილი ხაზი მისი გზაა. ყოველი გაპარული მტერი ციხეს ერთ სიცოცხლეს აკლებს — აქ ჩანს, რამდენი დაგრჩა.":"The enemy comes from the right and marches left, to the castle gate. The white dashed line is its path. Every enemy that slips through costs the castle a life — this shows how many you have left.","ეს შენი ოქროა. ოქროს მოკლული მტრებიდან იღებ და კოშკებზე, გმირებსა და რაზმებზე ხარჯავ.":"This is your gold. You earn it by killing enemies and spend it on towers, heroes and squads.","კოშკის ასაშენებლად ქვემოთ აირჩიე სვანური კოშკი.":"To build a tower, pick the Svan Tower below.","გამოჩნდა ბადე. დააჭირე მონიშნულ უჯრას გზის გვერდით — კოშკი იქ დადგება.":"The grid is showing now. Tap the marked cell beside the road — the tower goes there.","ახლა ლაბირინთი. აირჩიე ღობე — იაფია და მტერს გზას უგრძელებს.":"Now the maze. Pick the fence — it's cheap and makes the enemy's path longer.","დადგი სამი ღობე ცარიელ ველზე, მტრის გზაზე ({0}/3). ოქროსფერი ხაზი მტრის ახალ გზას აჩვენებს, წითელი უჯრა კი იქაა, სადაც გზა მთლიანად ჩაიკეტებოდა.":"Place three fences on open ground, in the enemy's way ({0}/3). The golden line shows the enemy's new path; a red cell is where the path would be blocked completely.","კოშკის გასაძლიერებლად დააჭირე მას.":"To upgrade the tower, tap it.","მზად ხარ? დაიწყე ბრძოლა!":"Ready? Start the battle!","ეს შენი მეფეებია. დააჭირე მეფის პორტრეტს — ან თვითონ მეფეს ველზე.":"These are your kings. Tap a king's portrait — or the king himself on the field.","ახლა დააჭირე ადგილს ველზე — მეფე იქ გადავა. როცა არაფერს აკეთებს, თავად მიიწევს უახლოესი მტრისკენ.":"Now tap a spot on the field — the king goes there. When idle, he moves toward the nearest enemy on his own.","ეს მეფის ძალაა. დააჭირე, გამოჩნდება წრე — მერე დააჭირე ადგილს წრის შიგნით. ორჯერ დაჭერა მიზანს თავად არჩევს.":"This is the king's skill. Tap it and a circle appears — then tap a spot inside the circle. A double-tap picks the target for you.","ოქროთი აქ გმირებს და რაზმებს გამოიძახებ. გახსენი.":"Here you call in heroes and squads with gold. Open it.","ზემოთ გმირებია — ბრძოლის ბოლომდე რჩებიან. ქვემოთ რაზმებია — ცოტა ხანს იბრძვიან. აირჩიე მთიულები.":"Heroes are at the top — they stay until the battle ends. Squads are below — they fight for a while. Pick the Mtiuli Archers.","დააჭირე ველზე, მტრის გზის ახლოს — რაზმი იქ ჩამოვა.":"Tap the field near the enemy's path — the squad arrives there.","მზად ხარ!":"You're ready!","დასრულება":"Finish","ახლა ბრძოლა თავად დაასრულე. ბრძოლის მერე ბანაკში მონეტებს მეფეებსა და კოშკებზე დახარჯავ. წესები ყოველთვის გექნება „როგორ ვითამაშო“-ში.":"Now finish the battle on your own. After it, you spend coins on kings and towers in the camp. The rules are always under “How to play”.","სასწავლო ტური":"Tutorial","გამოტოვება":"Skip","მთელი ტალღა უკვე ველზეა. „შემდეგი“ ღილაკი მომდევნო ტალღას ადრე იძახებს და დარჩენილი წამებისთვის ოქროს გაძლევს. თუ არ დააჭერ, წრის დაცლისას თავად მოვა.":"The whole wave is on the field now. The “Next” button calls the next wave early and pays gold for the seconds left. If you don't tap it, the wave comes by itself when the ring runs out.","აქედან ბადეს მუდმივად ჩართავ, თამაშს ააჩქარებ ან პაუზას დააყენებ.":"From here you keep the grid on, speed the game up or pause it.","აქ კოშკს აძლიერებ (სამი საფეხური) ან ყიდი. ღობეზე დაჭერით კი მას ნებისმიერ კოშკად აქცევ. დააჭირე გაძლიერებას.":"Here you upgrade the tower (three levels) or sell it. Tapping a fence turns it into any tower. Tap Upgrade.","ბანაკში მონეტებით ახალ მეფეებს იძენ, მეფეებს ლეველს უწევ და კოშკებს აძლიერებ. გაძლიერდი და ისევ სცადე!":"In the camp, glory buys new kings, levels up your kings and strengthens your towers. Grow stronger and try again!","ბანაკში მონეტებით ახალ მეფეებს იძენ, მეფეებს ლეველს უწევ და კოშკებს აძლიერებ. მერე შემდეგ ბრძოლაზე წადი!":"In the camp, glory buys new kings, levels up your kings and strengthens your towers. Then on to the next battle!","იალბუზის ფერდობები":"The Slopes of Elbrus","მიჯაჭვული ამირანი":"Chained Amirani","აღმართზე მტერი ნელა მოდის, დაღმართზე — სწრაფად. მაღლობზე დადგმული კოშკი უფრო შორს ისვრის. მე-6 ტალღიდან მტერი მთის ბილიკითაც ჩამოვა.":"Uphill the enemy is slow, downhill fast. A tower on high ground shoots farther. From wave 6 the enemy also comes down the mountain trail.","ქარიშხლის ურდო იალბუზიდან ჩამოეშვა — იქ, სადაც ამირანი კლდეზეა მიჯაჭვული. მტერი ჯერ ხეობაში ეშვება, მერე ციხემდე აღმართს ადის.":"The Storm Horde came down from Elbrus, where Amirani is chained to the rock. The enemy first goes down into the valley, then climbs uphill to the castle.","მაღლობი <i>+{0}%</i> მანძილი":"High ground <i>+{0}%</i> range","აღმართ-დაღმართი":"Uphill and downhill","ეს ველი აღმართ-დაღმართია: აღმართზე მტერი ნელა მოდის, დაღმართზე — სწრაფად. შენი კოშკი მაღლობზე დგას, ამიტომ უფრო შორს ისვრის. ბადეზე სიმაღლეს ხაზები გიჩვენებს.":"This field goes uphill and downhill: uphill the enemy is slow, downhill fast. Your tower stands on high ground, so it shoots farther. The lines on the grid show the heights.","გერგეტი":"Gergeti","მყინვარწვერის ძირას":"At the foot of Kazbek","ველი ფართოა — ღობეებით ლაბირინთი ააშენე და სპილოებს ბალისტა დაახვედრე.":"The field is wide — build a maze with fences and meet the elephants with ballistas.","ალისფერმა ლაშქარმა საბრძოლო სპილოებით გერგეტის თოვლიანი ველის გადმოლახვა სცადა. სამების ქვემოთ, თერგის პირას, ციხის კარამდე მხოლოდ ერთი გზა მიდის.":"The Scarlet Host tried to cross the snowy field of Gergeti with war elephants. Below the Trinity Church, on the bank of the Tergi, only one road leads to the castle gate.","უშგული":"Ushguli","შხარის ძირას":"At the foot of Shkhara","ყვავთა ხროვა უშგულს ორი გზით უტევს. სვანური კოშკების ძირას, ენგურის პირას, ლაბირინთი ააშენე.":"The Raven Pack attacks Ushguli along two roads. Build a maze at the foot of the Svan towers, on the bank of the Enguri.","ვარძია":"Vardzia","კლდეში ნაკვეთი მონასტერი":"The cave monastery","მე-4 ტალღიდან მტერი მდინარის ბილიკიდანაც ამოვა. თოფოსნები გმირებს შორიდან ესვრიან.":"From wave 4 the enemy also climbs the path up from the river. Musketeers shoot the heroes from afar.","ცეცხლქუდები ვარძიას ალყას არტყამენ — აღმოსავლეთის გზიდან და მტკვრის ბილიკიდან.":"The Firecaps besiege Vardzia — from the eastern road and from the path up from the Mtkvari.","ნარიყალას ძირას":"Below Narikala","მტერი აღმოსავლეთის ქუჩიდან მოდის, მე-3 ტალღიდან კი ნარიყალას ჩიხიდანაც ჩამოდის. ორივე გზა ერთ ლაბირინთში შეუყვანე.":"The enemy comes up the eastern street, and from wave 3 also down the lane from Narikala. Lead both roads into a single maze.","რკინის ლეგიონი ზარბაზნებით ძველ თბილისს მოადგა. ნარიყალას ქვემოთ, აბანოებსა და მეტეხს შორის, მოედანი შენზეა.":"The Iron Legion has reached Old Tbilisi with its cannons. Below Narikala, between the baths and Metekhi, the square is yours to hold.","ვახტანგი სპილოს ეჭიდება!":"Vakhtang wrestles the elephant!","ბრძოლა შეჩერდა — ყველა უყურებს":"The battle stops — everyone watches","2 მეტრი და 35 სანტიმეტრი: ხმლის ერთი მოქნევით სამ მტერს ურტყამს, ცხენოსანს კი ცხენიანად აიტაცებს, თავზე შემოიდებს და მტრის რაზმს ესვრის. ხანდახან საბრძოლო სპილოსაც ეჭიდება: კისერში სწვდება, თავზე შემოიქნევს და ზურგზე დაანარცხებს — ამ დროს ბრძოლა ჩერდება და ყველა მათ უყურებს.":"2 meters 35 centimeters tall: one sweep of his sword strikes three foes, and he lifts a horseman together with his horse, raises it overhead and hurls it at the enemy ranks. Now and then he wrestles a war elephant: he grabs it by the neck, swings it over his head and slams it onto its back — the battle stops while everyone watches.","იშვიათი":"Rare","ეპიკური":"Epic","ლეგენდარული":"Legendary","ღამის მგელი":"Night Wolf","ზამთრის მგელი":"Winter Wolf","ოქროს მგელი":"Golden Wolf","ტყის მეფე":"King of the Forest","შავი მერანი":"The Black Steed","აღმაშენებლის ოქრო":"The Builder's Gold","მთის დედოფალი":"Queen of the Mountains","ცეცხლის დედოფალი":"Queen of Fire","ზეციური დედოფალი":"Queen of Heaven","ალაზნის მეფე":"King of the Alazani","ზამთრის ლაშქრობა":"Winter Campaign","ცეცხლოვანი ერეკლე":"Erekle Aflame","ყინულის ვეფხვი":"Ice Panther","ღამის ვეფხვი":"Night Panther","ცეცხლის ვეფხვი":"Fire Panther","მონადირე":"The Hunter","არაბეთის მზე":"Sun of Arabia","ოქროს ისარი":"Golden Arrow","ღამის მხედარი":"Night Rider","ტყის ძმა":"Forest Brother","ოქროს ნაბადი":"Golden Cloak","ცეცხლის მოგვი":"Fire Mage","ჩრდილების მოგვი":"Shadow Mage","ელვის ბრძენი":"Sage of Lightning","ღამის აბრაგი":"Night Outlaw","მთის აბრაგი":"Mountain Outlaw","ტყის სული":"Spirit of the Forest","ფასკუნჯის რაინდი":"Paskunji Knight","ქართლის ფარი":"Shield of Kartli","სიცოცხლე +25% და ოთხ მტერს აჩერებს სამის ნაცვლად. ზიანი 10%-ით ნაკლებია.":"+25% health and he holds four foes instead of three. 10% less damage.","ორლესული ცული":"Double-Edged Axe","ნახტომის ადგილას ყინულის რგოლი რჩება — მტერი 3 წამით 40%-ით ნელდება. ნახტომის ზიანი 15%-ით ნაკლებია.":"Where he lands a ring of ice is left — foes are slowed by 40% for 3 seconds. The leap deals 15% less damage.","მგლის ჩაფხუტი":"Wolf Helm","ნახტომის ყმუილი მტერს 0.8 წამით მეტხანს აბრუებს და უფრო ფართოდ სწვდება. ძალა 2 წამით გვიან ივსება.":"The leap's howl stuns foes 0.8 seconds longer and reaches wider. The skill recharges 2 seconds slower.","მეფის საყვირი":"Royal Horn","რაზმის გამოძახებისას ახლომახლო ყველა მეომარი 6 წამით 25%-ით ძლიერად ურტყამს.":"When he calls his men, every fighter nearby strikes 25% harder for 6 seconds.","დიდგორის ხმალი":"Sword of Didgori","მეფის რაზმში სამის ნაცვლად ოთხი არაგველია, მაგრამ 15 წამის ნაცვლად 12 წამი რჩებიან.":"The King's Band brings four Aragvians instead of three, but they stay 12 seconds instead of 15.","მზის კვერთხი":"Scepter of the Sun","სვანთა ლაშქარი 16-ის ნაცვლად 20 წამი რჩება. ძალა 4 წამით გვიან ივსება.":"The Svan host stays 20 seconds instead of 16. The skill recharges 4 seconds slower.","ლალის ბეჭედი":"Ruby Ring","თამარის ყოველი სხივი მიზნის ახლოს მდგარ გმირებსა და მეომრებს 8 სიცოცხლეს უბრუნებს. ზიანი 10%-ით ნაკლებია.":"Each of Tamar's beams heals heroes and fighters near its target by 8. 10% less damage.","კახური ხმალი":"Kakhetian Sabre","ერეკლე 25%-ით ხშირად ურტყამს.":"Erekle strikes 25% more often.","ცეცხლის ყუმბარა":"Fire Bomb","ზალპის ყუმბარები მტერს 3 წამით წვავს, მაგრამ ექვსის ნაცვლად ხუთია.":"The volley sets foes on fire for 3 seconds, but there are five bombs instead of six.","ვეფხის ტყავი":"The Panther's Skin","შმაგის შემოტევისას ტარიელი რვის ნაცვლად ათჯერ ჩამოჰკრავს.":"In his onslaught Tariel strikes ten times instead of eight.","დალის ოქროს ისრები":"Dali's Golden Arrows","ისრების წვიმა მტერს წვავს და სამის ნაცვლად ოთხ წამს გრძელდება.":"The rain of arrows burns foes and lasts four seconds instead of three.","მაუზერი":"Mauser","ორმაგი ზიანის შანსი 20%-ის ნაცვლად 30%-ია. მანძილი 10%-ით მოკლეა.":"A 30% chance of double damage instead of 20%. Range is 10% shorter.","ელვის ბროლი":"Lightning Crystal","ჰიპნოზი ოთხის ნაცვლად ხუთ წამს გრძელდება. მაგნიტური ველი მტერს 15%-ის ნაცვლად 10%-ით ანელებს.":"Hypnosis lasts five seconds instead of four. The magnetic field slows foes by 10% instead of 15%.","ქორის ხელთათმანი":"Falconer's Glove","ქორი ყოველ მეორე გასროლაზე აბრუებს მტერს, მაგრამ ზიანი 10%-ით ნაკლებია.":"The hawk stuns a foe on every second shot, but damage is 10% lower.","ქაჯის ხანჯალი":"Kaji Dagger","შმაგის შემოტევის ყოველი დარტყმა მტერს 3 წამით წვავს.":"Every strike of the onslaught burns the foe for 3 seconds.","ხის სკივრი":"Wooden Chest","ვერცხლის სკივრი":"Silver Chest","ოქროს სკივრი":"Golden Chest","მოიგე ერთი ბრძოლა":"Win a battle","მოკალი {0} მტერი":"Defeat {0} foes","ააშენე {0} კოშკი ან ღობე":"Build {0} towers or fences","გამოიყენე მეფის ძალა {0}-ჯერ":"Use a king's skill {0} times","გამოიძახე რაზმი ან გმირი {0}-ჯერ":"Call in a squad or a hero {0} times","მოიგე ბრძოლა სამი ვარსკვლავით":"Win a battle with three stars","დაამარცხე მტრის სარდალი":"Defeat an enemy commander","გააძლიერე კოშკები {0}-ჯერ":"Upgrade towers {0} times","გახსენი სკივრი":"Open a chest","პოპულარული":"Popular","საუკეთესო ფასი":"Best value","{0} დღე":"{0} days","მონეტები":"Coins","ლაშქრობის წიგნი":"Campaign Book","რეკლამის ნახვა — მონეტები ×2":"Watch an ad — double coins","დღის დავალებები":"Daily quests","ბაზარი":"Bazaar","სკინი":"Skin","იარაღი":"Weapon","დღის":"Today","სკივრები":"Chests","სკინები":"Skins","ანდამატები":"Diamonds","მობრძანდი, ბატონო! დღეს ყველაფერი იაფადაა.":"Come in, my friend! Everything's cheap today.","ოქროს სკივრში ლეგენდარული ნივთიც შეიძლება იყოს!":"A golden chest may hold something legendary!","ფასკუნჯის ბუმბული ბრძოლაში გამოგადგება.":"A Paskunji feather will serve you well in battle.","ჩემზე იაფად მთელ თბილისში ვერ იყიდი!":"You won't find it cheaper anywhere in Tbilisi!","ვახტანგს ოქროს მგელი უხდება, ხომ?":"The Golden Wolf suits Vakhtang, does it not?","მონეტა":"coins","ანდამატი":"diamonds","ფასკუნჯის ბუმბული":"Paskunji feather","ფრაგმენტი":"shards","უკვე გაქვს — +{0} ფრაგმენტი":"Already yours — +{0} shards","სამეფო წიგნი":"Royal Book","გაიხსნა":"unlocked","განახლდება {0}-ში":"Refreshes in {0}","უფასო {0}-ში":"Free in {0}","სეზონი მთავრდება: {0}":"Season ends in {0}","დამწყების პაკეტი":"Starter Pack","8-ჯერ მეტი ღირებულება":"8× the value","დღის საჩუქარი":"Gift of the day","ყოველდღე შედი — მეშვიდე დღეს ვერცხლის სკივრია":"Come every day — day seven brings a silver chest","დღე {0}":"Day {0}","აიღე დღის საჩუქარი":"Take today's gift","დღევანდელი საჩუქარი აღებულია. ხვალ ახალი დაგხვდება.":"Today's gift is taken. A new one waits tomorrow.","დღის შეთავაზებები":"Today's offers","ყოველი შეთავაზება დღეში ერთხელ":"Each offer once a day","ნაყიდია":"Bought","უფასოდ":"Free","დღის შეთავაზება":"Today's offer","აღებულია":"Taken","აღება":"Claim","დავალება შესრულდა":"Quest complete","1 ნივთი და მონეტები":"1 item and coins","2 ნივთი და მონეტები":"2 items and coins","3 ნივთი — ყველა ეპიკური ან ლეგენდარული":"3 items — all epic or legendary","უფასოდ ({0})":"Free ({0})","ლეგენდარული გარანტირებულია {0} სკივრში":"Legendary guaranteed within {0} chests","ეპიკური გარანტირებულია {0} სკივრში":"Epic guaranteed within {0} chests","შანსები":"Odds","ნივთი, რომელიც უკვე გაქვს, ფრაგმენტებად იქცევა. ფრაგმენტებით ნებისმიერ სკინსა და იარაღს პირდაპირ იყიდი.":"An item you already own turns into shards. Shards buy any skin or weapon outright.","{0} — შანსები":"{0} — odds","სკივრში: {0}–{1} მონეტა და {2} ნივთი. ყოველი ნივთის იშვიათობა ცალკე ითამაშება:":"Inside: {0}–{1} coins and {2} items. The rarity of each item is rolled separately:","იშვიათობა":"Rarity","შანსი":"Chance","რა შეიძლება იყოს":"What it can be","სკინი ან იარაღი {0} (თითოეული {1})":"a skin or weapon {0} (each {1})","გარანტია: თუ {0} სკივრი ზედიზედ ლეგენდარულის გარეშე გაიხსნა, მომდევნოში ლეგენდარული აუცილებლად იქნება.":"Guarantee: after {0} chests in a row without a legendary, the next one always has one.","გარანტია: თუ {0} სკივრი ზედიზედ ეპიკურის გარეშე გაიხსნა, მომდევნოში ეპიკური აუცილებლად იქნება.":"Guarantee: after {0} chests in a row without an epic, the next one always has one.","ფრაგმენტები სკივრში განმეორებული ნივთებიდან მოდის.":"Shards come from items a chest gives twice.","ჩაცმულია":"Equipped","ჩაცმა":"Wear","აღჭურვა":"Equip","ლაშქრობის წიგნის ჯილდო":"Campaign Book reward","სიუჟეტის ჯილდო":"Story reward","ახალი ნივთი":"New item","პირველი ყიდვა ×2":"First purchase ×2","+{0}% ბონუსი":"+{0}% bonus","ბანაკში გმირებისა და კოშკების გასაძლიერებლად":"to level heroes and towers in the camp","ყიდვა Google Play-ით ხდება.":"Purchases go through Google Play.","ეს ვებ-ვერსიაა: ყიდვა სატესტოა და ფული არ ჩამოგეჭრება. Google Play-ის აპში აქ ნამდვილი გადახდა იქნება.":"This is the web version: purchases are tests and nothing is charged. In the Google Play app this is where real payment happens.","სატესტო ყიდვა":"Test purchase","ეს თამაშის ვებ-ვერსიაა: ყიდვა სატესტოა და ფული არ ჩამოგეჭრება. Google Play-ის აპში აქ ნამდვილი გადახდა იქნება.":"This is the web version of the game: the purchase is a test and nothing is charged. In the Google Play app this is where real payment happens.","გაუქმება":"Cancel","ყიდვა (სატესტო)":"Buy (test)","მადლობა!":"Thank you!","სეზონი {0}":"Season {0}","საფეხური {0} / {1}":"Tier {0} / {1}","დასრულებულია":"Complete","გამოცდილებას ბრძოლები და დღის დავალებები გაძლევს. სამეფო წიგნში მეტი ანდამატი, სკივრები და ექსკლუზიური სკინი „ფასკუნჯის რაინდია“.":"Battles and daily quests give experience. The Royal Book adds more diamonds, chests and the exclusive skin “Paskunji Knight”.","სამეფო წიგნი გახსნილია":"Royal Book unlocked","უფასო":"Free","სამეფო":"Royal","საფეხური {0}":"Tier {0}","კარგი":"OK","ახალი!":"New!","ჩვეულებრივი":"Default","ბაზარში":"To the bazaar","დღე {0} / 7. ყოველდღე შედი — მეშვიდე დღეს ვერცხლის სკივრი და 50 ანდამატია.":"Day {0} / 7. Come every day — day seven brings a silver chest and 50 diamonds.","აიღე":"Take it","ციხე ეცემა!":"The castle is falling!","აღადგინე ციხის კედლები: +{0} სიცოცხლე, მტერი კართან წაბორძიკდება.":"Raise the walls again: +{0} lives, and the foes at the gate stagger back.","დანებება":"Give up","რეკლამის ნახვა":"Watch an ad","თბილისის ბაზარი":"The Tbilisi Bazaar","დააჭირე სკივრს":"Tap the chest","შანსები ერთ ნივთზეა მოცემული.":"The chances are given per item.","ერთხელ, მხოლოდ 48 საათით: ზამთრის მგელი ვახტანგისთვის, ოქროს სკივრი, ანდამატები და ფასკუნჯის ბუმბულები.":"Once, for 48 hours only: the Winter Wolf for Vakhtang, a golden chest, diamonds and Paskunji feathers.","მოგვიანებით":"Later"};
 const LANG = (() => {
   let l = null;
   try { l = localStorage.getItem('td.lang'); } catch (e) { }
@@ -523,7 +693,7 @@ function setLang(l) {
   location.reload();
 }
 // every Georgian string in the data tables (names, descriptions, skills, maps…) replaced by its English text
-function localizeData() {
+function localizeMore(tables) {
   if (LANG !== 'en') return;
   const walk = o => {
     for (const k in o) {
@@ -532,8 +702,9 @@ function localizeData() {
       else if (v && typeof v === 'object') walk(v);
     }
   };
-  [TOWERS, ROLES, FACTIONS, HEROES, ALLIES, SQUADS, TECH, MAPS].forEach(walk);
+  tables.forEach(walk);
 }
+function localizeData() { localizeMore([TOWERS, ROLES, FACTIONS, HEROES, ALLIES, SQUADS, TECH, MAPS]); }
 // the page: text nodes and labels, and the blocks that have their own English markup
 function localizeDom(root = document.body) {
   if (LANG !== 'en') return;
@@ -939,14 +1110,141 @@ const waveBounty = w => 1 + 0.04 * (w - 1);
 // commanders are tough but do not balloon with the wave number
 const bossHp = (mi, w) => MAPS[mi].mult * (1 + 0.06 * (w - 1));
 
+// glory is the coins of the camp; diamonds, feathers and shards came with the bazaar (a new player starts with a gift)
 const DEFAULT_SAVE = () => ({
-  v: 1, glory: 0,
+  v: 1, glory: 0, dia: 100, feath: 2, shards: 0,
   heroes: Object.fromEntries(HERO_ORDER.map(k => [k, { owned: HEROES[k].price === 0, lvl: 1 }])),
   tech: Object.fromEntries(TECH_ORDER.map(k => [k, 0])),
   maps: MAPS.map(() => ({ won: false, stars: 0 })),
-  sel: ['gorgasali', 'david'], sound: true, music: true, seenHelp: false, tutDone: false
+  sel: ['gorgasali', 'david'], sound: true, music: true, seenHelp: false, tutDone: false,
+  own: {}, eq: { skin: {}, wp: {} }, ch: {}, day: null, login: null, pass: null, offers: null, starter: null, iap: { n: 0, first: {}, tok: {} }, story: {}
 });
 localizeData();
+
+// ===== the game around the battles: coins and diamonds, the bazaar, chests, skins, weapons, the campaign book =====
+// coins are the old glory (SAVE.glory), earned in battle and spent in the camp; diamonds are rare and buy chests, skins and
+// weapons; Paskunji's feathers are spent in battle; shards come from things a chest gives twice and buy any item outright.
+const RARITY = {
+  rare: { n: 'იშვიათი', col: '#5aa8f0' },
+  epic: { n: 'ეპიკური', col: '#b27cff' },
+  leg: { n: 'ლეგენდარული', col: '#f0c24c' }
+};
+const RAR_ORDER = ['rare', 'epic', 'leg'];
+
+// ----- skins: the hero's own pictures recoloured (see 02b_skins.js) -----
+// a recipe moves hue bands of strong colour (centre, half width, new hue, saturation ×, value ×), tints the grey metal
+// (and grey fur, the white horse) toward a colour, and keeps faces, hands, beards and leather as they are
+const RECIPES = {
+  night: { bands: [[0, 32, 278, 0.85, 0.74], [215, 45, 270, 0.8, 0.72]], metal: [64, 66, 102, 0.62], all: [1, 0.86], aura: '#a77bff' },
+  frost: { bands: [[0, 32, 204, 0.78, 1.06], [120, 50, 196, 0.7, 1.05]], metal: [200, 228, 255, 0.5], all: [0.95, 1.05], aura: '#9fdcff' },
+  gold: { bands: [[0, 32, 352, 1.1, 0.8], [215, 45, 350, 1, 0.74]], metal: [255, 204, 92, 0.72], all: [1.05, 1.03], aura: '#ffd76a' },
+  fire: { bands: [[215, 50, 18, 1.1, 1], [120, 55, 28, 1.1, 1], [0, 32, 10, 1.15, 1.08]], metal: [255, 158, 88, 0.38], all: [1.08, 1.02], aura: '#ff8a3a' },
+  forest: { bands: [[0, 32, 124, 0.75, 0.8], [215, 45, 138, 0.7, 0.8]], metal: [196, 210, 160, 0.32], all: [1, 0.97], aura: '#8fe06a' },
+  white: { bands: [[0, 32, 44, 0.55, 1.18], [215, 45, 46, 0.25, 1.25]], metal: [255, 250, 236, 0.55], all: [0.9, 1.08], aura: '#fff6d8' },
+  phoenix: { bands: [[0, 32, 22, 1.2, 1.12], [215, 50, 30, 1.1, 1.06], [120, 55, 36, 1.1, 1.06]], metal: [255, 180, 90, 0.62], all: [1.1, 1.05], aura: '#ff9a3a' }
+};
+// three skins for every hero (rare, epic, legendary) and one more that only the campaign book gives
+const SKINS = {};
+[
+  ['gorgasali', [['night', 'ღამის მგელი'], ['frost', 'ზამთრის მგელი'], ['gold', 'ოქროს მგელი']]],
+  ['david', [['forest', 'ტყის მეფე'], ['night', 'შავი მერანი'], ['gold', 'აღმაშენებლის ოქრო']]],
+  ['tamar', [['frost', 'მთის დედოფალი'], ['fire', 'ცეცხლის დედოფალი'], ['white', 'ზეციური დედოფალი']]],
+  ['erekle', [['forest', 'ალაზნის მეფე'], ['frost', 'ზამთრის ლაშქრობა'], ['fire', 'ცეცხლოვანი ერეკლე']]],
+  ['tariel', [['frost', 'ყინულის ვეფხვი'], ['night', 'ღამის ვეფხვი'], ['fire', 'ცეცხლის ვეფხვი']]],
+  ['avtandil', [['forest', 'მონადირე'], ['white', 'არაბეთის მზე'], ['gold', 'ოქროს ისარი']]],
+  ['kakutsa', [['night', 'ღამის მხედარი'], ['forest', 'ტყის ძმა'], ['gold', 'ოქროს ნაბადი']]],
+  ['gurdjieff', [['fire', 'ცეცხლის მოგვი'], ['night', 'ჩრდილების მოგვი'], ['white', 'ელვის ბრძენი']]],
+  ['abrag', [['night', 'ღამის აბრაგი'], ['frost', 'მთის აბრაგი'], ['forest', 'ტყის სული']]]
+].forEach(([h, list]) => list.forEach(([rc, n], i) => { SKINS[`sk_${h}_${rc}`] = { hero: h, recipe: rc, n, r: RAR_ORDER[i], pool: true }; }));
+SKINS.sk_gorgasali_phoenix = { hero: 'gorgasali', recipe: 'phoenix', n: 'ფასკუნჯის რაინდი', r: 'leg', pool: false, pass: true };
+
+// ----- weapons: each changes how a hero's skill or blows work (a trade, not just more power) -----
+const WEAPONS = {
+  shield: { hero: 'gorgasali', r: 'rare', n: 'ქართლის ფარი', t: 'სიცოცხლე +25% და ოთხ მტერს აჩერებს სამის ნაცვლად. ზიანი 10%-ით ნაკლებია.' },
+  axe: { hero: 'gorgasali', r: 'epic', n: 'ორლესული ცული', t: 'ნახტომის ადგილას ყინულის რგოლი რჩება — მტერი 3 წამით 40%-ით ნელდება. ნახტომის ზიანი 15%-ით ნაკლებია.' },
+  wolfhelm: { hero: 'gorgasali', r: 'epic', n: 'მგლის ჩაფხუტი', t: 'ნახტომის ყმუილი მტერს 0.8 წამით მეტხანს აბრუებს და უფრო ფართოდ სწვდება. ძალა 2 წამით გვიან ივსება.' },
+  horn: { hero: 'david', r: 'rare', n: 'მეფის საყვირი', t: 'რაზმის გამოძახებისას ახლომახლო ყველა მეომარი 6 წამით 25%-ით ძლიერად ურტყამს.' },
+  dsword: { hero: 'david', r: 'leg', n: 'დიდგორის ხმალი', t: 'მეფის რაზმში სამის ნაცვლად ოთხი არაგველია, მაგრამ 15 წამის ნაცვლად 12 წამი რჩებიან.' },
+  scepter: { hero: 'tamar', r: 'epic', n: 'მზის კვერთხი', t: 'სვანთა ლაშქარი 16-ის ნაცვლად 20 წამი რჩება. ძალა 4 წამით გვიან ივსება.' },
+  ring: { hero: 'tamar', r: 'epic', n: 'ლალის ბეჭედი', t: 'თამარის ყოველი სხივი მიზნის ახლოს მდგარ გმირებსა და მეომრებს 8 სიცოცხლეს უბრუნებს. ზიანი 10%-ით ნაკლებია.' },
+  sabre: { hero: 'erekle', r: 'rare', n: 'კახური ხმალი', t: 'ერეკლე 25%-ით ხშირად ურტყამს.' },
+  bomb: { hero: 'erekle', r: 'epic', n: 'ცეცხლის ყუმბარა', t: 'ზალპის ყუმბარები მტერს 3 წამით წვავს, მაგრამ ექვსის ნაცვლად ხუთია.' },
+  panther: { hero: 'tariel', r: 'leg', n: 'ვეფხის ტყავი', t: 'შმაგის შემოტევისას ტარიელი რვის ნაცვლად ათჯერ ჩამოჰკრავს.' },
+  goldarrow: { hero: 'avtandil', r: 'leg', n: 'დალის ოქროს ისრები', t: 'ისრების წვიმა მტერს წვავს და სამის ნაცვლად ოთხ წამს გრძელდება.' },
+  mauser: { hero: 'kakutsa', r: 'rare', n: 'მაუზერი', t: 'ორმაგი ზიანის შანსი 20%-ის ნაცვლად 30%-ია. მანძილი 10%-ით მოკლეა.' },
+  orb: { hero: 'gurdjieff', r: 'epic', n: 'ელვის ბროლი', t: 'ჰიპნოზი ოთხის ნაცვლად ხუთ წამს გრძელდება. მაგნიტური ველი მტერს 15%-ის ნაცვლად 10%-ით ანელებს.' },
+  glove: { hero: 'abrag', r: 'rare', n: 'ქორის ხელთათმანი', t: 'ქორი ყოველ მეორე გასროლაზე აბრუებს მტერს, მაგრამ ზიანი 10%-ით ნაკლებია.' },
+  dagger: { hero: 'tariel', r: 'leg', n: 'ქაჯის ხანჯალი', t: 'შმაგის შემოტევის ყოველი დარტყმა მტერს 3 წამით წვავს.', pool: false, story: true }
+};
+for (const k in WEAPONS) if (WEAPONS[k].pool == null) WEAPONS[k].pool = true;
+const wpArt = k => 'wp_' + k;
+
+// ----- chests: rolls, the rarity of each roll, coins; pity makes sure a long bad run ends -----
+const CHESTS = {
+  wood: { n: 'ხის სკივრი', rolls: 1, odds: [0.9, 0.09, 0.01], coins: [40, 80], price: { coins: 150 } },
+  silver: { n: 'ვერცხლის სკივრი', rolls: 2, odds: [0.7, 0.25, 0.05], coins: [120, 200], price: { dia: 90 }, pity: { n: 10, r: 'epic' } },
+  gold: { n: 'ოქროს სკივრი', rolls: 3, odds: [0, 0.85, 0.15], coins: [300, 450], price: { dia: 240 }, pity: { n: 30, r: 'leg' } }
+};
+const CHEST_ORDER = ['wood', 'silver', 'gold'];
+const WOOD_FREE_H = 4;                  // a free wooden chest every four hours, at most two waiting
+// what a roll of a rarity gives: an item (a skin or a weapon) or one of these, with the item share first
+const ROLL_POOL = {
+  rare: { item: 0.5, other: [[{ coins: 250 }, 3], [{ feath: 1 }, 2], [{ dia: 15 }, 1], [{ shards: 10 }, 1]] },
+  epic: { item: 0.6, other: [[{ coins: 600 }, 3], [{ feath: 2 }, 2], [{ dia: 40 }, 1], [{ shards: 30 }, 1]] },
+  leg: { item: 1, other: [] }
+};
+const DUP_SHARDS = { rare: 15, epic: 40, leg: 120 };
+const SHARD_PRICE = { rare: 80, epic: 220, leg: 600 };
+const SKIN_PRICE = { rare: 300, epic: 750, leg: 1800 };
+const WP_PRICE = { rare: 250, epic: 600, leg: 1500 };
+const FEATHER_PRICE = 15;
+
+// ----- daily things -----
+const LOGIN = [{ coins: 150 }, { feath: 1 }, { dia: 20 }, { chest: 'wood' }, { coins: 400 }, { feath: 2 }, { chest: 'silver', dia: 50 }];
+const QUESTS = [
+  { id: 'win', n: 'მოიგე ერთი ბრძოლა', need: 1, ev: 'win', dia: 15, coins: 100 },
+  { id: 'kill', n: 'მოკალი {0} მტერი', need: 150, ev: 'kill', dia: 10, coins: 80 },
+  { id: 'build', n: 'ააშენე {0} კოშკი ან ღობე', need: 12, ev: 'build', dia: 10, coins: 80 },
+  { id: 'skill', n: 'გამოიყენე მეფის ძალა {0}-ჯერ', need: 6, ev: 'skill', dia: 10, coins: 80 },
+  { id: 'squad', n: 'გამოიძახე რაზმი ან გმირი {0}-ჯერ', need: 3, ev: 'squad', dia: 10, coins: 80 },
+  { id: 'stars', n: 'მოიგე ბრძოლა სამი ვარსკვლავით', need: 1, ev: 'stars3', dia: 20, coins: 120 },
+  { id: 'boss', n: 'დაამარცხე მტრის სარდალი', need: 1, ev: 'boss', dia: 15, coins: 100 },
+  { id: 'upg', n: 'გააძლიერე კოშკები {0}-ჯერ', need: 8, ev: 'upgrade', dia: 10, coins: 80 },
+  { id: 'chest', n: 'გახსენი სკივრი', need: 1, ev: 'chest', dia: 10, coins: 60 }
+];
+const QUEST_XP = 60;
+
+// ----- the campaign book: a 28-day season of 30 tiers, a free row and a royal row -----
+const PASS = { days: 28, tiers: 30, xp: 300, price: { dia: 500 }, epoch: Date.UTC(2026, 9, 1) };
+const PASS_FREE = [
+  { coins: 100 }, { feath: 1 }, { coins: 150 }, { dia: 10 }, { chest: 'wood' }, { coins: 200 }, { feath: 1 }, { coins: 200 }, { shards: 15 }, { dia: 20 },
+  { coins: 250 }, { feath: 1 }, { coins: 250 }, { shards: 20 }, { chest: 'wood' }, { coins: 300 }, { feath: 2 }, { coins: 300 }, { dia: 15 }, { chest: 'silver' },
+  { coins: 350 }, { feath: 1 }, { coins: 350 }, { shards: 30 }, { chest: 'wood' }, { coins: 400 }, { feath: 2 }, { coins: 400 }, { dia: 25 }, { chest: 'silver' }
+];
+const PASS_PREM = [
+  { dia: 30 }, { coins: 300 }, { chest: 'silver' }, { feath: 2 }, { dia: 30 }, { coins: 400 }, { shards: 40 }, { dia: 30 }, { chest: 'silver' }, { feath: 3 },
+  { dia: 30 }, { chest: 'gold' }, { coins: 500 }, { dia: 30 }, { chest: 'gold' }, { dia: 30 }, { coins: 600 }, { feath: 3 }, { dia: 30 }, { chest: 'silver' },
+  { shards: 60 }, { dia: 40 }, { coins: 700 }, { chest: 'gold' }, { dia: 40 }, { feath: 4 }, { chest: 'silver' }, { dia: 50 }, { coins: 1000 }, { skin: 'sk_gorgasali_phoenix' }
+];
+// battle XP for the book
+const PASS_XP = { win: 120, star: 30, loss: 40 };
+
+// ----- real money (test mode on the web; Google Play Billing inside the Android app) -----
+const PACKS = [
+  { sku: 'dia_100', dia: 100, usd: 0.99, img: 'ui_dp1' },
+  { sku: 'dia_550', dia: 550, bonus: 10, usd: 4.99, img: 'ui_dp2' },
+  { sku: 'dia_1200', dia: 1200, bonus: 20, usd: 9.99, img: 'ui_dp3', tag: 'პოპულარული' },
+  { sku: 'dia_2600', dia: 2600, bonus: 30, usd: 19.99, img: 'ui_dp4' },
+  { sku: 'dia_7000', dia: 7000, bonus: 40, usd: 49.99, img: 'ui_dp5', tag: 'საუკეთესო ფასი' },
+  { sku: 'dia_15000', dia: 15000, bonus: 50, usd: 99.99, img: 'ui_dp6' }
+];
+const STARTER = { sku: 'starter', usd: 1.99, hours: 48, give: { dia: 400, skin: 'sk_gorgasali_frost', feath: 3, chest: 'gold' } };
+const PASS_SKU = { sku: 'pass_royal', usd: 4.99 };
+const COIN_PACKS = [{ coins: 1000, dia: 60 }, { coins: 3500, dia: 180 }, { coins: 12000, dia: 540 }];
+const REVIVE = { dia: 30, lives: 5 };
+const GEL_PER_USD = 2.7;               // shown next to the dollar price, approximately
+
+localizeMore([RARITY, SKINS, WEAPONS, CHESTS, QUESTS, PACKS]);
 
 // ===== art: generated sprites (WebP with alpha), sizes and foot anchors come from the manifest =====
 const MANIFEST = {"a_aragvian":{"ax":0.466,"h":117,"w":82},"a_elder":{"ax":0.278,"h":122,"w":116},"a_partisan":{"ax":0.403,"h":115,"w":79},"e_qajar_arch":{"ax":0.394,"h":117,"w":74},"e_qajar_boss":{"ax":0.543,"h":125,"w":80},"e_qajar_cav":{"ax":0.502,"h":140,"w":93},"e_qajar_heavy":{"ax":0.437,"h":103,"w":126},"e_qajar_inf":{"ax":0.511,"h":150,"w":69},"e_qizilbash_arch":{"ax":0.324,"h":110,"w":102},"e_qizilbash_boss":{"ax":0.532,"h":223,"w":166},"e_qizilbash_cav":{"ax":0.454,"h":118,"w":96},"e_qizilbash_heavy":{"ax":0.395,"h":114,"w":92},"e_qizilbash_inf":{"ax":0.468,"h":117,"w":73},"e_rum_arch":{"ax":0.436,"h":114,"w":71},"e_rum_boss":{"ax":0.59,"h":169,"w":110},"e_rum_cav":{"ax":0.477,"h":173,"w":117},"e_rum_heavy":{"ax":0.459,"h":131,"w":76},"e_rum_inf":{"ax":0.45,"h":117,"w":66},"e_sasanian_arch":{"ax":0.447,"h":118,"w":66},"e_sasanian_boss":{"ax":0.457,"h":178,"w":105},"e_sasanian_cav":{"ax":0.444,"h":154,"w":101},"e_sasanian_heavy":{"ax":0.443,"h":206,"w":139},"e_sasanian_inf":{"ax":0.457,"h":117,"w":75},"e_seljuk_arch":{"ax":0.392,"h":106,"w":87},"e_seljuk_boss":{"ax":0.52,"h":248,"w":152},"e_seljuk_cav":{"ax":0.44,"h":137,"w":118},"e_seljuk_heavy":{"ax":0.512,"h":131,"w":102},"e_seljuk_inf":{"ax":0.417,"h":117,"w":105},"h_abrag":{"ax":0.364,"h":129,"w":113},"h_avtandil":{"ax":0.436,"h":129,"w":81},"h_david":{"ax":0.519,"h":140,"w":87},"h_erekle":{"ax":0.61,"h":144,"w":98},"h_gorgasali":{"ax":0.74,"h":160,"w":145},"h_gurdjieff":{"ax":0.503,"h":126,"w":93},"h_kakutsa":{"ax":0.381,"h":135,"w":91},"h_tamar":{"ax":0.418,"h":143,"w":81},"h_tariel":{"ax":0.532,"h":132,"w":86},"n_autumn":{"ax":0.508,"h":124,"w":114},"n_boulder":{"ax":0.664,"h":118,"w":132},"n_bush":{"ax":0.493,"h":91,"w":107},"n_pebbles":{"ax":0.62,"h":61,"w":84},"n_pine":{"ax":0.499,"h":159,"w":117},"n_poplar":{"ax":0.497,"h":167,"w":63},"n_rock":{"ax":0.489,"h":78,"w":100},"n_shrub":{"ax":0.513,"h":91,"w":107},"n_snowpine":{"ax":0.498,"h":160,"w":117},"n_snowrock":{"ax":0.525,"h":110,"w":131},"n_stump":{"ax":0.532,"h":105,"w":96},"n_walnut":{"ax":0.503,"h":143,"w":127},"por_h_abrag":{"h":112,"w":112},"por_h_avtandil":{"h":112,"w":112},"por_h_david":{"h":112,"w":112},"por_h_erekle":{"h":112,"w":112},"por_h_gorgasali":{"h":112,"w":112},"por_h_gurdjieff":{"h":112,"w":112},"por_h_kakutsa":{"h":112,"w":112},"por_h_tamar":{"h":112,"w":112},"por_h_tariel":{"h":112,"w":112},"s_camp":{"ax":0.5,"h":238,"w":308},"s_fort":{"ax":0.798,"h":378,"w":361},"s_ruin":{"ax":0.622,"h":139,"w":175},"t_archer_1":{"ax":0.5,"h":161,"w":140},"t_archer_2":{"ax":0.5,"h":210,"w":140},"t_archer_3":{"ax":0.5,"h":227,"w":140},"t_ballista_1":{"ax":0.57,"h":124,"w":140},"t_ballista_2":{"ax":0.499,"h":131,"w":140},"t_ballista_3":{"ax":0.5,"h":132,"w":140},"t_bell_1":{"ax":0.504,"h":153,"w":140},"t_bell_2":{"ax":0.502,"h":199,"w":140},"t_bell_3":{"ax":0.499,"h":222,"w":140},"t_catapult_1":{"ax":0.464,"h":134,"w":140},"t_catapult_2":{"ax":0.501,"h":126,"w":140},"t_catapult_3":{"ax":0.503,"h":154,"w":140},"t_oil_1":{"ax":0.495,"h":144,"w":140},"t_oil_2":{"ax":0.506,"h":116,"w":140},"t_oil_3":{"ax":0.501,"h":115,"w":140},"t_palisade":{"ax":0.509,"h":91,"w":140},"an_h_tamar_walk":{"w":104,"h":141,"n":4,"ax":0.5,"ay":0.9929},"an_h_tamar_attack":{"w":224,"h":162,"n":4,"ax":0.5,"ay":0.9938},"an_h_erekle_walk":{"w":94,"h":152,"n":4,"ax":0.5,"ay":0.9934},"an_h_erekle_attack":{"w":284,"h":157,"n":4,"ax":0.5,"ay":0.9936},"an_h_kakutsa_walk":{"w":104,"h":136,"n":4,"ax":0.5,"ay":0.9926},"an_h_kakutsa_attack":{"w":204,"h":135,"n":4,"ax":0.5,"ay":0.9926},"an_h_tariel_walk":{"w":110,"h":131,"n":4,"ax":0.5,"ay":0.9924},"an_h_tariel_attack":{"w":252,"h":138,"n":4,"ax":0.5,"ay":0.9928},"an_h_avtandil_walk":{"w":108,"h":134,"n":4,"ax":0.5,"ay":0.9925},"an_h_avtandil_attack":{"w":146,"h":136,"n":4,"ax":0.5,"ay":0.9926},"an_h_gurdjieff_walk":{"w":96,"h":128,"n":4,"ax":0.5,"ay":0.9922},"an_h_gurdjieff_attack":{"w":136,"h":147,"n":4,"ax":0.5,"ay":0.9932},"an_h_abrag_walk":{"w":144,"h":129,"n":4,"ax":0.5,"ay":0.9922},"an_h_abrag_attack":{"w":196,"h":131,"n":4,"ax":0.5,"ay":0.9924},"an_a_aragvian_walk":{"w":102,"h":118,"n":4,"ax":0.5,"ay":0.9915},"an_a_aragvian_attack":{"w":118,"h":124,"n":4,"ax":0.5,"ay":0.9919},"an_a_partisan_walk":{"w":98,"h":114,"n":4,"ax":0.5,"ay":0.9912},"an_a_partisan_attack":{"w":148,"h":116,"n":4,"ax":0.5,"ay":0.9914},"an_e_seljuk_arch_walk":{"w":94,"h":109,"n":4,"ax":0.5,"ay":0.9908},"an_e_seljuk_arch_attack":{"w":126,"h":115,"n":4,"ax":0.5,"ay":0.9913},"an_e_seljuk_heavy_walk":{"w":136,"h":133,"n":4,"ax":0.5,"ay":0.9925},"an_e_seljuk_heavy_attack":{"w":156,"h":134,"n":4,"ax":0.5,"ay":0.9925},"an_e_seljuk_boss_walk":{"w":166,"h":250,"n":4,"ax":0.5,"ay":0.988},"an_e_seljuk_boss_attack":{"w":166,"h":243,"n":4,"ax":0.5,"ay":0.9959},"an_e_sasanian_inf_walk":{"w":96,"h":115,"n":4,"ax":0.5,"ay":0.9913},"an_e_sasanian_inf_attack":{"w":154,"h":104,"n":4,"ax":0.5,"ay":0.9904},"an_e_sasanian_arch_walk":{"w":84,"h":115,"n":4,"ax":0.5,"ay":0.9913},"an_e_sasanian_arch_attack":{"w":122,"h":119,"n":4,"ax":0.5,"ay":0.9916},"an_e_sasanian_cav_walk":{"w":154,"h":145,"n":4,"ax":0.5,"ay":0.9724},"an_e_sasanian_cav_attack":{"w":184,"h":157,"n":4,"ax":0.5,"ay":0.9936},"an_e_sasanian_heavy_walk":{"w":170,"h":208,"n":4,"ax":0.5,"ay":0.9808},"an_e_sasanian_heavy_attack":{"w":186,"h":208,"n":4,"ax":0.5,"ay":0.9952},"an_e_sasanian_boss_walk":{"w":164,"h":178,"n":4,"ax":0.5,"ay":0.9944},"an_e_sasanian_boss_attack":{"w":234,"h":183,"n":4,"ax":0.5,"ay":0.9945},"an_e_rum_inf_walk":{"w":86,"h":118,"n":4,"ax":0.5,"ay":0.9915},"an_e_rum_inf_attack":{"w":188,"h":121,"n":4,"ax":0.5,"ay":0.9917},"an_e_rum_arch_walk":{"w":92,"h":113,"n":4,"ax":0.5,"ay":0.9912},"an_e_rum_arch_attack":{"w":128,"h":116,"n":4,"ax":0.5,"ay":0.9914},"an_e_rum_cav_walk":{"w":168,"h":159,"n":4,"ax":0.5,"ay":0.9748},"an_e_rum_cav_attack":{"w":220,"h":177,"n":4,"ax":0.5,"ay":0.9944},"an_e_rum_heavy_walk":{"w":90,"h":128,"n":4,"ax":0.5,"ay":0.9922},"an_e_rum_heavy_attack":{"w":106,"h":130,"n":4,"ax":0.5,"ay":0.9923},"an_e_rum_boss_walk":{"w":120,"h":171,"n":4,"ax":0.5,"ay":0.9883},"an_e_rum_boss_attack":{"w":124,"h":170,"n":4,"ax":0.5,"ay":0.9941},"an_e_qizilbash_inf_walk":{"w":96,"h":122,"n":4,"ax":0.5,"ay":0.9918},"an_e_qizilbash_inf_attack":{"w":162,"h":124,"n":4,"ax":0.5,"ay":0.9919},"an_e_qizilbash_arch_walk":{"w":140,"h":112,"n":4,"ax":0.5,"ay":0.9911},"an_e_qizilbash_arch_attack":{"w":156,"h":116,"n":4,"ax":0.5,"ay":0.9914},"an_e_qizilbash_cav_walk":{"w":150,"h":119,"n":4,"ax":0.5,"ay":0.9748},"an_e_qizilbash_cav_attack":{"w":150,"h":124,"n":4,"ax":0.5,"ay":0.9919},"an_e_qizilbash_heavy_walk":{"w":120,"h":121,"n":4,"ax":0.5,"ay":0.9917},"an_e_qizilbash_heavy_attack":{"w":154,"h":127,"n":4,"ax":0.5,"ay":0.9921},"an_e_qizilbash_boss_walk":{"w":174,"h":221,"n":4,"ax":0.5,"ay":0.991},"an_e_qizilbash_boss_attack":{"w":176,"h":219,"n":4,"ax":0.5,"ay":0.9954},"an_e_qajar_inf_walk":{"w":92,"h":139,"n":4,"ax":0.5,"ay":0.9928},"an_e_qajar_inf_attack":{"w":216,"h":142,"n":4,"ax":0.5,"ay":0.993},"an_e_qajar_arch_walk":{"w":86,"h":115,"n":4,"ax":0.5,"ay":0.9913},"an_e_qajar_arch_attack":{"w":136,"h":116,"n":4,"ax":0.5,"ay":0.9914},"an_e_qajar_cav_walk":{"w":144,"h":138,"n":4,"ax":0.5,"ay":0.9783},"an_e_qajar_cav_attack":{"w":152,"h":158,"n":4,"ax":0.5,"ay":0.9937},"an_e_qajar_heavy_walk":{"w":136,"h":107,"n":4,"ax":0.5,"ay":0.9813},"an_e_qajar_heavy_attack":{"w":142,"h":110,"n":4,"ax":0.5,"ay":0.9909},"an_e_qajar_boss_walk":{"w":126,"h":135,"n":4,"ax":0.5,"ay":0.9926},"an_e_qajar_boss_attack":{"w":186,"h":138,"n":4,"ax":0.5,"ay":0.9928},"an_h_david_walk":{"w":116,"h":142,"n":4,"ax":0.5,"ay":0.993},"an_h_david_attack":{"w":192,"h":157,"n":4,"ax":0.5,"ay":0.9936},"an_h_gorgasali_walk":{"w":202,"h":147,"n":4,"ax":0.5,"ay":0.9932},"an_h_gorgasali_attack":{"w":286,"h":158,"n":4,"ax":0.5,"ay":0.9937},"an_h_gorgasali_leap":{"w":344,"h":166,"n":6,"ax":0.5,"ay":0.994},"an_e_seljuk_inf_walk":{"w":110,"h":118,"n":4,"ax":0.5,"ay":0.9915},"an_e_seljuk_inf_attack":{"w":190,"h":116,"n":4,"ax":0.5,"ay":0.9914},"an_e_seljuk_cav_walk":{"w":164,"h":136,"n":4,"ax":0.5,"ay":0.9779},"an_e_seljuk_cav_attack":{"w":134,"h":150,"n":4,"ax":0.5,"ay":0.9933},"g_pass":{"w":1920,"h":1072},"g_svan":{"w":1920,"h":1072},"g_stone":{"w":1920,"h":1072},"g_tbilisi":{"w":1920,"h":1072},"t_archerp_1":{"ax":0.502,"h":181,"w":140},"t_archerp_2":{"ax":0.498,"h":210,"w":140},"t_archerp_3":{"ax":0.498,"h":227,"w":140},"an_tarch1_fwd":{"w":136,"h":130,"n":4,"ax":0.5,"ay":0.9923},"an_tarch1_down":{"w":160,"h":130,"n":4,"ax":0.5,"ay":0.9923},"an_tarch2_fwd":{"w":136,"h":130,"n":4,"ax":0.5,"ay":0.9923},"an_tarch2_down":{"w":150,"h":130,"n":4,"ax":0.5,"ay":0.9923},"an_a_svan_walk":{"w":82,"h":120,"n":4,"ax":0.5,"ay":0.9917},"an_a_svan_attack":{"w":142,"h":131,"n":4,"ax":0.5,"ay":0.9924},"a_svan":{"ax":0.49,"h":117,"w":78},"an_a_svan2_walk":{"w":98,"h":120,"n":4,"ax":0.5,"ay":0.9917},"an_a_svan2_attack":{"w":142,"h":124,"n":4,"ax":0.5,"ay":0.9919},"a_svan2":{"ax":0.518,"h":117,"w":81},"an_a_mkhar_walk":{"w":116,"h":148,"n":4,"ax":0.5,"ay":0.9932},"an_a_mkhar_attack":{"w":174,"h":140,"n":4,"ax":0.5,"ay":0.9929},"a_mkhar":{"ax":0.46,"h":146,"w":104},"an_h_gorgasali_lift":{"w":176,"h":144,"n":8,"ax":0.5,"ay":0.9931},"an_a_khevsur_walk":{"w":94,"h":120,"n":4,"ax":0.5,"ay":0.9917},"an_a_khevsur_attack":{"w":126,"h":138,"n":4,"ax":0.5,"ay":0.9928},"a_khevsur":{"ax":0.445,"h":116,"w":80},"an_a_mtiuli_walk":{"w":108,"h":120,"n":4,"ax":0.5,"ay":0.9917},"an_a_mtiuli_attack":{"w":128,"h":122,"n":4,"ax":0.5,"ay":0.9918},"a_mtiuli":{"ax":0.402,"h":119,"w":78},"an_a_gurian_walk":{"w":162,"h":144,"n":4,"ax":0.5,"ay":0.9931},"an_a_gurian_attack":{"w":146,"h":150,"n":4,"ax":0.5,"ay":0.9933},"a_gurian":{"ax":0.574,"h":140,"w":96},"an_a_gurarch_walk":{"w":128,"h":120,"n":4,"ax":0.5,"ay":0.9917},"an_a_gurarch_attack":{"w":154,"h":119,"n":4,"ax":0.5,"ay":0.9916},"a_gurarch":{"ax":0.396,"h":118,"w":104},"an_a_brother_walk":{"w":88,"h":120,"n":4,"ax":0.5,"ay":0.9917},"an_a_brother_attack":{"w":134,"h":128,"n":4,"ax":0.5,"ay":0.9922},"a_brother":{"ax":0.418,"h":120,"w":74},"an_h_davidride_walk":{"w":168,"h":174,"n":4,"ax":0.5,"ay":0.9943},"an_h_davidhorse_walk":{"w":158,"h":144,"n":4,"ax":0.5,"ay":0.9931},"an_h_davidhorse_rear":{"w":204,"h":174,"n":4,"ax":0.5,"ay":0.9943},"an_h_davidhorse_idle":{"w":160,"h":147,"n":4,"ax":0.5,"ay":0.9932},"an_a_kmother_walk":{"w":98,"h":138,"n":4,"ax":0.5,"ay":0.9928},"an_a_kmother_attack":{"w":138,"h":149,"n":4,"ax":0.5,"ay":0.9933},"h_davidride":{"ax":0.462,"h":171,"w":143},"h_davidhorse":{"ax":0.5,"h":142,"w":143},"a_kmother":{"ax":0.487,"h":136,"w":88},"an_p_amirani":{"w":353,"h":339,"n":4,"ax":0.5,"ay":1.0},"an_p_kursha":{"w":140,"h":126,"n":4,"ax":0.5,"ay":1.0},"an_p_eagle":{"w":156,"h":150,"n":4,"ax":0.6666666666666666,"ay":0.6133333333333333},"g_elbrus":{"w":1920,"h":1072},"an_h_gorgasali_duel":{"w":314,"h":379,"n":8,"ax":0.2594,"ay":0.7773}};
@@ -993,6 +1291,107 @@ function whiteOf(n) {
   g.globalCompositeOperation = 'source-in';
   g.fillStyle = '#fff'; g.fillRect(0, 0, c.width, c.height);
   return (WHITE[n] = c);
+}
+
+// ===== skins: a hero's own pictures recoloured at run time =====
+// every picture of the hero (the figure, the portrait, the animation strips, David's horse) goes through the skin's recipe
+// once and is kept as a canvas; drawSprite takes it instead of the plain picture
+const SKIN_IMG = {};
+function rgb2hsv(r, g, b) {
+  const mx = r > g ? (r > b ? r : b) : (g > b ? g : b), mn = r < g ? (r < b ? r : b) : (g < b ? g : b), d = mx - mn;
+  let h = 0;
+  if (d) { h = mx === r ? ((g - b) / d) % 6 : mx === g ? (b - r) / d + 2 : (r - g) / d + 4; h *= 60; if (h < 0) h += 360; }
+  HSV[0] = h; HSV[1] = mx ? d / mx : 0; HSV[2] = mx / 255;
+  return HSV;
+}
+const HSV = [0, 0, 0], RGB = [0, 0, 0];
+function hsv2rgb(h, s, v) {
+  const c = v * s, x = c * (1 - Math.abs((h / 60) % 2 - 1)), m = v - c;
+  let r = 0, g = 0, b = 0;
+  if (h < 60) { r = c; g = x; } else if (h < 120) { r = x; g = c; } else if (h < 180) { g = c; b = x; }
+  else if (h < 240) { g = x; b = c; } else if (h < 300) { r = x; b = c; } else { r = c; b = x; }
+  RGB[0] = (r + m) * 255; RGB[1] = (g + m) * 255; RGB[2] = (b + m) * 255;
+  return RGB;
+}
+// the recipe on raw RGBA pixels; clip(x, y) limits it to part of the picture (the king, not the elephant he holds)
+function recolorPixels(d, w, R, clip) {
+  const bands = R.bands || [], M = R.metal, A = R.all || [1, 1], glob = A[0] !== 1 || A[1] !== 1;
+  for (let i = 0, p = 0; i < d.length; i += 4, p++) {
+    if (d[i + 3] < 6) continue;
+    if (clip && !clip(p % w, (p / w) | 0)) continue;
+    let r = d[i], g = d[i + 1], b = d[i + 2];
+    rgb2hsv(r, g, b);
+    let h = HSV[0], s = HSV[1], v = HSV[2], done = false;
+    const skin = h >= 8 && h <= 50 && s >= 0.1 && s <= 0.62 && v >= 0.18;        // faces, hands, beards, leather, wood
+    if (!skin && s > 0.22) for (let k = 0; k < bands.length; k++) {
+      const B = bands[k], dd = ((h - B[0] + 540) % 360) - 180;
+      if (dd <= B[1] && dd >= -B[1]) { h = (B[2] + dd * 0.5 + 360) % 360; s = Math.min(1, s * B[3]); v = Math.min(1, v * B[4]); done = true; break; }
+    }
+    if (done) { hsv2rgb(h, s, v); r = RGB[0]; g = RGB[1]; b = RGB[2]; }
+    else if (M && s < 0.18 && v > 0.2) {          // steel, grey fur, a white horse: toward the colour, keeping the light and shade
+      const L = (0.3 * r + 0.59 * g + 0.11 * b) / 255 * 1.15, k = M[3];
+      r += (M[0] * L - r) * k; g += (M[1] * L - g) * k; b += (M[2] * L - b) * k;
+    }
+    if (glob) { rgb2hsv(r, g, b); hsv2rgb(HSV[0], Math.min(1, HSV[1] * A[0]), Math.min(1, HSV[2] * A[1])); r = RGB[0]; g = RGB[1]; b = RGB[2]; }
+    d[i] = r; d[i + 1] = g; d[i + 2] = b;
+  }
+}
+// the duel strip holds the elephant too: only the king's part of each frame is recoloured
+function duelClip(n) {
+  const M = MANIFEST[n], fw = M ? M.w : 314;
+  return (x, y) => { const f = (x / fw) | 0, fx = x - f * fw; return f < 7 && fx <= (f === 3 ? 150 : 138) && y >= (f === 3 ? 30 : 104); };
+}
+function skinImg(n, sk) {
+  if (!sk) return IMG[n];
+  const key = n + '|' + sk;
+  if (SKIN_IMG[key]) return SKIN_IMG[key];
+  const S = SKINS[sk], im = IMG[n];
+  if (!S || !artOk(n)) return im;
+  const w = im.naturalWidth, h = im.naturalHeight, c = mkCanvas(w, h), g = c.getContext('2d', { willReadFrequently: true });
+  g.drawImage(im, 0, 0);
+  try {
+    const D = g.getImageData(0, 0, w, h);
+    recolorPixels(D.data, w, RECIPES[S.recipe], n === 'an_h_gorgasali_duel' ? duelClip(n) : null);
+    g.putImageData(D, 0, 0);
+  } catch (e) { return im; }          // a picture the page may not read (never with our own art) stays as it is
+  return (SKIN_IMG[key] = c);
+}
+// all the pictures of one hero
+function heroArts(k) {
+  const out = ['h_' + k, 'por_h_' + k];
+  if (k === 'david') out.push('h_davidride', 'h_davidhorse');
+  for (const n in MANIFEST) if (n.startsWith('an_h_' + k + '_') || (k === 'david' && (n.startsWith('an_h_davidride_') || n.startsWith('an_h_davidhorse_')))) out.push(n);
+  return out.filter(n => MANIFEST[n]);
+}
+function prepSkin(k, sk) { if (sk) for (const n of heroArts(k)) skinImg(n, sk); }
+// a recoloured picture for the page (portraits and figures in the camp and the bazaar)
+function skinURL(n, sk) {
+  if (!sk) return ART_URL(n);
+  const c = skinImg(n, sk);
+  if (!c || c === IMG[n]) return ART_URL(n);
+  if (!c.url) { try { c.url = c.toDataURL('image/png'); } catch (e) { return ART_URL(n); } }
+  return c.url;
+}
+const heroSkin = k => (SAVE.eq && SAVE.eq.skin && SAVE.eq.skin[k]) || null;
+const heroPor = k => skinURL('por_h_' + k, heroSkin(k));
+// a skinned hero glows: epic skins with a ring at the feet, legendary ones with sparks rising around the figure
+function skinAura(g, d, S, K, alpha = 1) {
+  const col = RECIPES[S.recipe].aura || '#ffd76a', t = G ? G.t : performance.now() / 1000;
+  g.save();
+  g.globalAlpha = alpha * (0.45 + 0.15 * Math.sin(t * 3 + (d.n || 0)));
+  const rg = g.createRadialGradient(d.x, d.y, 2, d.x, d.y, 30 * K);
+  rg.addColorStop(0, rgba(col, 0.55)); rg.addColorStop(1, rgba(col, 0));
+  g.fillStyle = rg; g.beginPath(); g.ellipse(d.x, d.y, 30 * K, 11 * K, 0, 0, Math.PI * 2); g.fill();
+  if (S.r === 'leg') {
+    const H = artH(d.art) * K;
+    for (let i = 0; i < 7; i++) {
+      const ph = (t * 0.55 + i / 7) % 1, a = i * 2.4 + t * 0.8;
+      const x = d.x + Math.cos(a) * 16 * K, y = d.y - 6 - ph * H * 0.95;
+      g.globalAlpha = alpha * Math.sin(ph * Math.PI) * 0.9;
+      g.fillStyle = col; g.beginPath(); g.arc(x, y, (1.6 + (i % 3) * 0.6) * K, 0, Math.PI * 2); g.fill();
+    }
+  }
+  g.restore();
 }
 
 // ===== grid, flow field and placement rules (Fieldrunners style: free building, no full blocking) =====
@@ -1401,6 +1800,7 @@ function build(i, k) {
   applyField(chk.D);
   fx('puff', t.x, t.y + 18, { n: 7, col: '#cdb68f' });
   sfx('build');
+  if (!G.demo) metaEv('build');
   return null;
 }
 function convertCost(t, k) { return Math.max(0, towerCost(k, 0) - Math.round(t.spent * SELL_BACK)); }
@@ -1418,6 +1818,7 @@ function upgrade(t) {
   if (G.gold < cost) return 'gold';
   G.gold -= cost; t.lvl++; t.spent += cost; t.pop = 1;
   fx('sparkle', t.x, t.y - 30, { n: 14 }); sfx('upgrade');
+  if (!G.demo) metaEv('upgrade');
   return null;
 }
 function sellValue(t) { return Math.round(t.spent * SELL_BACK); }
@@ -1491,6 +1892,7 @@ function kill(e, src) {
     fx('coin', e.x, e.y - artH(e.art) * 0.7, { v: g });
   }
   if (src && src.key === 'tariel') src.stack = Math.min(10, (src.stack || 0) + 1);
+  if (!G.demo) { metaEv('kill'); if (e.st.boss) metaEv('boss'); }
   if (e.st.boss) { fx('boom', e.x, e.y - 20, { r: 70 }); G.shake = Math.max(G.shake, 0.4); sfx('boom'); if (!G.demo) onBossDown(e); }
   else sfx('die');
 }
@@ -1591,7 +1993,7 @@ function updEnemy(e, dt) {
   if (e.hypnoT > 0) e.hypnoT -= dt;
   let mul = (1 - e.slowP) * (e.warT > 0 ? 1.25 : 1);
   const gj = G.gurd;
-  if (gj && dist2(gj.x, gj.y, e.x, e.y) < 140 * 140) mul *= 1 - HEROES.gurdjieff.aura;
+  if (gj && dist2(gj.x, gj.y, e.x, e.y) < 140 * 140) mul *= 1 - (gj.wp === 'orb' ? 0.1 : HEROES.gurdjieff.aura);
   for (const b of G.hush) if (dist2(b.x, b.y, e.x, e.y) < b.r2) { mul *= 1 - b.p; break; }
   if (e.aim || e.shotA < 0.24) return;          // archers, musketeers and cannons stand still to shoot
   moveEnemy(e, e.speed * mul * dt);
@@ -1631,6 +2033,14 @@ function moveEnemy(e, step) {
   }
   if (e.exiting && e.x < -40) leak(e);
 }
+// the second chance (diamonds or an ad): the walls stand again and the foes at the gate stagger back
+function revive() {
+  G.revived = true; G.lives = REVIVE.lives;
+  for (const e of G.enemies) if (!e.dead && grounded(e) && e.x < 260) { e.stunT = Math.max(e.stunT, 2.2); if (canHurl(e)) hurlEnemy(e, e.x + rnd(60, 120), e.y + rnd(-30, 30), { T: 0.5, H: 30, spin: rnd(6, 10), stun: 1.6 }); }
+  fx('ring', 40, GRID.gateY, { r: 200, col: '#ffe9a8', T: 0.9 }); G.flashT = 0.25; G.shake = Math.max(G.shake, 0.3);
+  floatText(70, GRID.gateY - 60, '+' + REVIVE.lives, '#9be08a', 1.4, true);
+  sfx('bless');
+}
 function leak(e) {
   e.dead = true; e.leaked = true; e.deathT = 9;
   releaseEnemy(e);
@@ -1638,7 +2048,7 @@ function leak(e) {
   G.lives = Math.max(0, G.lives - e.lives); G.stats.leaks += e.lives;
   floatText(56, e.y - 30, '-' + e.lives, '#ff7a64', 1.1, true);
   sfx('leak'); G.shake = Math.max(G.shake, 0.22);
-  if (G.lives <= 0) endBattle(false);
+  if (G.lives <= 0 && !G.revivePending && !offerRevive()) endBattle(false);
 }
 function enemyShoot(e, dt) {
   e.shootT -= dt;
@@ -1776,7 +2186,10 @@ function updProj(p, dt) {
       if (d <= mv + 6) {
         if (live) {
           hurt(p.e, p.dmg, p.type, p.src);
-          if (p.k === 'holy') fx('sparkle', p.lx, p.ly, { n: 6, col: '#ffe08a' });
+          if (p.k === 'holy') {
+            fx('sparkle', p.lx, p.ly, { n: 6, col: '#ffe08a' });
+            if (p.src && p.src.wp === 'ring') for (const d of defenders()) if (d.hp < d.maxHp && dist2(d.x, d.y, p.e.x, p.e.y) < 70 * 70) { d.hp = Math.min(d.maxHp, d.hp + 8); fx('sparkle', d.x, d.y - 30, { n: 4, col: '#9be08a' }); }
+          }
           if (p.burn && !p.e.dead) { p.e.burnT = Math.max(p.e.burnT, 3); p.e.burnDps = Math.max(p.e.burnDps, p.burn); }
         }
         return false;
@@ -1789,7 +2202,10 @@ function updProj(p, dt) {
       p.t += dt;
       if (p.t >= p.T) {
         if (p.k === 'eball') { for (const d of defenders()) if (dist2(d.x, d.y, p.x1, p.y1) < p.splash * p.splash) hitDefender(d, p.dmg, null); fx('boom', p.x1, p.y1, { r: 34 }); }
-        else { splashHit(p.x1, p.y1, p.splash, p.dmg, p.type || 'half', p.src); fx('boom', p.x1, p.y1, { r: p.splash * 0.75 }); if (p.k === 'barrage') G.shake = Math.max(G.shake, 0.15); }
+        else {
+          splashHit(p.x1, p.y1, p.splash, p.dmg, p.type || 'half', p.src); fx('boom', p.x1, p.y1, { r: p.splash * 0.75 }); if (p.k === 'barrage') G.shake = Math.max(G.shake, 0.15);
+          if (p.burn) { for (const e of G.enemies) if (!e.dead && dist2(e.x, e.y, p.x1, p.y1) < p.splash * p.splash) { e.burnT = Math.max(e.burnT, 3); e.burnDps = Math.max(e.burnDps, p.burn); } fx('puff', p.x1, p.y1, { n: 6, col: '#ff9a3a', spread: 30 }); }
+        }
         sfx(p.k === 'stone' ? 'thud' : 'boom');
         return false;
       }
@@ -1849,6 +2265,7 @@ function deploySquad(k, x, y) {
   fx('ring', p.x, p.y, { r: 70, col: '#ffd76a', T: 0.6 });
   floatText(p.x, p.y - 70, S.name, '#ffd76a', 1.2);
   sfx('horn');
+  metaEv('squad');
   return null;
 }
 function gallop(d, dt) {
@@ -1886,6 +2303,10 @@ function addHero(k, n, fromGate) {
     mounted: false, steed: null, hopT: 0, calmT: 0
   };
   if (H.mount) { h.mounted = true; h.art = 'h_' + k + 'ride'; }
+  // the bazaar: the hero's skin and weapon (not in the demo behind the title)
+  h.skin = (!G.demo && heroSkin(k)) || null; h.wp = (!G.demo && eqWeapon(k)) || null; h.buffT = 0;
+  applyWeapon(h);
+  if (h.skin) prepSkin(k, h.skin);
   G.heroes.push(h);
   if (fromGate) {           // called in during the battle: marches out of the fortress gate
     h.x = 30; h.y = gateMidY(); h.appear = 0.4;
@@ -1917,8 +2338,19 @@ function summonHero(k, x, y) {
     floatText(p.x, p.y - 84, h.H.name, h.H.accent, 1.4);
   }
   sfx('horn');
+  metaEv('squad');
   return null;
 }
+// a weapon changes the hero's numbers here; the rest of its effect is where the skill or the blow happens
+function applyWeapon(h) {
+  switch (h.wp) {
+    case 'shield': h.maxHp *= 1.25; h.hp = h.maxHp; h.block = 4; h.dmg *= 0.9; break;
+    case 'sabre': h.rate *= 0.8; break;
+    case 'mauser': h.range *= 0.9; break;
+    case 'glove': case 'ring': h.dmg *= 0.9; break;
+  }
+}
+const buffDmg = d => d.buffT > 0 ? 1.25 : 1;
 function addAlly(type, x, y, lvl) {
   const A = ALLIES[type], m = HERO_LV(lvl || 1), p = nearestOpen(x, y);
   const a = {
@@ -2030,6 +2462,7 @@ function updDefender(d, dt) {
   if (d.dashT > 0) d.dashT -= dt;
   if (d.appear > 0) d.appear -= dt;
   if (d.hopT > 0) d.hopT -= dt;
+  if (d.buffT > 0) d.buffT -= dt;
   if (d.kind === 'hero') {
     if (d.cd > 0) d.cd = Math.max(0, d.cd - dt);
     if (d.state === 'dead') { d.respawnT -= dt; if (d.respawnT <= 0) respawnHero(d); return; }
@@ -2087,7 +2520,7 @@ function meleeAI(d, dt) {
     const n = (d.H && d.H.cleave) || d.cleave || 1, victims = [tg];
     if (n > 1) for (const e of G.enemies) { if (victims.length >= n) break; if (!e.dead && e !== tg && grounded(e) && dist2(e.x, e.y, tg.x, tg.y) < (d.slap ? 58 : 46) ** 2) victims.push(e); }
     for (const v of victims) {
-      const dealt = hurt(v, d.kind === 'hero' ? heroDmg(d) : d.dmg, 'phys', d);
+      const dealt = hurt(v, (d.kind === 'hero' ? heroDmg(d) : d.dmg) * buffDmg(d), 'phys', d);
       if (d.furyT > 0) d.hp = Math.min(d.maxHp, d.hp + dealt * 0.3);
     }
     if (d.slap) slapAway(d, victims);
@@ -2419,7 +2852,7 @@ const NINJA = { blinks: 8, step: 0.17, show: 0.1, finale: 0.5 };
 const unseen = d => !!(d.charge && d.charge.phase !== 'dash');           // between the shadow strikes he cannot be hit
 function ghostOf(d) {                                                  // an afterimage left behind
   const p = defenderPose(d);
-  fx('ghost', d.x, d.y, { n: p ? p[0] : d.art, fr: p ? p[1] : 0, flip: d.face < 0, sc: unitScale(d), z: d.hz || 0 });
+  fx('ghost', d.x, d.y, { n: p ? p[0] : d.art, fr: p ? p[1] : 0, flip: d.face < 0, sc: unitScale(d), z: d.hz || 0, sk: d.skin });
 }
 function updCharge(d, dt) {
   const C = d.charge;
@@ -2461,7 +2894,7 @@ function updCharge(d, dt) {
     C.marks = new Set(near);
     if (C.e && !C.e.dead) { C.marks.add(C.e); ninjaStrike(d, C.e, true); }
     C.order = [];
-    for (let k2 = 0; k2 < NINJA.blinks && near.length; k2++) C.order.push(near[k2 % near.length]);
+    for (let k2 = 0; k2 < NINJA.blinks + (d.wp === 'panther' ? 2 : 0) && near.length; k2++) C.order.push(near[k2 % near.length]);
     C.phase = 'blinks'; C.t = 0; C.cur = -1; C.vis = true;
     fx('blink', d.x, d.y - 24, {});
     return;
@@ -2503,6 +2936,7 @@ function ninjaStrike(d, e, first) {
   const pw = d.charge.pw;
   hurt(e, (first ? 70 : 40) * pw, 'half', d);
   if (!e.dead) e.stunT = Math.max(e.stunT, 0.55);
+  if (!e.dead && d.wp === 'dagger') { e.burnT = Math.max(e.burnT, 3); e.burnDps = Math.max(e.burnDps, 16); }
   fx('slash', e.x, e.y - artH(e.art) * unitScale(e) * 0.45, { a: rnd(-0.9, 0.9) + (d.face < 0 ? Math.PI : 0), r: first ? 30 : 24 });
   d.atkA = 0;
   sfx('slash');
@@ -2520,17 +2954,17 @@ function ninjaScatter(d) {
 }
 function heroShot(d, e) {
   const kind = d.kind === 'hero' ? d.H.proj : d.proj, sx = d.x + d.face * 14, sy = d.y - artH(d.art) * unitScale(d) * 0.55;
-  let dmg = d.kind === 'hero' ? heroDmg(d) : d.dmg;
+  let dmg = (d.kind === 'hero' ? heroDmg(d) : d.dmg) * buffDmg(d);
   if (kind === 'holy') { G.projs.push({ k: 'holy', x: sx, y: sy, e, sp: 440, dmg, type: 'magic', src: d, lx: e.x, ly: e.y }); sfx('click'); }
   else if (kind === 'arrow') { G.projs.push({ k: 'harrow', x: sx, y: sy, e, sp: 680, dmg, type: 'phys', src: d, lx: e.x, ly: e.y, burn: d.burn || 0 }); sfx('bow'); }
   else if (kind === 'zap') { hurt(e, dmg, 'magic', d); fx('zap', sx, sy, { x2: e.x, y2: e.y - 26 }); sfx('zap'); }
   else {
     let crit = false;
-    if (d.key === 'kakutsa' && Math.random() < 0.2) { dmg *= 2; crit = true; }
+    if (d.key === 'kakutsa' && Math.random() < (d.wp === 'mauser' ? 0.3 : 0.2)) { dmg *= 2; crit = true; }
     hurt(e, dmg, d.key === 'abrag' ? 'pierce' : 'phys', d);
     fx('tracer', sx, sy, { x2: e.x, y2: e.y - 26, col: '#fff2b0' });
     if (crit) floatText(e.x, e.y - 60, 'x2', '#ffd76a', 0.8);
-    if (d.key === 'abrag' && ++d.shots % 3 === 0 && !e.dead) { e.stunT = Math.max(e.stunT, 1); fx('hawk', d.x, d.y - 60, { x2: e.x, y2: e.y - 40 }); }
+    if (d.key === 'abrag' && ++d.shots % (d.wp === 'glove' ? 2 : 3) === 0 && !e.dead) { e.stunT = Math.max(e.stunT, 1); fx('hawk', d.x, d.y - 60, { x2: e.x, y2: e.y - 40 }); }
     sfx('gun');
   }
 }
@@ -2552,15 +2986,19 @@ function castSkill(h, x, y) {
       releaseBlocks(h); dropLift(h); h.walking = false; h.path = null;
       h.state = 'leap';
       const ld = dist(h.x, h.y, p.x, p.y), top = Math.min(h.y, p.y) - artH(h.art) - 10;
-      h.leap = { x0: h.x, y0: h.y, x1: p.x, y1: p.y, t: 0, pre: 0.12, T: 0.72, dmg: S.dmg * pw, r: S.r, stun: S.stun, H: clamp(Math.min(60 + ld * 0.2, top), 26, 120) };
+      h.leap = { x0: h.x, y0: h.y, x1: p.x, y1: p.y, t: 0, pre: 0.12, T: 0.72, dmg: S.dmg * pw * (h.wp === 'axe' ? 0.85 : 1), r: S.r * (h.wp === 'wolfhelm' ? 1.15 : 1), stun: S.stun + (h.wp === 'wolfhelm' ? 0.8 : 0), frost: h.wp === 'axe', H: clamp(Math.min(60 + ld * 0.2, top), 26, 120) };
       h.face = p.x < h.x ? -1 : 1;
       sfx('howl');
       break;
     }
     case 'rally': {
-      const p = nearestOpen(x, y);
-      [[-30, -12], [30, -12], [0, 24]].forEach(([ox, oy]) => addAlly('aragvian', p.x + ox, p.y + oy, h.lvl));
+      const p = nearestOpen(x, y), sword = h.wp === 'dsword';
+      for (const [ox, oy] of [[-30, -12], [30, -12], [0, 24], [0, -34]].slice(0, sword ? 4 : 3)) { const a = addAlly('aragvian', p.x + ox, p.y + oy, h.lvl); if (sword) a.life = a.maxLife = 12; }
       fx('ring', p.x, p.y, { r: 70, col: '#ffd76a', T: 0.6 });
+      if (h.wp === 'horn') {             // the royal horn: everyone near fights harder for a while
+        for (const d of defenders()) if (dist2(d.x, d.y, p.x, p.y) < 160 * 160) d.buffT = 6;
+        fx('ring', p.x, p.y, { r: 160, col: '#ffe9a8', T: 0.9 });
+      }
       // the king charges to his men: he rides there at double pace (back in the saddle at once) and fights beside them
       if (h.steed) mount(h, h.steed);
       commandHero(h, p.x, p.y, true); h.dashT = 3.2;
@@ -2570,8 +3008,9 @@ function castSkill(h, x, y) {
     case 'svans': {
       // the Svan host: Mkhargrdzeli, head of the royal guard, and four Svan warriors around him
       const p = nearestOpen(x, y);
-      addAlly('mkhar', p.x, p.y, h.lvl);
-      [[-36, -18, 'svan'], [36, -18, 'svan2'], [-32, 22, 'svan2'], [32, 22, 'svan']].forEach(([ox, oy, t]) => addAlly(t, p.x + ox, p.y + oy, h.lvl));
+      const host = [addAlly('mkhar', p.x, p.y, h.lvl)];
+      [[-36, -18, 'svan'], [36, -18, 'svan2'], [-32, 22, 'svan2'], [32, 22, 'svan']].forEach(([ox, oy, t]) => host.push(addAlly(t, p.x + ox, p.y + oy, h.lvl)));
+      if (h.wp === 'scepter') for (const a of host) a.life = a.maxLife = 20;
       fx('ring', p.x, p.y, { r: 84, col: '#f0c24c', T: 0.7 });
       floatText(p.x, p.y - 86, 'მხარგრძელი', '#f0c24c', 1.3, true);
       sfx('horn');
@@ -2594,9 +3033,9 @@ function castSkill(h, x, y) {
     }
     case 'barrage': {
       const gy = cellY(GRID.exitIdx[1] || GRID.exitIdx[0]);
-      for (let k = 0; k < S.balls; k++) {
+      for (let k = 0; k < S.balls - (h.wp === 'bomb' ? 1 : 0); k++) {
         const a = rnd(0, Math.PI * 2), r = Math.sqrt(Math.random()) * S.r;
-        G.projs.push({ k: 'barrage', delay: k * 0.2, x0: 30, y0: gy - 70, x1: x + Math.cos(a) * r, y1: y + Math.sin(a) * r * 0.8, t: 0, T: 0.95, dmg: S.dmg * pw, splash: 52, type: 'half', src: h });
+        G.projs.push({ k: 'barrage', delay: k * 0.2, x0: 30, y0: gy - 70, x1: x + Math.cos(a) * r, y1: y + Math.sin(a) * r * 0.8, t: 0, T: 0.95, dmg: S.dmg * pw, splash: 52, type: 'half', src: h, burn: h.wp === 'bomb' ? 12 : 0 });
       }
       sfx('boom');
       break;
@@ -2608,10 +3047,11 @@ function castSkill(h, x, y) {
       break;
     }
     case 'fury': h.furyT = S.dur; fx('ring', h.x, h.y, { r: 60, col: '#ffb02e', T: 0.5 }); sfx('charge'); break;
-    case 'rain': G.zones.push({ k: 'rain', x, y, r: S.r, t: 0, T: 3, tick: 0, pw }); sfx('bow'); break;
+    case 'rain': G.zones.push({ k: 'rain', x, y, r: S.r, t: 0, T: h.wp === 'goldarrow' ? 4 : 3, tick: 0, pw, burn: h.wp === 'goldarrow' }); sfx('bow'); break;
     case 'hypno': {
       let n = 0;
-      for (const e of G.enemies) if (!e.dead && dist2(e.x, e.y, x, y) <= S.r * S.r) { e.hypnoT = e.st.boss ? S.dur * 0.5 : S.dur; e.retarget = true; releaseEnemy(e); n++; }
+      const dur = S.dur + (h.wp === 'orb' ? 1 : 0);
+      for (const e of G.enemies) if (!e.dead && dist2(e.x, e.y, x, y) <= S.r * S.r) { e.hypnoT = e.st.boss ? dur * 0.5 : dur; e.retarget = true; releaseEnemy(e); n++; }
       fx('hypno', x, y, { r: S.r });
       sfx('hypno');
       break;
@@ -2629,9 +3069,9 @@ function castSkill(h, x, y) {
       break;
     }
   }
-  h.cd = S.cd;
+  h.cd = S.cd + (h.wp === 'wolfhelm' ? 2 : h.wp === 'scepter' ? 4 : 0);
   if (S.kind !== 'leap') h.atkA = 0;
-  if (!G.demo) onSkillCast(h);
+  if (!G.demo) { onSkillCast(h); metaEv('skill'); }
   return true;
 }
 // for a double tap on the skill button: the densest enemy cluster inside the skill range
@@ -2658,6 +3098,10 @@ function updLeap(h, dt) {
     let n = 0;
     for (const en of G.enemies) if (!en.dead && dist2(en.x, en.y, h.x, h.y) <= L.r * L.r) { hurt(en, L.dmg, 'half', h); en.stunT = Math.max(en.stunT, L.stun); n++; }
     fx('shock', h.x, h.y, { r: L.r });
+    if (L.frost) {                       // the double-edged axe: the ground freezes where he lands
+      for (const en of G.enemies) if (!en.dead && dist2(en.x, en.y, h.x, h.y) <= L.r * L.r * 1.7) { en.slowT = Math.max(en.slowT, 3); en.slowP = Math.max(en.slowP, 0.4); }
+      fx('ring', h.x, h.y, { r: L.r * 1.3, col: '#c8ecff', T: 0.9 }); fx('sparkle', h.x, h.y - 10, { n: 16, col: '#e4f6ff' });
+    }
     fx('puff', h.x, h.y, { n: 14, col: '#d9c9a6', spread: 46 });
     G.shake = Math.max(G.shake, 0.4);
     sfx('thud');
@@ -2671,7 +3115,10 @@ function updZone(z, dt) {
       for (const d of defenders()) if (dist2(d.x, d.y, z.x, z.y) <= z.r * z.r) d.hp = Math.min(d.maxHp, d.hp + 10 * z.pw);
       for (const e of G.enemies) if (!e.dead && dist2(e.x, e.y, z.x, z.y) <= z.r * z.r) hurt(e, 8 * z.pw, 'magic', null, true);
     } else if (z.k === 'rain') {
-      for (const e of G.enemies) if (!e.dead && dist2(e.x, e.y, z.x, z.y) <= z.r * z.r) { hurt(e, 18 * z.pw, 'phys'); e.slowT = Math.max(e.slowT, 0.5); e.slowP = Math.max(e.slowP, 0.3); }
+      for (const e of G.enemies) if (!e.dead && dist2(e.x, e.y, z.x, z.y) <= z.r * z.r) {
+        hurt(e, 18 * z.pw, 'phys'); e.slowT = Math.max(e.slowT, 0.5); e.slowP = Math.max(e.slowP, 0.3);
+        if (z.burn && !e.dead) { e.burnT = Math.max(e.burnT, 1.5); e.burnDps = Math.max(e.burnDps, 10); }
+      }
     }
   }
   return z.t < z.T;
@@ -2816,12 +3263,282 @@ function endBattle(win) {
   if (win) { glory = Math.round(M.reward * (0.6 + stars * 0.2)); if (rec.won) glory = Math.round(glory * 0.4); }
   else glory = Math.round(M.reward * 0.3 * Math.max(0, G.wave - 1) / G.waves.length);
   G.glory = glory; G.stars = stars; G.firstWin = win && !rec.won;
+  G.meta = metaBattleEnd(win, stars);
   if (win) { rec.won = true; rec.stars = Math.max(rec.stars, stars); }
   SAVE.glory += glory;
   saveGame();
   sfx(win ? 'win' : 'lose');
   onBattleEnd(win);
 }
+
+// ===== the economy: the wallet, rewards, chests, daily quests and gifts, the campaign book, the day's offers, purchases =====
+const dayKey = (t = Date.now()) => { const d = new Date(t); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); };
+const msToMidnight = () => { const d = new Date(); d.setHours(24, 0, 0, 0); return d - Date.now(); };
+// a small seeded generator, so the day's quests and offers are the same all day
+function seeded(str) { let h = 2166136261; for (let i = 0; i < str.length; i++) { h ^= str.charCodeAt(i); h = Math.imul(h, 16777619); } return () => { h ^= h << 13; h ^= h >>> 17; h ^= h << 5; return (h >>> 0) / 4294967296; }; }
+const fmtTime = ms => { const s = Math.max(0, Math.floor(ms / 1000)), h = Math.floor(s / 3600), m = Math.floor(s % 3600 / 60), x = s % 60; return (h ? h + ':' + String(m).padStart(2, '0') : m) + ':' + String(x).padStart(2, '0'); };
+const fmtDays = ms => { const d = Math.floor(ms / 864e5); return d >= 1 ? trf('{0} დღე', d) : fmtTime(ms); };
+
+// ----- items -----
+const isSkin = id => id.startsWith('sk_');
+const itemOf = id => isSkin(id) ? SKINS[id] : WEAPONS[id.slice(3)];
+const owns = id => !!(SAVE.own && SAVE.own[id]);
+const itemName = id => { const I = itemOf(id); return I ? I.n : id; };
+const itemArt = id => isSkin(id) ? skinURL('h_' + itemOf(id).hero + (itemOf(id).hero === 'david' ? 'ride' : ''), id) : ART_URL('wp_' + id.slice(3));
+const poolItems = r => Object.keys(SKINS).filter(k => SKINS[k].pool && SKINS[k].r === r).concat(Object.keys(WEAPONS).filter(k => WEAPONS[k].pool && WEAPONS[k].r === r).map(k => 'wp_' + k));
+const itemPrice = id => { const I = itemOf(id); return { dia: (isSkin(id) ? SKIN_PRICE : WP_PRICE)[I.r], shards: SHARD_PRICE[I.r] }; };
+const eqWeapon = k => (SAVE.eq && SAVE.eq.wp && SAVE.eq.wp[k]) || null;
+function equip(id) {
+  const I = itemOf(id);
+  if (!I || !owns(id)) return false;
+  if (isSkin(id)) SAVE.eq.skin[I.hero] = SAVE.eq.skin[I.hero] === id ? null : id;
+  else SAVE.eq.wp[I.hero] = SAVE.eq.wp[I.hero] === id.slice(3) ? null : id.slice(3);
+  saveGame();
+  return true;
+}
+
+// ----- the wallet -----
+function canPay(p) { return !p || ((p.coins || 0) <= SAVE.glory && (p.dia || 0) <= SAVE.dia && (p.shards || 0) <= SAVE.shards && (p.feath || 0) <= SAVE.feath); }
+function pay(p) {
+  if (!canPay(p)) return false;
+  if (p) { SAVE.glory -= p.coins || 0; SAVE.dia -= p.dia || 0; SAVE.shards -= p.shards || 0; SAVE.feath -= p.feath || 0; }
+  saveGame();
+  return true;
+}
+// a reward: coins, diamonds, feathers, shards, an item (a skin, a weapon) or a chest (opened at once by the page);
+// returns the list of things got, an item owned already turned into shards
+function give(g) {
+  const got = [];
+  if (!g) return got;
+  if (g.coins) { SAVE.glory += g.coins; got.push({ coins: g.coins }); }
+  if (g.dia) { SAVE.dia += g.dia; got.push({ dia: g.dia }); }
+  if (g.feath) { SAVE.feath += g.feath; got.push({ feath: g.feath }); }
+  if (g.shards) { SAVE.shards += g.shards; got.push({ shards: g.shards }); }
+  for (const id of [g.skin, g.wp && 'wp_' + g.wp, g.item].filter(Boolean)) got.push(grantItem(id));
+  if (g.chest) got.push({ chest: g.chest });
+  saveGame();
+  return got;
+}
+function grantItem(id) {
+  const I = itemOf(id);
+  if (!I) return {};
+  if (owns(id)) { const n = DUP_SHARDS[I.r]; SAVE.shards += n; return { item: id, r: I.r, dup: n }; }
+  SAVE.own[id] = 1;
+  return { item: id, r: I.r, fresh: true };
+}
+
+// ----- chests -----
+const rarIdx = r => RAR_ORDER.indexOf(r);
+function rollRarity(odds) { let x = Math.random(); for (let i = 0; i < 3; i++) { if (x < odds[i]) return RAR_ORDER[i]; x -= odds[i]; } return 'rare'; }
+function rollReward(r) {
+  const P = ROLL_POOL[r], items = poolItems(r);
+  if (items.length && Math.random() < P.item) return { item: pick(items) };
+  if (!P.other.length) return { item: pick(items) };
+  let tot = 0; for (const [, w] of P.other) tot += w;
+  let x = Math.random() * tot;
+  for (const [g, w] of P.other) { if (x < w) return Object.assign({}, g); x -= w; }
+  return Object.assign({}, P.other[0][0]);
+}
+// open a chest: coins and the rolls; the pity counter forces the guaranteed rarity on the last roll when it is due
+function openChest(k) {
+  const C = CHESTS[k], res = [];
+  const coins = rndi(C.coins[0], C.coins[1]);
+  res.push(...give({ coins }));
+  const pk = 'p_' + k, due = C.pity && (SAVE.ch[pk] || 0) + 1 >= C.pity.n;
+  let hit = false;
+  for (let i = 0; i < C.rolls; i++) {
+    let r = rollRarity(C.odds);
+    if (C.pity && due && !hit && i === C.rolls - 1 && rarIdx(r) < rarIdx(C.pity.r)) r = C.pity.r;
+    if (C.pity && rarIdx(r) >= rarIdx(C.pity.r)) hit = true;
+    const g = rollReward(r), got = give(g);
+    for (const x of got) { x.r = x.r || r; res.push(x); }
+  }
+  if (C.pity) SAVE.ch[pk] = hit ? 0 : (SAVE.ch[pk] || 0) + 1;
+  SAVE.ch.n = (SAVE.ch.n || 0) + 1;
+  metaEv('chest');
+  saveGame();
+  return res;
+}
+// the free wooden chest: one every four hours, two can wait
+function woodFree() {
+  const now = Date.now(), per = WOOD_FREE_H * 36e5;
+  if (!SAVE.ch.free) SAVE.ch.free = now - per;          // the first one is ready at once
+  const n = Math.min(2, Math.floor((now - SAVE.ch.free) / per));
+  return { n, next: n >= 2 ? 0 : SAVE.ch.free + (n + 1) * per - now };
+}
+function takeWoodFree() {
+  const per = WOOD_FREE_H * 36e5, W = woodFree();
+  if (W.n < 1) return false;
+  if (W.n >= 2) SAVE.ch.free = Date.now() - per;        // the clock starts again from the second one
+  else SAVE.ch.free += per;
+  saveGame();
+  return true;
+}
+// the published odds: for each roll of a chest, the chance of each rarity and what it can be
+function chestOdds(k) {
+  const C = CHESTS[k];
+  return RAR_ORDER.map((r, i) => {
+    const P = ROLL_POOL[r], items = poolItems(r), tot = P.other.reduce((s, [, w]) => s + w, 0);
+    const share = items.length ? P.item : 0, p = C.odds[i];          // chances per roll, not within the rarity
+    return { r, p, item: p * share, n: items.length, other: P.other.map(([g, w]) => ({ g, p: p * (1 - share) * w / tot })) };
+  }).filter(o => o.p > 0);
+}
+
+// ----- the day: gifts and quests -----
+function dayState() {
+  const d = dayKey();
+  if (!SAVE.day || SAVE.day.d !== d) {
+    const R = seeded(d + ':quests'), pool = QUESTS.slice(), q = [];
+    while (q.length < 3 && pool.length) q.push(pool.splice(Math.floor(R() * pool.length), 1)[0].id);
+    SAVE.day = { d, q: q.map(id => ({ id, have: 0, got: false })) };
+    saveGame();
+  }
+  return SAVE.day;
+}
+const questOf = id => QUESTS.find(q => q.id === id);
+const questText = Q => trf(Q.n, Q.need);
+function loginReady() { return !SAVE.login || SAVE.login.last !== dayKey(); }
+function claimLogin() {
+  if (!loginReady()) return null;
+  const L = SAVE.login || { n: 0, last: '' }, g = LOGIN[L.n % LOGIN.length];
+  SAVE.login = { n: (L.n + 1) % LOGIN.length, last: dayKey() };
+  return give(g);
+}
+function claimQuest(i) {
+  const D = dayState(), q = D.q[i], Q = q && questOf(q.id);
+  if (!Q || q.got || q.have < Q.need) return null;
+  q.got = true;
+  passXp(QUEST_XP);
+  return give({ dia: Q.dia, coins: Q.coins });
+}
+const questsReady = () => dayState().q.filter(q => !q.got && q.have >= questOf(q.id).need).length;
+
+// ----- the campaign book -----
+const passSeason = () => Math.floor((Date.now() - PASS.epoch) / (PASS.days * 864e5));
+const passEndsIn = () => PASS.epoch + (passSeason() + 1) * PASS.days * 864e5 - Date.now();
+function passState() {
+  const s = passSeason();
+  if (!SAVE.pass || SAVE.pass.s !== s) { SAVE.pass = { s, xp: 0, prem: false, f: [], p: [] }; saveGame(); }
+  return SAVE.pass;
+}
+const passTier = () => Math.min(PASS.tiers, Math.floor(passState().xp / PASS.xp));
+function passXp(n) { const P = passState(); P.xp = Math.min(P.xp + Math.round(n), PASS.tiers * PASS.xp); saveGame(); }
+function passClaim(row, i) {
+  const P = passState(), list = row === 'p' ? PASS_PREM : PASS_FREE;
+  if (i >= passTier() || P[row].includes(i) || (row === 'p' && !P.prem)) return null;
+  P[row].push(i);
+  return give(list[i]);
+}
+const passReady = () => { const P = passState(), t = passTier(); let n = 0; for (let i = 0; i < t; i++) { if (!P.f.includes(i)) n++; if (P.prem && !P.p.includes(i)) n++; } return n; };
+
+// ----- the day's offers -----
+function offersToday() {
+  const d = dayKey();
+  if (SAVE.offers && SAVE.offers.d === d) return SAVE.offers;
+  const R = seeded(d + ':offers'), pk = arr => arr[Math.floor(R() * arr.length)];
+  const s = [];
+  s.push({ give: pk([{ coins: 80 }, { feath: 1 }, { dia: 5 }]), free: true });
+  s.push({ give: { coins: 1500 }, price: { dia: 80 }, was: 95 });
+  const skins = Object.keys(SKINS).filter(k => SKINS[k].pool && SKINS[k].r !== 'leg' && !owns(k));
+  if (skins.length) { const id = pk(skins), r = SKINS[id].r; s.push({ give: { skin: id }, price: { dia: Math.round(SKIN_PRICE[r] * 0.7) }, was: SKIN_PRICE[r] }); }
+  else s.push({ give: { feath: 5 }, price: { dia: 60 }, was: 75 });
+  const wps = Object.keys(WEAPONS).filter(k => WEAPONS[k].pool && !owns('wp_' + k));
+  if (wps.length) { const k = pk(wps), r = WEAPONS[k].r; s.push({ give: { wp: k }, price: { dia: Math.round(WP_PRICE[r] * 0.75) }, was: WP_PRICE[r] }); }
+  else s.push({ give: { shards: 60 }, price: { dia: 90 }, was: 120 });
+  s.push({ give: { feath: 3 }, price: { dia: 40 }, was: 45 });
+  s.push({ give: { chest: 'silver' }, price: { dia: 72 }, was: 90 });
+  SAVE.offers = { d, s, sold: [] };
+  saveGame();
+  return SAVE.offers;
+}
+
+// ----- events from the battles: quests and the book -----
+function metaEv(ev, n = 1) {
+  if (!SAVE || (G && G.demo)) return;
+  const D = dayState();
+  for (const q of D.q) { const Q = questOf(q.id); if (Q && Q.ev === ev && !q.got) q.have = Math.min(Q.need, q.have + n); }
+}
+// at the end of a battle: the book's XP and the quests; the starter offer opens after the first victory
+function metaBattleEnd(win, stars) {
+  if (G && G.demo) return { xp: 0 };
+  metaEv(win ? 'win' : 'loss');
+  if (win && stars >= 3) metaEv('stars3');
+  const xp = win ? PASS_XP.win + PASS_XP.star * stars : PASS_XP.loss;
+  passXp(xp);
+  if (win && !SAVE.starter) SAVE.starter = { t: Date.now(), bought: false };
+  saveGame();
+  return { xp };
+}
+const starterOpen = () => !!(SAVE.starter && !SAVE.starter.bought && Date.now() - SAVE.starter.t < STARTER.hours * 36e5);
+
+// ----- purchases with real money -----
+// On the web every purchase is a test (nothing is charged). Inside the Android app (a Trusted Web Activity) Google Play
+// Billing is reached through the Digital Goods API and the Payment Request API; a purchase is granted once and consumed
+// so it can be bought again. IAP_VERIFY_URL, when set, is a server that checks the purchase token with Google first.
+const IAP_VERIFY_URL = '';
+const IAP = {
+  svc: null, live: false, prices: {},
+  async init() {
+    if (!('getDigitalGoodsService' in window)) return;
+    try { this.svc = await window.getDigitalGoodsService('https://play.google.com/billing'); } catch (e) { return; }
+    if (!this.svc) return;
+    this.live = true;
+    try { for (const d of await this.svc.getDetails(PACKS.map(p => p.sku).concat([STARTER.sku, PASS_SKU.sku]))) this.prices[d.itemId] = d.price; } catch (e) { }
+    try { for (const p of await this.svc.listPurchases()) await this.finish(p.itemId, p.purchaseToken); } catch (e) { }
+  },
+  async buy(sku) {
+    if (!this.live) return null;                         // the page asks for a test purchase instead
+    try {
+      const req = new PaymentRequest([{ supportedMethods: 'https://play.google.com/billing', data: { sku } }], { total: { label: 'Total', amount: { currency: 'USD', value: '0' } } });
+      const res = await req.show();
+      const ok = await this.finish(sku, res.details.purchaseToken);
+      await res.complete(ok ? 'success' : 'fail');
+      return ok;
+    } catch (e) { return false; }
+  },
+  async finish(sku, token) {
+    SAVE.iap.tok = SAVE.iap.tok || {};
+    if (SAVE.iap.tok[token]) return true;
+    if (IAP_VERIFY_URL) {
+      try { const r = await fetch(IAP_VERIFY_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ sku, token }) }); if (!r.ok) return false; } catch (e) { return false; }
+    }
+    this.lastGot = grantSku(sku);
+    SAVE.iap.tok[token] = 1; saveGame();
+    try { await this.svc.consume(token); } catch (e) { }
+    return true;
+  }
+};
+// what a purchase gives; the first purchase of each diamond pack gives double
+function grantSku(sku) {
+  SAVE.iap.n = (SAVE.iap.n || 0) + 1;
+  const P = PACKS.find(p => p.sku === sku);
+  if (P) { const first = !SAVE.iap.first[sku]; SAVE.iap.first[sku] = 1; return give({ dia: P.dia * (first ? 2 : 1) }); }
+  if (sku === STARTER.sku) { SAVE.starter = Object.assign(SAVE.starter || { t: Date.now() }, { bought: true }); return give(STARTER.give); }
+  if (sku === PASS_SKU.sku) { passState().prem = true; saveGame(); return [{ pass: true }]; }
+  return [];
+}
+const priceLabel = (sku, usd) => IAP.prices[sku] ? new Intl.NumberFormat(LANG === 'en' ? 'en' : 'ka', { style: 'currency', currency: IAP.prices[sku].currency }).format(+IAP.prices[sku].value) : '$' + usd.toFixed(2);
+
+// ----- rewarded ads (Google H5 Games Ads); without a publisher id the ad buttons stay hidden -----
+const ADS = {
+  client: '', ok: false,
+  init() {
+    if (!this.client || !FS.top()) return;
+    const s = document.createElement('script');
+    s.async = true; s.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=' + this.client;
+    s.setAttribute('data-ad-frequency-hint', '30s'); s.crossOrigin = 'anonymous';
+    document.head.appendChild(s);
+    window.adsbygoogle = window.adsbygoogle || [];
+    window.adBreak = window.adConfig = o => window.adsbygoogle.push(o);
+    window.adConfig({ preloadAdBreaks: 'on', sound: 'on', onReady: () => { this.ok = true; } });
+  },
+  reward(name, done) {
+    if (!this.ok) return false;
+    let got = false;
+    window.adBreak({ type: 'reward', name, beforeReward: show => show(), adViewed: () => { got = true; }, adBreakDone: () => { if (got) done(); }, beforeAd: () => musicStop(), afterAd: () => musicFor(SCREEN_NOW) });
+    return true;
+  }
+};
 
 // ===== rendering =====
 let CV = null, CX = null;
@@ -2834,7 +3551,7 @@ let GROUND = null, GROUND_KEY = '', GRIDIMG = null, VIGNETTE = null, TILES = nul
 // o.fr picks a frame when n is an animation strip (frames side by side, feet at ay of the height)
 function drawSprite(g, n, x, y, o = {}) {
   if (!artOk(n)) return false;
-  const im = IMG[n], M = MANIFEST[n], nf = (M && M.n) || 1, fw = im.naturalWidth / nf, ih = im.naturalHeight;
+  const im = o.skin ? skinImg(n, o.skin) : IMG[n], M = MANIFEST[n], nf = (M && M.n) || 1, fw = (im.naturalWidth || im.width) / nf, ih = im.naturalHeight || im.height;
   const sc = (o.scale || 1) * SPR, w = fw * sc, h = ih * sc;
   const ax = o.ax != null ? o.ax : artAx(n), ay = (M && M.ay) || 1, sx = nf > 1 ? ((((o.fr | 0) % nf) + nf) % nf) * fw : 0;
   g.save();
@@ -3087,7 +3804,7 @@ function drawDuel(g, D) {
   const K = unitScale(D.d), alpha = out >= 0 ? clamp(1 - out / DUEL.out, 0, 1) : 1, off = DUEL.eoff * SPR * K;
   shadow(g, D.cx + D.face * off * (out >= 0 ? 0.9 : 0.45), D.cy + 2, (out >= 0 ? 52 : 46 + 34 * (t > 3.35 ? 1 : 0.6)) * K, 0.26 * alpha);
   const jx = t > 0.7 && t < 1.7 ? Math.sin(t * 38) * 1.4 : 0;                // they strain against each other
-  drawSprite(g, n, D.cx + jx, D.cy, { fr: out >= 0 ? 7 : duelFrame(t), flip: D.face < 0, scale: K, alpha, flash: D.t < 0.14 && out < 0 ? 1 - D.t / 0.14 : 0 });
+  drawSprite(g, n, D.cx + jx, D.cy, { fr: out >= 0 ? 7 : duelFrame(t), flip: D.face < 0, scale: K, alpha, skin: D.d.skin, flash: D.t < 0.14 && out < 0 ? 1 - D.t / 0.14 : 0 });
 }
 
 function polyPath(g, cells, dash, col, w, off) {
@@ -3369,7 +4086,9 @@ function drawDefender(g, d) {
     for (let k = 1; k <= 3; k++) { g.beginPath(); g.ellipse(d.x - d.face * k * 10, d.y - 2, 7 - k, 3.5 - k * 0.6, 0, 0, Math.PI * 2); g.fill(); }
     g.restore();
   }
-  const ok = drawSprite(g, pose ? pose[0] : n, d.x + lx, d.y, { fr: pose ? pose[1] : 0, flip: d.face < 0, lift, rot: tilt, scale: sc * K, sx, sy, alpha, flash: d.flashT > 0 ? d.flashT / 0.09 : 0 });
+  const SK = d.skin && SKINS[d.skin];
+  if (SK && SK.r !== 'rare') skinAura(g, d, SK, K, alpha);
+  const ok = drawSprite(g, pose ? pose[0] : n, d.x + lx, d.y, { fr: pose ? pose[1] : 0, flip: d.face < 0, lift, rot: tilt, scale: sc * K, sx, sy, alpha, skin: d.skin, flash: d.flashT > 0 ? d.flashT / 0.09 : 0 });
   if (leaping) {      // motion streaks
     g.save(); g.strokeStyle = 'rgba(255,255,255,0.5)'; g.lineWidth = 3; g.lineCap = 'round';
     for (let k = 1; k <= 3; k++) { const yy = d.y - lift - H * 0.5 + k * 8; g.beginPath(); g.moveTo(d.x - d.face * (18 + k * 8), yy); g.lineTo(d.x - d.face * (40 + k * 12), yy + 4); g.stroke(); }
@@ -3386,7 +4105,7 @@ function drawSteed(g, s) {
   const alpha = s.gone ? clamp(s.fade / 0.9, 0, 1) : 1;
   shadow(g, s.x, s.y, 24 * K, 0.28 * alpha);
   const lift = s.mvT > 0 ? Math.abs(Math.sin((s.walk / 3.6) * Math.PI * 2)) * 1.2 : 0;
-  drawSprite(g, pose ? pose[0] : art, s.x, s.y, { fr: pose ? pose[1] : 0, flip: s.face < 0, lift, scale: K, alpha });
+  drawSprite(g, pose ? pose[0] : art, s.x, s.y, { fr: pose ? pose[1] : 0, flip: s.face < 0, lift, scale: K, alpha, skin: s.owner.skin });
 }
 // a fallen brother sinks backwards and fades away
 function drawCorpse(g, c) {
@@ -3399,7 +4118,7 @@ function drawDeadHero(g, h) {
   g.save(); g.globalAlpha = 0.85;
   g.fillStyle = 'rgba(10,10,14,0.6)'; g.beginPath(); g.arc(x, y - 20, 17, 0, Math.PI * 2); g.fill();
   const p = 'por_h_' + h.key;
-  if (artOk(p)) { g.save(); g.beginPath(); g.arc(x, y - 20, 15, 0, Math.PI * 2); g.clip(); g.filter = 'grayscale(1)'; g.drawImage(IMG[p], x - 15, y - 35, 30, 30); g.restore(); }
+  if (artOk(p)) { g.save(); g.beginPath(); g.arc(x, y - 20, 15, 0, Math.PI * 2); g.clip(); g.filter = 'grayscale(1)'; g.drawImage(skinImg(p, h.skin), x - 15, y - 35, 30, 30); g.restore(); }
   g.fillStyle = '#fff'; g.font = '900 15px "Lilita One", system-ui, sans-serif'; g.textAlign = 'center'; g.textBaseline = 'middle';
   g.lineWidth = 4; g.strokeStyle = '#000'; g.strokeText(Math.ceil(h.respawnT), x, y - 20); g.fillText(Math.ceil(h.respawnT), x, y - 20);
   g.restore();
@@ -3631,7 +4350,7 @@ function drawFx(g, f) {
       g.restore(); break;
     }
     case 'ghost':                      // an afterimage of the running or striking hero
-      drawSprite(g, f.n, f.x, f.y, { fr: f.fr, flip: f.flip, scale: f.sc, lift: f.z, alpha: 0.4 * (1 - k) });
+      drawSprite(g, f.n, f.x, f.y, { fr: f.fr, flip: f.flip, scale: f.sc, lift: f.z, alpha: 0.4 * (1 - k), skin: f.sk });
       break;
     case 'slap': {                     // a crack of the open hand
       g.save(); g.globalAlpha = 1 - k; g.lineCap = 'round';
@@ -3724,15 +4443,19 @@ function go(name) {
   $('#toast').classList.remove('on');              // a message belongs to the screen it was said on
   if (TUT && name !== 'battle' && name !== 'help') tutStop();
   if (name === 'help') { $('#sHelp').hidden = false; return; }
-  for (const id of ['sTitle', 'sMap', 'sCamp', 'sPre', 'sResult', 'sPause', 'sHelp']) $('#' + id).hidden = true;
+  for (const id of ['sTitle', 'sMap', 'sCamp', 'sShop', 'sPre', 'sResult', 'sPause', 'sHelp', 'sBox']) $('#' + id).hidden = true;
   $('#hud').hidden = name !== 'battle';
   $('#app').classList.toggle('inbattle', name === 'battle');
   if (name === 'title') { if (!G || !G.demo) startDemo(); $('#sTitle').hidden = false; }
   else if (name === 'map') { if (!G || !G.demo) startDemo(); renderMaps(); $('#sMap').hidden = false; }
   else if (name === 'camp') { if (!G || !G.demo) startDemo(); renderCamp(); $('#sCamp').hidden = false; }
+  else if (name === 'shop') { if (!G || !G.demo) startDemo(); $('#sShop').hidden = false; }
   SCREEN_NOW = name;
+  if (name === 'shop') renderShop();
+  if (name !== 'battle') renderWallet();
   musicFor(name);
   fit();
+  if (name === 'title') setTimeout(maybeDailyPopup, 600);
 }
 
 // the title screen plays a short demo battle behind the menu
@@ -3777,7 +4500,7 @@ function renderPre() {
     <div class="meta"><span>${trf('<b>{0}</b> ტალღა', M.waves)}</span><span>${routes(M.entries.length)}</span><span>${trf('საწყისი ოქრო <b>{0}</b>', M.gold + (SAVE.tech.fort || 0) * 25)}</span></div>
     <h4>${tr('მეფეები — აირჩიე ერთი ან ორი')}</h4>
     <p class="small">${tr('მეფეებს მხოლოდ ახლა ირჩევ. ტარიელს, ავთანდილს, ქაქუცას, გურჯიევსა და აბრაგს კი ბრძოლის დროს ქვემოდან ოქროთი გამოიძახებ — ერთდროულად ორამდე, რაზმებთან ერთად.')}</p>
-    <div class="pick">${kings.map(k => `<button data-pick="${k}" aria-pressed="${PRE.sel.includes(k)}"><img src="${ART_URL('por_h_' + k)}" alt="">${esc(HEROES[k].name)}</button>`).join('')}</div>
+    <div class="pick">${kings.map(k => `<button data-pick="${k}" aria-pressed="${PRE.sel.includes(k)}"><img src="${heroPor(k)}" alt="">${esc(HEROES[k].name)}</button>`).join('')}</div>
     <p id="preHint">${PRE.sel.map(k => `<b style="color:var(--text)">${esc(HEROES[k].skill.n)}</b> — ${esc(HEROES[k].skill.t)}`).join('<br>')}</p>
     <div class="actions"><button class="btn ghost" id="preBack">${tr('უკან')}</button><button class="btn" id="preGo">${tr('ბრძოლის დაწყება')}</button></div>`;
   $$('#preBody [data-pick]').forEach(b => b.onclick = () => {
@@ -3815,7 +4538,7 @@ function renderHeroBar() {
   for (const k in HUDC) if (/^h\d/.test(k)) delete HUDC[k];
   $('#heroBar').innerHTML = G.heroes.map((h, n) => `
     <div class="hcard" style="--acc:${h.H.accent}">
-      <button class="hpor" data-h="${n}" aria-label="${esc(h.H.name)}"><img src="${ART_URL('por_h_' + h.key)}" alt=""><span class="resp"></span></button>
+      <button class="hpor" data-h="${n}" aria-label="${esc(h.H.name)}"><img src="${skinURL('por_h_' + h.key, h.skin)}" alt=""><span class="resp"></span>${h.wp ? `<img class="hwp" src="${ART_URL('wp_' + h.wp)}" alt="">` : ''}</button>
       <button class="hsk" data-s="${n}" aria-label="${esc(h.H.skill.n)}" title="${esc(h.H.skill.n + ' — ' + h.H.skill.t)}">${SKILL_ICON[h.H.skill.kind]}<i class="cdw"></i><span class="cdt"></span><kbd>${'QWER'[n] || ''}</kbd></button>
     </div>`).join('');
   $('#heroBar').classList.toggle('many', G.heroes.length > 2);
@@ -3840,7 +4563,7 @@ function renderSummons() {
   $('#sumFaces').innerHTML = ['h_tariel', 'a_khevsur', 'a_brother'].map(a => `<img src="${ART_URL(a)}" alt="" draggable="false">`).join('');
   $('#sumHeroes').innerHTML = CHAMPS.map(k => {
     const H = HEROES[k];
-    return `<div class="qcell"><button class="qbtn hero" data-q="${k}" style="--acc:${H.accent}" aria-label="${esc(H.name)}" title="${esc(H.name + ' — ' + H.skill.n + ': ' + H.skill.t)}"><img src="${ART_URL('por_h_' + k)}" alt="" draggable="false"><span class="cost">${summonCost(k)}</span><i class="qcd"></i></button><div class="qlabel">${esc(champName(k))}</div></div>`;
+    return `<div class="qcell"><button class="qbtn hero" data-q="${k}" style="--acc:${H.accent}" aria-label="${esc(H.name)}" title="${esc(H.name + ' — ' + H.skill.n + ': ' + H.skill.t)}"><img src="${heroPor(k)}" alt="" draggable="false"><span class="cost">${summonCost(k)}</span><i class="qcd"></i></button><div class="qlabel">${esc(champName(k))}</div></div>`;
   }).join('');
   el.innerHTML = SQUAD_ORDER.map(k => {
     const S = SQUADS[k];
@@ -4267,7 +4990,7 @@ function bindInput() {
   $('#btnGrid').onclick = () => toggleGrid();
   $('#btnPause').onclick = () => togglePause();
   $('#btnResume').onclick = () => togglePause(false);
-  $('#btnRestart').onclick = () => { const mi = G.mi, hs = G.heroes.map(h => h.key); $('#sPause').hidden = true; startBattle(mi, hs); };
+  $('#btnRestart').onclick = () => { const mi = G.mi, hs = G.heroes.filter(h => isKing(h.key)).map(h => h.key); $('#sPause').hidden = true; startBattle(mi, hs); };
   $('#btnQuit').onclick = () => { $('#sPause').hidden = true; go('map'); };
   $('#btnSound').onclick = () => { auInit(); toggleSound(); };
   $('#btnSound2').onclick = () => toggleSound();
@@ -4293,7 +5016,7 @@ function waveButton() {
 function toggleGrid() { SAVE.grid = !SAVE.grid; saveGame(); $('#btnGrid').classList.toggle('on', !!SAVE.grid); toast(SAVE.grid ? 'ბადე მუდმივად ჩართულია' : 'ბადე მხოლოდ მშენებლობისას ჩანს', 1300); sfx('click'); }
 function cycleSpeed() { if (!G) return; G.speed = G.speed >= 3 ? 1 : G.speed + 1; $('#btnSpeed').textContent = G.speed + '×'; $('#btnSpeed').classList.toggle('on', G.speed > 1); sfx('click'); }
 function togglePause(force) {
-  if (!G || G.demo || G.over) return;
+  if (!G || G.demo || G.over || G.revivePending) return;
   G.paused = force != null ? force : !G.paused;
   $('#sPause').hidden = !G.paused;
   if (G.paused) { closeRadial(); cancelTargeting(); $('#pauseInfo').textContent = trf('{0} · ტალღა {1}/{2} · სიცოცხლე {3}', G.M.name, G.wave, G.waves.length, G.lives); }
@@ -4310,6 +5033,11 @@ function onHeroDown(h) { toast(trf('{0} დაეცა — {1} წამში 
 function onSkillCast(h) { banner(h.H.skill.n, h.H.name, 'skill', h.H.accent); $('#toast').classList.remove('on'); }
 function onBattleEnd(win) { closeRadial(); cancelTargeting(); setPlace(null); setSquad(null); sumOpen(false); setTimeout(() => { if (G && G.over && SCREEN_NOW === 'battle') showResult(); }, 1500); }
 
+// the day's quests on the result sheet: the ones this battle moved
+function resQuests() {
+  const D = dayState();
+  return `<div class="quests res">${D.q.map((q, i) => questCard(q, i)).join('')}</div>`;
+}
 function showResult() {
   if (TUT) tutStop();
   const win = G.result === 'win', M = G.M, next = MAPS[G.mi + 1];
@@ -4318,7 +5046,9 @@ function showResult() {
     <p class="res-title ${win ? '' : 'lost'}">${tr(win ? 'გამარჯვება!' : 'ციხე დაეცა')}</p>
     ${win ? `<div class="res-stars">${[0, 1, 2].map(i => STAR(i < G.stars)).join('')}</div>` : ''}
     <p style="text-align:center">${tr(win ? (G.stars === 3 ? 'ციხეს ერთი ქვაც არ ჩამოცვენია.' : 'მტერი უკუიქცა, მაგრამ კედლები დაზიანდა.') : 'მტერი ციხეში შეიჭრა. გააძლიერე კოშკები ბანაკში ან სცადე სხვა ლაბირინთი.')}</p>
-    <div class="ledger"><span>${tr('მოკლული მტერი')}</span><b>${G.stats.kills}</b><span>${tr('გაპარული მტერი')}</span><b>${G.stats.leaks}</b><span>${tr('ტალღა')}</span><b>${G.wave}/${G.waves.length}</b><span class="tot">${tr('დიდება')}</span><b class="tot">+${G.glory}</b></div>
+    <div class="ledger"><span>${tr('მოკლული მტერი')}</span><b>${G.stats.kills}</b><span>${tr('გაპარული მტერი')}</span><b>${G.stats.leaks}</b><span>${tr('ტალღა')}</span><b>${G.wave}/${G.waves.length}</b><span class="tot">${tr('მონეტები')}</span><b class="tot" id="resCoins">+${G.glory}</b><span>${tr('ლაშქრობის წიგნი')}</span><b>+${(G.meta && G.meta.xp) || 0} XP</b></div>
+    ${resQuests()}
+    ${ADS.ok && G.glory > 0 ? `<button class="btn ghost small" id="resAd" style="align-self:center">${tr('რეკლამის ნახვა — მონეტები ×2')}</button>` : ''}
     <div class="actions">
       <button class="btn ghost" data-go="camp">${tr('ბანაკი')}</button>
       <button class="btn ghost" id="resRetry">${tr('თავიდან')}</button>
@@ -4326,13 +5056,20 @@ function showResult() {
     </div>`;
   $('#sResult').hidden = false;
   tutResult(win);
-  $('#resRetry').onclick = () => { const mi = G.mi, hs = G.heroes.map(h => h.key); startBattle(mi, hs); };
+  $('#resRetry').onclick = () => { const mi = G.mi, hs = G.heroes.filter(h => isKing(h.key)).map(h => h.key); startBattle(mi, hs); };
+  const ra = $('#resAd'); if (ra) ra.onclick = () => ADS.reward('double', () => { SAVE.glory += G.glory; saveGame(); $('#resCoins').textContent = '+' + G.glory * 2; ra.remove(); });
+  bindQuestButtons($('#resBody'));
   const nb = $('#resNext'), nmi = G.mi + 1; if (nb) nb.onclick = () => { $('#sResult').hidden = true; go('map'); openPre(nmi); };
 }
 
 // ===== campaign map =====
 function renderMaps() {
-  $$('.gv').forEach(e => e.textContent = SAVE.glory);
+  renderWallet();
+  const D = dayState();
+  $('#qStrip').innerHTML = `<div class="qhead"><b>${tr('დღის დავალებები')}</b><button class="linkb" data-gs="day">${tr('ბაზარი')} →</button></div><div class="quests">${D.q.map((q, i) => questCard(q, i)).join('')}</div>`;
+  bindQuestButtons($('#qStrip'));
+  $$('#qStrip [data-gs]').forEach(b => b.onclick = () => openShop(b.dataset.gs));
+  setTimeout(maybeStarterPopup, 500);
   $('#maps').innerHTML = MAPS.map((M, i) => {
     const rec = SAVE.maps[i], locked = i > 0 && !SAVE.maps[i - 1].won, hk = ['h_david', 'h_gorgasali', 'h_tamar', 'a_elder', 'h_erekle'][i];
     return `<article class="bcard ${locked ? 'locked' : ''}">
@@ -4388,7 +5125,7 @@ function fsInit() {
 
 // ===== camp =====
 function renderCamp() {
-  $$('.gv').forEach(e => e.textContent = SAVE.glory);
+  renderWallet();
   $$('.tabs [data-tab]').forEach(b => b.setAttribute('aria-selected', b.dataset.tab === CAMP_TAB));
   const body = $('#campBody');
   if (CAMP_TAB === 'heroes') {
@@ -4396,17 +5133,19 @@ function renderCamp() {
       const H = HEROES[k], s = SAVE.heroes[k], m = HERO_LV(s.lvl);
       const act = !s.owned ? `<button class="btn small" data-unlock="${k}" ${SAVE.glory < H.price ? 'disabled' : ''}>${trf('გახსნა · {0}', H.price)}</button>`
         : s.lvl < 5 ? `<button class="btn small" data-hlv="${k}" ${SAVE.glory < HERO_LV_COST[s.lvl - 1] ? 'disabled' : ''}>${trf('ლეველი {0} · {1}', s.lvl + 1, HERO_LV_COST[s.lvl - 1])}</button>` : `<span class="sub">${tr('მაქსიმალური ლეველი')}</span>`;
-      return `<div class="urow ${s.owned ? '' : 'locked'}"><div class="fig"><img src="${ART_URL(H.mount ? 'h_' + k + 'ride' : 'h_' + k)}" alt=""></div><div class="bd">
+      const sk = heroSkin(k), wp = eqWeapon(k), nw = Object.keys(WEAPONS).some(w => WEAPONS[w].hero === k);
+      return `<div class="urow ${s.owned ? '' : 'locked'}"><div class="fig"><img src="${skinURL(H.mount ? 'h_' + k + 'ride' : 'h_' + k, sk)}" alt=""></div><div class="bd">
         <h3>${esc(H.name)}</h3><span class="sub">${esc(H.sub)}</span>
         <div class="stats"><span>${trf('ლეველი <b>{0}</b>', s.lvl)}</span><span>${trf('სიცოცხლე <b>{0}</b>', Math.round(H.hp * m))}</span><span>${trf('ზიანი <b>{0}</b>', Math.round(H.dmg * m))}</span><span>${H.melee ? tr('ახლო ბრძოლა') : trf('მანძილი <b>{0}</b>', (H.range / CELL).toFixed(1))}</span>${isKing(k) ? '' : `<span>${trf('გამოძახება <b>{0}</b> ოქრო', summonCost(k))}</span>`}</div>
         <div class="sk"><b>${esc(H.skill.n)}</b> <span class="cd">· ${trf('{0} წმ', H.skill.cd)}</span> — ${esc(H.skill.t)}</div>
         <div class="sk"><b>${esc(H.passive.n)}</b> — ${esc(H.passive.t)}</div>${H.ride ? `
         <div class="sk"><b>${esc(H.ride.n)}</b> — ${esc(H.ride.t)}</div>` : ''}${H.quote ? `
         <div class="quote">„${esc(H.quote)}“</div>` : ''}
-        <div class="acts">${act}</div></div></div>`;
+        <div class="acts">${act}<button class="btn small ghost wbtn" data-ward="${k}">${sk ? `<i class="sw" style="--rc:${rarCol(SKINS[sk].r)}"></i>${esc(SKINS[sk].n)}` : tr('სკინი')}</button>${nw ? `<button class="btn small ghost wbtn" data-ward="${k}">${wp ? `<img src="${ART_URL('wp_' + wp)}" alt="">${esc(WEAPONS[wp].n)}` : tr('იარაღი')}</button>` : ''}</div></div></div>`;
     };
     body.innerHTML = `<h4 class="csec">${tr('მეფეები')} <span>${tr('ბრძოლის წინ ორს ირჩევ')}</span></h4><div class="ulist">${KINGS.map(card).join('')}</div>
       <h4 class="csec">${tr('გმირები')} <span>${tr('ბრძოლის დროს ქვემოდან ოქროთი გამოიძახებ, ერთდროულად ორამდე')}</span></h4><div class="ulist">${CHAMPS.map(card).join('')}</div>`;
+    $$('[data-ward]').forEach(b => b.onclick = () => { sfx('click'); openWardrobe(b.dataset.ward); });
     $$('[data-unlock]').forEach(b => b.onclick = () => { const k = b.dataset.unlock; if (SAVE.glory >= HEROES[k].price) { SAVE.glory -= HEROES[k].price; SAVE.heroes[k].owned = true; saveGame(); sfx('upgrade'); toast(trf('{0} შენს ლაშქარს შეუერთდა', HEROES[k].name)); renderCamp(); } });
     $$('[data-hlv]').forEach(b => b.onclick = () => { const k = b.dataset.hlv, s = SAVE.heroes[k], c = HERO_LV_COST[s.lvl - 1]; if (SAVE.glory >= c && s.lvl < 5) { SAVE.glory -= c; s.lvl++; saveGame(); sfx('upgrade'); renderCamp(); } });
   } else if (CAMP_TAB === 'tech') {
@@ -4428,6 +5167,339 @@ function renderCamp() {
         <div class="foes">${ROLE_ORDER.map(r => { const st = roleStats(f, r); return `<div class="foe"><img src="${ART_URL(`e_${f}_${r}`)}" alt="" loading="lazy"><span>${esc(st.label)}</span></div>`; }).join('')}</div></div>`;
     }).join('')}</div>`;
   }
+}
+
+// ===== the bazaar, the chest opening, the wardrobe, the day's gifts and quests, the campaign book =====
+let SHOP_TAB = 'day', SHOP_T = null;
+const SHOP_TABS = [['day', 'დღის'], ['chests', 'სკივრები'], ['skins', 'სკინები'], ['wps', 'იარაღი'], ['packs', 'ანდამატები'], ['pass', 'ლაშქრობის წიგნი']];
+const MERCHANT = ['მობრძანდი, ბატონო! დღეს ყველაფერი იაფადაა.', 'ოქროს სკივრში ლეგენდარული ნივთიც შეიძლება იყოს!', 'ფასკუნჯის ბუმბული ბრძოლაში გამოგადგება.', 'ჩემზე იაფად მთელ თბილისში ვერ იყიდი!', 'ვახტანგს ოქროს მგელი უხდება, ხომ?'];
+const ICON = { coins: 'ui_coin', dia: 'ui_dia', feath: 'ui_feather', shards: 'ui_shard' };
+const icoImg = (k, cls = 'mi') => `<img class="${cls}" src="${ART_URL(ICON[k])}" alt="">`;
+const rarCol = r => (RARITY[r] || RARITY.rare).col;
+
+// ----- the wallet in the headers -----
+function renderWallet() {
+  const html = `<span class="wchip" title="${esc(tr('მონეტები'))}">${icoImg('coins')}<b>${SAVE.glory}</b></span>`
+    + `<button class="wchip dia" data-shop="packs" title="${esc(tr('ანდამატები'))}">${icoImg('dia')}<b>${SAVE.dia}</b><i>+</i></button>`;
+  $$('.wallet').forEach(w => { w.innerHTML = html; });
+  $$('.wallet [data-shop]').forEach(b => b.onclick = () => { sfx('click'); openShop(b.dataset.shop); });
+  const n = (woodFree().n ? 1 : 0) + (loginReady() ? 1 : 0) + questsReady() + passReady() + (offersToday().sold[0] ? 0 : 1);
+  const bd = $('#bdgShop'); if (bd) { bd.hidden = !n; bd.textContent = n; }
+  const bm = $('#bdgShop2'); if (bm) { bm.hidden = !n; bm.textContent = n; }
+}
+// a price on a button: coins, diamonds or shards
+const priceHtml = p => p.coins != null ? `${icoImg('coins')}${p.coins}` : p.shards != null ? `${icoImg('shards')}${p.shards}` : `${icoImg('dia')}${p.dia}`;
+// what a reward is, for a card or a line
+function rewardBits(x) {
+  if (x.coins) return { img: ART_URL('ui_coin'), t: '+' + x.coins, s: tr('მონეტა') };
+  if (x.dia) return { img: ART_URL('ui_dia'), t: '+' + x.dia, s: tr('ანდამატი') };
+  if (x.feath) return { img: ART_URL('ui_feather'), t: '+' + x.feath, s: tr('ფასკუნჯის ბუმბული') };
+  if (x.shards) return { img: ART_URL('ui_shard'), t: '+' + x.shards, s: tr('ფრაგმენტი') };
+  if (x.item) return { img: itemArt(x.item), t: itemName(x.item), s: x.dup ? trf('უკვე გაქვს — +{0} ფრაგმენტი', x.dup) : RARITY[itemOf(x.item).r].n, r: itemOf(x.item).r, sk: isSkin(x.item) };
+  if (x.chest) return { img: ART_URL('ui_chest_' + x.chest), t: CHESTS[x.chest].n, s: '' };
+  if (x.skin) return rewardBits({ item: x.skin });
+  if (x.wp) return rewardBits({ item: 'wp_' + x.wp });
+  if (x.pass) return { img: ART_URL('ui_book'), t: tr('სამეფო წიგნი'), s: tr('გაიხსნა') };
+  return { img: ART_URL('ui_gift'), t: '', s: '' };
+}
+const rewardMini = g => Object.keys(g).map(k => { const b = rewardBits({ [k]: g[k] }); return `<span class="rmini"><img src="${b.img}" alt="">${k === 'chest' || k === 'skin' || k === 'wp' ? esc(b.t) : b.t.replace('+', '')}</span>`; }).join('');
+
+// ----- the screen -----
+function openShop(tab) {
+  if (tab) SHOP_TAB = tab;
+  go('shop');
+}
+function renderShop() {
+  renderWallet();
+  $('#shopSay').textContent = tr(pick(MERCHANT));
+  $('#shopTabs').innerHTML = SHOP_TABS.map(([k, n]) => {
+    const dot = k === 'day' ? (loginReady() || questsReady() || !offersToday().sold[0]) : k === 'chests' ? woodFree().n > 0 : k === 'pass' ? passReady() > 0 : false;
+    return `<button role="tab" aria-selected="${SHOP_TAB === k}" data-stab="${k}">${tr(n)}${dot ? '<i class="dot"></i>' : ''}</button>`;
+  }).join('');
+  $$('#shopTabs [data-stab]').forEach(b => b.onclick = () => { SHOP_TAB = b.dataset.stab; sfx('click'); renderShop(); });
+  const B = $('#shopBody');
+  ({ day: shopDay, chests: shopChests, skins: shopSkins, wps: shopWeapons, packs: shopPacks, pass: shopPass })[SHOP_TAB](B);
+  clearInterval(SHOP_T);
+  SHOP_T = setInterval(() => { if (SCREEN_NOW !== 'shop') { clearInterval(SHOP_T); return; } for (const el of $$('[data-tick]')) el.textContent = tickText(el.dataset.tick); }, 1000);
+}
+function tickText(k) {
+  if (k === 'mid') return trf('განახლდება {0}-ში', fmtTime(msToMidnight()));
+  if (k === 'wood') { const W = woodFree(); return W.n ? '' : trf('უფასო {0}-ში', fmtTime(W.next)); }
+  if (k === 'starter') return fmtTime(SAVE.starter.t + STARTER.hours * 36e5 - Date.now());
+  if (k === 'pass') return trf('სეზონი მთავრდება: {0}', fmtDays(passEndsIn()));
+  return '';
+}
+
+// the day: the starter pack, the gift of the day, the quests and the offers
+function shopDay(B) {
+  const D = dayState(), O = offersToday(), L = SAVE.login || { n: 0, last: '' };
+  let h = '';
+  if (starterOpen()) h += `<div class="starter"><img src="${ART_URL('ui_chest_gold_o')}" alt=""><div class="bd"><p class="eyebrow">${tr('დამწყების პაკეტი')} · <span data-tick="starter">${tickText('starter')}</span></p>
+      <h3>${tr('8-ჯერ მეტი ღირებულება')}</h3><div class="rlist">${rewardMini(STARTER.give)}</div></div>
+      <button class="btn buy" data-iap="${STARTER.sku}">${priceLabel(STARTER.sku, STARTER.usd)}</button></div>`;
+  const ln = L.n % LOGIN.length, lready = loginReady();
+  h += `<h4 class="csec">${tr('დღის საჩუქარი')} <span>${tr('ყოველდღე შედი — მეშვიდე დღეს ვერცხლის სკივრია')}</span></h4><div class="login">${LOGIN.map((g, i) => {
+    const cls = lready ? (i < ln ? 'got' : i === ln ? 'now' : '') : ((ln === 0 ? LOGIN.length : ln) > i ? 'got' : '');
+    return `<div class="lday ${cls}"><span>${trf('დღე {0}', i + 1)}</span><div class="rlist">${rewardMini(g)}</div></div>`;
+  }).join('')}</div>
+    <div class="actions" style="justify-content:flex-start">${loginReady() ? `<button class="btn" id="loginBtn">${tr('აიღე დღის საჩუქარი')}</button>` : `<span class="sub">${tr('დღევანდელი საჩუქარი აღებულია. ხვალ ახალი დაგხვდება.')}</span>`}</div>`;
+  h += `<h4 class="csec">${tr('დღის დავალებები')} <span data-tick="mid">${tickText('mid')}</span></h4><div class="quests">${D.q.map((q, i) => questCard(q, i)).join('')}</div>`;
+  h += `<h4 class="csec">${tr('დღის შეთავაზებები')} <span>${tr('ყოველი შეთავაზება დღეში ერთხელ')}</span></h4><div class="offers">${O.s.map((o, i) => {
+    const sold = O.sold[i], g = o.give, k = Object.keys(g)[0], b = rewardBits(g.skin ? { item: g.skin } : g.wp ? { item: 'wp_' + g.wp } : g);
+    const off = o.was && o.price ? Math.round((1 - o.price.dia / o.was) * 100) : 0;
+    return `<div class="offer ${sold ? 'sold' : ''}" style="--rc:${b.r ? rarCol(b.r) : 'var(--gold)'}">${off ? `<span class="off">-${off}%</span>` : ''}<div class="oimg ${b.sk ? 'fig' : ''}"><img src="${b.img}" alt=""></div>
+      <b>${esc(k === 'chest' || b.r ? b.t : b.t + ' ' + b.s)}</b>${b.r ? `<span class="sub" style="color:${rarCol(b.r)}">${esc(RARITY[b.r].n)}</span>` : ''}
+      ${sold ? `<span class="sub">${tr('ნაყიდია')}</span>` : o.free ? `<button class="btn small" data-offer="${i}">${tr('უფასოდ')}</button>` : `<button class="btn small" data-offer="${i}" ${canPay(o.price) ? '' : 'disabled'}>${o.was ? `<s>${o.was}</s> ` : ''}${priceHtml(o.price)}</button>`}</div>`;
+  }).join('')}</div>`;
+  B.innerHTML = h;
+  const lb = $('#loginBtn'); if (lb) lb.onclick = () => { const got = claimLogin(); if (got) showRewards(got, tr('დღის საჩუქარი')); };
+  bindQuestButtons(B);
+  $$('#shopBody [data-offer]').forEach(b => b.onclick = () => {
+    const i = +b.dataset.offer, o = O.s[i];
+    if (O.sold[i] || !pay(o.price)) return;
+    O.sold[i] = true; saveGame();
+    sfx('upgrade');
+    showRewards(give(o.give), tr('დღის შეთავაზება'));
+  });
+  bindIap(B);
+}
+function questCard(q, i) {
+  const Q = questOf(q.id), f = Math.min(1, q.have / Q.need), ready = !q.got && q.have >= Q.need;
+  return `<div class="quest ${q.got ? 'got' : ''} ${ready ? 'ready' : ''}"><b>${esc(questText(Q))}</b><div class="qbar"><i style="width:${f * 100}%"></i><span>${Math.min(q.have, Q.need)}/${Q.need}</span></div>
+    <div class="qrow"><span class="rmini">${icoImg('dia')}${Q.dia}</span><span class="rmini">${icoImg('coins')}${Q.coins}</span><span class="rmini">${icoImg('book', 'mi')}${QUEST_XP}</span>
+    ${q.got ? `<span class="sub">${tr('აღებულია')}</span>` : `<button class="btn small" data-quest="${i}" ${ready ? '' : 'disabled'}>${tr('აღება')}</button>`}</div></div>`;
+}
+ICON.book = 'ui_book';
+function bindQuestButtons(root) {
+  for (const b of root.querySelectorAll('[data-quest]')) b.onclick = () => { const got = claimQuest(+b.dataset.quest); if (got) { sfx('upgrade'); showRewards(got, tr('დავალება შესრულდა')); } };
+}
+
+// chests
+function shopChests(B) {
+  const W = woodFree();
+  B.innerHTML = `<div class="chests">${CHEST_ORDER.map(k => {
+    const C = CHESTS[k], pity = C.pity ? C.pity.n - (SAVE.ch['p_' + k] || 0) : 0;
+    const what = k === 'wood' ? tr('1 ნივთი და მონეტები') : k === 'silver' ? tr('2 ნივთი და მონეტები') : tr('3 ნივთი — ყველა ეპიკური ან ლეგენდარული');
+    const btns = k === 'wood'
+      ? `${W.n ? `<button class="btn" data-chest="wood" data-free="1">${trf('უფასოდ ({0})', W.n)}</button>` : `<span class="sub" data-tick="wood">${tickText('wood')}</span>`}<button class="btn ghost" data-chest="wood" ${canPay(C.price) ? '' : 'disabled'}>${priceHtml(C.price)}</button>`
+      : `<button class="btn" data-chest="${k}" ${canPay(C.price) ? '' : 'disabled'}>${priceHtml(C.price)}</button>`;
+    return `<div class="chest c-${k}"><img src="${ART_URL('ui_chest_' + k)}" alt=""><h3>${esc(C.n)}</h3><p>${what}</p>
+      ${C.pity ? `<p class="pity">${trf(C.pity.r === 'leg' ? 'ლეგენდარული გარანტირებულია {0} სკივრში' : 'ეპიკური გარანტირებულია {0} სკივრში', pity)}</p>` : '<p class="pity">&nbsp;</p>'}
+      <div class="cbtns">${btns}</div><button class="linkb" data-odds="${k}">${tr('შანსები')}</button></div>`;
+  }).join('')}</div>
+  <p class="note">${tr('ნივთი, რომელიც უკვე გაქვს, ფრაგმენტებად იქცევა. ფრაგმენტებით ნებისმიერ სკინსა და იარაღს პირდაპირ იყიდი.')} <span class="rmini">${icoImg('shards')}${SAVE.shards}</span></p>`;
+  $$('#shopBody [data-chest]').forEach(b => b.onclick = () => {
+    const k = b.dataset.chest;
+    if (b.dataset.free) { if (!takeWoodFree()) return; }
+    else if (!pay(CHESTS[k].price)) return;
+    openChestFx(k);
+  });
+  $$('#shopBody [data-odds]').forEach(b => b.onclick = () => showOdds(b.dataset.odds));
+}
+function showOdds(k) {
+  const C = CHESTS[k], O = chestOdds(k), pct = p => (p * 100).toFixed(p < 0.01 ? 2 : p < 0.1 ? 1 : 0) + '%';
+  openBox(`<h2>${trf('{0} — შანსები', esc(C.n))}</h2>
+    <p>${trf('სკივრში: {0}–{1} მონეტა და {2} ნივთი. ყოველი ნივთის იშვიათობა ცალკე ითამაშება:', C.coins[0], C.coins[1], C.rolls)} ${tr('შანსები ერთ ნივთზეა მოცემული.')}</p>
+    <table class="odds"><tr><th>${tr('იშვიათობა')}</th><th>${tr('შანსი')}</th><th>${tr('რა შეიძლება იყოს')}</th></tr>
+    ${O.map(o => `<tr><td style="color:${rarCol(o.r)}">${esc(RARITY[o.r].n)}</td><td>${pct(o.p)}</td><td>${o.n ? trf('სკინი ან იარაღი {0} (თითოეული {1})', pct(o.item), pct(o.item / o.n)) : ''}${o.other.map(x => '<br>' + rewardMini(x.g) + ' ' + pct(x.p)).join('')}</td></tr>`).join('')}</table>
+    ${C.pity ? `<p>${trf(C.pity.r === 'leg' ? 'გარანტია: თუ {0} სკივრი ზედიზედ ლეგენდარულის გარეშე გაიხსნა, მომდევნოში ლეგენდარული აუცილებლად იქნება.' : 'გარანტია: თუ {0} სკივრი ზედიზედ ეპიკურის გარეშე გაიხსნა, მომდევნოში ეპიკური აუცილებლად იქნება.', C.pity.n - 1)}</p>` : ''}
+    <div class="actions"><button class="btn" data-close="sBox">${tr('გასაგებია')}</button></div>`);
+}
+
+// skins and weapons
+function shopSkins(B) {
+  B.innerHTML = HERO_ORDER.map(h => {
+    const ids = Object.keys(SKINS).filter(k => SKINS[k].hero === h);
+    return `<div class="hrow"><div class="hhead"><img src="${ART_URL('por_h_' + h)}" alt=""><b>${esc(HEROES[h].name)}</b></div><div class="items">${ids.map(itemCard).join('')}</div></div>`;
+  }).join('') + shardNote();
+  bindItems(B, () => shopSkins(B));
+}
+function shopWeapons(B) {
+  B.innerHTML = HERO_ORDER.map(h => {
+    const ids = Object.keys(WEAPONS).filter(k => WEAPONS[k].hero === h).map(k => 'wp_' + k);
+    return ids.length ? `<div class="hrow"><div class="hhead"><img src="${ART_URL('por_h_' + h)}" alt=""><b>${esc(HEROES[h].name)}</b></div><div class="items">${ids.map(itemCard).join('')}</div></div>` : '';
+  }).join('') + shardNote();
+  bindItems(B, () => shopWeapons(B));
+}
+const shardNote = () => `<p class="note">${tr('ფრაგმენტები სკივრში განმეორებული ნივთებიდან მოდის.')} <span class="rmini">${icoImg('shards')}${SAVE.shards}</span></p>`;
+function itemCard(id) {
+  const I = itemOf(id), sk = isSkin(id), own = owns(id), on = sk ? heroSkin(I.hero) === id : eqWeapon(I.hero) === id.slice(3), P = itemPrice(id);
+  const act = own ? `<button class="btn small ${on ? '' : 'ghost'}" data-eq="${id}">${tr(on ? 'ჩაცმულია' : (sk ? 'ჩაცმა' : 'აღჭურვა'))}</button>`
+    : I.pass ? `<span class="sub">${tr('ლაშქრობის წიგნის ჯილდო')}</span>` : I.story ? `<span class="sub">${tr('სიუჟეტის ჯილდო')}</span>`
+      : `<button class="btn small" data-buy="${id}" data-cur="dia" ${canPay({ dia: P.dia }) ? '' : 'disabled'}>${priceHtml({ dia: P.dia })}</button><button class="btn small ghost" data-buy="${id}" data-cur="shards" ${canPay({ shards: P.shards }) ? '' : 'disabled'}>${priceHtml({ shards: P.shards })}</button>`;
+  return `<div class="icard ${own ? 'own' : ''} ${on ? 'on' : ''}" style="--rc:${rarCol(I.r)}"><div class="iimg ${sk ? 'fig' : ''}"><img src="${itemArt(id)}" alt="" loading="lazy"></div>
+    <b>${esc(I.n)}</b><span class="rar">${esc(RARITY[I.r].n)}</span>${sk ? '' : `<p class="sk">${esc(I.t)}</p>`}<div class="iacts">${act}</div></div>`;
+}
+function bindItems(root, again) {
+  for (const b of root.querySelectorAll('[data-eq]')) b.onclick = () => { equip(b.dataset.eq); sfx('click'); again(); renderWallet(); };
+  for (const b of root.querySelectorAll('[data-buy]')) b.onclick = () => {
+    const id = b.dataset.buy, P = itemPrice(id), price = b.dataset.cur === 'shards' ? { shards: P.shards } : { dia: P.dia };
+    if (owns(id) || !pay(price)) return;
+    grantItem(id); equip(id); saveGame(); sfx('upgrade');
+    showRewards([{ item: id, r: itemOf(id).r, fresh: true }], tr('ახალი ნივთი'));
+    again(); renderWallet();
+  };
+}
+
+// diamonds, coins, feathers
+function shopPacks(B) {
+  B.innerHTML = `<div class="packs">${PACKS.map(p => `<div class="pack">${p.tag ? `<span class="tag">${esc(p.tag)}</span>` : ''}
+      <img src="${ART_URL(p.img)}" alt=""><b>${icoImg('dia')}${p.dia.toLocaleString()}</b>${p.bonus ? `<span class="sub">${trf('+{0}% ბონუსი', p.bonus)}</span>` : '<span class="sub">&nbsp;</span>'}${SAVE.iap.first[p.sku] ? '' : `<span class="x2">${tr('პირველი ყიდვა ×2')}</span>`}
+      <button class="btn buy" data-iap="${p.sku}">${priceLabel(p.sku, p.usd)}</button></div>`).join('')}</div>
+    <h4 class="csec">${tr('მონეტები')} <span>${tr('ბანაკში გმირებისა და კოშკების გასაძლიერებლად')}</span></h4>
+    <div class="packs small">${COIN_PACKS.map((c, i) => `<div class="pack"><img src="${ART_URL('ui_coinbag')}" alt=""><b>${icoImg('coins')}${c.coins.toLocaleString()}</b><button class="btn small" data-coins="${i}" ${canPay({ dia: c.dia }) ? '' : 'disabled'}>${priceHtml({ dia: c.dia })}</button></div>`).join('')}
+      <div class="pack"><img src="${ART_URL('ui_feather')}" alt=""><b>${icoImg('feath')}1</b><button class="btn small" data-feath="1" ${canPay({ dia: FEATHER_PRICE }) ? '' : 'disabled'}>${priceHtml({ dia: FEATHER_PRICE })}</button></div>
+      <div class="pack"><img src="${ART_URL('ui_feather')}" alt=""><b>${icoImg('feath')}5</b><button class="btn small" data-feath="5" ${canPay({ dia: FEATHER_PRICE * 5 - 10 }) ? '' : 'disabled'}>${priceHtml({ dia: FEATHER_PRICE * 5 - 10 })}</button></div></div>
+    <p class="note">${IAP.live ? tr('ყიდვა Google Play-ით ხდება.') : tr('ეს ვებ-ვერსიაა: ყიდვა სატესტოა და ფული არ ჩამოგეჭრება. Google Play-ის აპში აქ ნამდვილი გადახდა იქნება.')}</p>`;
+  bindIap(B);
+  $$('#shopBody [data-coins]').forEach(b => b.onclick = () => { const c = COIN_PACKS[+b.dataset.coins]; if (pay({ dia: c.dia })) { sfx('coin'); showRewards(give({ coins: c.coins }), tr('მონეტები')); } });
+  $$('#shopBody [data-feath]').forEach(b => b.onclick = () => { const n = +b.dataset.feath, d = n === 1 ? FEATHER_PRICE : FEATHER_PRICE * 5 - 10; if (pay({ dia: d })) { sfx('coin'); showRewards(give({ feath: n }), tr('ფასკუნჯის ბუმბული')); } });
+}
+function bindIap(root) {
+  for (const b of root.querySelectorAll('[data-iap]')) b.onclick = () => buySku(b.dataset.iap);
+}
+async function buySku(sku) {
+  sfx('click');
+  if (IAP.live) {
+    const before = SAVE.iap.n;
+    const ok = await IAP.buy(sku);
+    if (ok && SAVE.iap.n > before) afterPurchase(sku, IAP.lastGot || []);
+    return;
+  }
+  // the web version: a test purchase, said plainly
+  const P = PACKS.find(p => p.sku === sku), label = P ? `${P.dia.toLocaleString()} ${tr('ანდამატი')}` : sku === STARTER.sku ? tr('დამწყების პაკეტი') : tr('სამეფო წიგნი');
+  const usd = P ? P.usd : sku === STARTER.sku ? STARTER.usd : PASS_SKU.usd;
+  openBox(`<h2>${tr('სატესტო ყიდვა')}</h2><p>${trf('{0} — {1}', esc(label), priceLabel(sku, usd))}</p>
+    <p>${tr('ეს თამაშის ვებ-ვერსიაა: ყიდვა სატესტოა და ფული არ ჩამოგეჭრება. Google Play-ის აპში აქ ნამდვილი გადახდა იქნება.')}</p>
+    <div class="actions"><button class="btn ghost" data-close="sBox">${tr('გაუქმება')}</button><button class="btn" id="testBuy">${tr('ყიდვა (სატესტო)')}</button></div>`);
+  $('#testBuy').onclick = () => { closeBox(); afterPurchase(sku, grantSku(sku)); };
+}
+function afterPurchase(sku, got) {
+  saveGame(); sfx('upgrade');
+  showRewards(got, sku === STARTER.sku ? tr('დამწყების პაკეტი') : sku === PASS_SKU.sku ? tr('სამეფო წიგნი') : tr('მადლობა!'));
+}
+const rewardList = g => Object.keys(g).map(k => ({ [k]: g[k] }));
+
+// the campaign book
+function shopPass(B) {
+  const P = passState(), t = passTier(), xpIn = P.xp - t * PASS.xp, full = t >= PASS.tiers;
+  const cell = (row, i) => {
+    const g = (row === 'p' ? PASS_PREM : PASS_FREE)[i], got = P[row].includes(i), reach = i < t, lock = row === 'p' && !P.prem;
+    const b = rewardBits(g.skin ? { item: g.skin } : g), canTake = reach && !got && !lock;
+    return `<button class="pcell ${got ? 'got' : ''} ${canTake ? 'ready' : ''} ${lock ? 'lock' : ''}" data-pass="${row}${i}" ${canTake ? '' : 'disabled'} title="${esc(b.t + ' ' + b.s)}"><img src="${b.img}" alt=""><span>${g.skin ? '' : b.t.replace('+', '')}</span></button>`;
+  };
+  B.innerHTML = `<div class="passhead"><img src="${ART_URL('ui_book')}" alt=""><div class="bd"><p class="eyebrow">${trf('სეზონი {0}', P.s + 1)} · <span data-tick="pass">${tickText('pass')}</span></p>
+      <h3>${trf('საფეხური {0} / {1}', t, PASS.tiers)}</h3><div class="qbar big"><i style="width:${full ? 100 : xpIn / PASS.xp * 100}%"></i><span>${full ? tr('დასრულებულია') : `${xpIn} / ${PASS.xp}`}</span></div>
+      <p class="sub">${tr('გამოცდილებას ბრძოლები და დღის დავალებები გაძლევს. სამეფო წიგნში მეტი ანდამატი, სკივრები და ექსკლუზიური სკინი „ფასკუნჯის რაინდია“.')}</p></div>
+      ${P.prem ? `<span class="badge2">${tr('სამეფო წიგნი გახსნილია')}</span>` : `<div class="pbuy"><button class="btn buy" data-iap="${PASS_SKU.sku}">${priceLabel(PASS_SKU.sku, PASS_SKU.usd)}</button><button class="btn ghost small" id="passDia" ${canPay(PASS.price) ? '' : 'disabled'}>${priceHtml(PASS.price)}</button></div>`}</div>
+    <div class="ptrack"><div class="prow lbl"><b>${tr('უფასო')}</b><b>${tr('სამეფო')}</b></div>${Array.from({ length: PASS.tiers }, (_, i) => `<div class="pcol ${i < t ? 'reach' : ''}"><span class="pn">${i + 1}</span>${cell('f', i)}${cell('p', i)}</div>`).join('')}</div>`;
+  bindIap(B);
+  const pd = $('#passDia'); if (pd) pd.onclick = () => { if (pay(PASS.price)) { passState().prem = true; saveGame(); sfx('upgrade'); showRewards([{ pass: true }], tr('სამეფო წიგნი')); } };
+  $$('#shopBody [data-pass]').forEach(b => b.onclick = () => { const row = b.dataset.pass[0], i = +b.dataset.pass.slice(1), got = passClaim(row, i); if (got) { sfx('upgrade'); showRewards(got, trf('საფეხური {0}', i + 1)); } });
+  const trk = B.querySelector('.ptrack'); if (trk && t > 3) trk.scrollLeft = Math.max(0, (t - 3) * 74);
+}
+
+// ----- the box: a sheet over everything for odds, rewards, test purchases, the wardrobe, the second chance -----
+function openBox(html, cls = '') {
+  $('#boxBody').className = 'sheet ' + cls;
+  $('#boxBody').innerHTML = html;
+  $('#sBox').hidden = false;
+}
+function closeBox() { $('#sBox').hidden = true; }
+// rewards: chests in them are opened right away, everything else shown as cards
+function showRewards(list, title) {
+  renderWallet();
+  const chests = list.filter(x => x.chest), rest = list.filter(x => !x.chest && Object.keys(x).length);
+  const next = () => { if (chests.length) openChestFx(chests.shift().chest, next); else afterRewards(); };
+  if (!rest.length) { next(); return; }
+  openBox(`<h2>${esc(title)}</h2><div class="rcards">${rest.map(rewardCard).join('')}</div><div class="actions"><button class="btn" id="rwOk">${tr('კარგი')}</button></div>`, 'rewards');
+  $('#rwOk').onclick = () => { closeBox(); next(); };
+}
+function afterRewards() { renderWallet(); if (SCREEN_NOW === 'shop') renderShop(); else if (SCREEN_NOW === 'camp') renderCamp(); else if (SCREEN_NOW === 'map') renderMaps(); }
+function rewardCard(x, i = 0) {
+  const b = rewardBits(x), r = b.r || x.r;
+  return `<div class="rcard ${r ? 'r-' + r : ''} ${x.fresh ? 'fresh' : ''}" style="--rc:${r ? rarCol(r) : 'var(--gold)'};animation-delay:${0.08 + i * 0.22}s"><div class="rimg ${b.sk ? 'fig' : ''}"><img src="${b.img}" alt=""></div><b>${esc(b.t)}</b><span>${esc(b.s)}</span>${x.fresh ? `<i class="new">${tr('ახალი!')}</i>` : ''}</div>`;
+}
+
+// ----- opening a chest -----
+function openChestFx(k, then) {
+  const fxEl = $('#chestFx'), im = $('#cfChest');
+  im.src = ART_URL('ui_chest_' + k);
+  fxEl.className = 'c-' + k; fxEl.hidden = false;
+  $('#cfCards').innerHTML = ''; $('#cfOk').hidden = true; $('#cfHint').hidden = false; $('#cfTitle').textContent = CHESTS[k].n;
+  let opened = false;
+  const open = () => {
+    if (opened) return; opened = true;
+    $('#cfHint').hidden = true;
+    fxEl.classList.add('shake'); sfx('heave');
+    setTimeout(() => {
+      const res = openChest(k);
+      fxEl.classList.remove('shake'); fxEl.classList.add('open');
+      im.src = ART_URL('ui_chest_' + k + '_o');
+      sfx('upgrade'); setTimeout(() => sfx('coin'), 180);
+      const best = res.reduce((m, x) => Math.max(m, x.r ? rarIdx(x.r) : 0), 0);
+      if (best === 2) { fxEl.classList.add('legend'); setTimeout(() => sfx('fanfare'), 300); }
+      $('#cfCards').innerHTML = res.map(rewardCard).join('');
+      setTimeout(() => { $('#cfOk').hidden = false; }, 300 + res.length * 220);
+      renderWallet();
+    }, 620);
+  };
+  im.onclick = open; $('#cfHint').onclick = open;
+  const auto = setTimeout(open, 1600);
+  $('#cfOk').onclick = () => { clearTimeout(auto); fxEl.hidden = true; fxEl.className = ''; if (then) then(); else afterRewards(); };
+}
+
+// ----- the wardrobe: a hero's skins and weapons, from the camp -----
+function openWardrobe(h) {
+  const skins = Object.keys(SKINS).filter(k => SKINS[k].hero === h), wps = Object.keys(WEAPONS).filter(k => WEAPONS[k].hero === h).map(k => 'wp_' + k);
+  const def = !heroSkin(h);
+  openBox(`<h2>${esc(HEROES[h].name)}</h2>
+    <h4>${tr('სკინები')}</h4><div class="items">
+      <div class="icard own ${def ? 'on' : ''}" style="--rc:var(--line-3)"><div class="iimg fig"><img src="${ART_URL('h_' + h + (h === 'david' ? 'ride' : ''))}" alt=""></div><b>${tr('ჩვეულებრივი')}</b><span class="rar">&nbsp;</span><div class="iacts"><button class="btn small ${def ? '' : 'ghost'}" data-unskin="${h}">${tr(def ? 'ჩაცმულია' : 'ჩაცმა')}</button></div></div>
+      ${skins.map(itemCard).join('')}</div>
+    ${wps.length ? `<h4>${tr('იარაღი')}</h4><div class="items">${wps.map(itemCard).join('')}</div>` : ''}
+    <div class="actions"><button class="btn ghost" id="toShop">${tr('ბაზარში')}</button><button class="btn" data-close="sBox">${tr('კარგი')}</button></div>`, 'wardrobe');
+  const again = () => { openWardrobe(h); renderWallet(); if (SCREEN_NOW === 'camp') renderCamp(); };
+  bindItems($('#boxBody'), again);
+  const u = $('[data-unskin]'); if (u) u.onclick = () => { SAVE.eq.skin[h] = null; saveGame(); sfx('click'); again(); };
+  $('#toShop').onclick = () => { closeBox(); openShop('skins'); };
+}
+
+// ----- the day's gift pops up once a day on the title screen -----
+function maybeDailyPopup() {
+  if (!SAVE.tutDone || !loginReady() || !$('#sBox').hidden || SCREEN_NOW !== 'title') return;
+  const L = SAVE.login || { n: 0 }, g = LOGIN[L.n % LOGIN.length];
+  openBox(`<h2>${tr('დღის საჩუქარი')}</h2><p>${trf('დღე {0} / 7. ყოველდღე შედი — მეშვიდე დღეს ვერცხლის სკივრი და 50 ანდამატია.', (L.n % 7) + 1)}</p>
+    <div class="rcards">${rewardList(g).map(rewardCard).join('')}</div><div class="actions"><button class="btn" id="dailyOk">${tr('აიღე')}</button></div>`, 'rewards');
+  $('#dailyOk').onclick = () => { closeBox(); const got = claimLogin(); if (got) showRewards(got, tr('დღის საჩუქარი')); };
+}
+
+// ----- a second chance when the castle falls -----
+function offerRevive() {
+  const ad = ADS.ok, can = canPay({ dia: REVIVE.dia });
+  if (!G || G.demo || G.revived || (!can && !ad)) return false;
+  G.paused = true; G.revivePending = true;
+  openBox(`<p class="res-title lost">${tr('ციხე ეცემა!')}</p><p style="text-align:center">${trf('აღადგინე ციხის კედლები: +{0} სიცოცხლე, მტერი კართან წაბორძიკდება.', REVIVE.lives)}</p>
+    <div class="actions" style="justify-content:center"><button class="btn ghost" id="rvNo">${tr('დანებება')}</button>${ad ? `<button class="btn ghost" id="rvAd">${tr('რეკლამის ნახვა')}</button>` : ''}<button class="btn" id="rvDia" ${can ? '' : 'disabled'}>${priceHtml({ dia: REVIVE.dia })}</button></div>`, 'revive');
+  const finish = yes => {
+    closeBox(); G.revivePending = false;
+    if (yes) { revive(); G.paused = false; } else { G.paused = false; endBattle(false); }
+  };
+  $('#rvNo').onclick = () => finish(false);
+  $('#rvDia').onclick = () => { if (pay({ dia: REVIVE.dia })) finish(true); };
+  const a = $('#rvAd'); if (a) a.onclick = () => ADS.reward('revive', () => finish(true));
+  return true;
+}
+
+// the starter offer is shown once, the first time the campaign map opens after the first victory
+function maybeStarterPopup() {
+  if (!starterOpen() || SAVE.starter.seen || !$('#sBox').hidden) return;
+  SAVE.starter.seen = 1; saveGame();
+  openBox(`<p class="eyebrow">${tr('დამწყების პაკეტი')} · <span data-tick="starter">${tickText('starter')}</span></p><h2>${tr('8-ჯერ მეტი ღირებულება')}</h2>
+    <div class="rcards">${rewardList(STARTER.give).map(rewardCard).join('')}</div>
+    <p>${tr('ერთხელ, მხოლოდ 48 საათით: ზამთრის მგელი ვახტანგისთვის, ოქროს სკივრი, ანდამატები და ფასკუნჯის ბუმბულები.')}</p>
+    <div class="actions" style="justify-content:center"><button class="btn ghost" data-close="sBox">${tr('მოგვიანებით')}</button><button class="btn buy" data-iap="${STARTER.sku}">${priceLabel(STARTER.sku, STARTER.usd)}</button></div>`, 'rewards');
+  bindIap($('#boxBody'));
 }
 
 // ===== the tutorial: a guided first battle =====
@@ -4511,7 +5583,7 @@ const TUT_STEPS = [
   { id: 'speed', target: () => $('#btnSpeed').parentElement, next: true, freeze: true,
     text: 'აქედან ბადეს მუდმივად ჩართავ, თამაშს ააჩქარებ ან პაუზას დააყენებ.' },
   { id: 'end', title: 'მზად ხარ!', target: () => null, next: 'დასრულება', freeze: true,
-    text: 'ახლა ბრძოლა თავად დაასრულე. ბრძოლის მერე ბანაკში დიდებას მეფეებსა და კოშკებზე დახარჯავ. წესები ყოველთვის გექნება „როგორ ვითამაშო“-ში.' }
+    text: 'ახლა ბრძოლა თავად დაასრულე. ბრძოლის მერე ბანაკში მონეტებს მეფეებსა და კოშკებზე დახარჯავ. წესები ყოველთვის გექნება „როგორ ვითამაშო“-ში.' }
 ];
 function startTutorial() {
   TUT = { i: -1, cell: -1, fences0: null, saw: {}, shown: '' };
@@ -4544,8 +5616,8 @@ function tutResult(win) {
   const acts = $('#resBody .actions');
   if (!acts) return;
   acts.insertAdjacentHTML('beforebegin', `<div class="rescoach"><img src="${ART_URL('por_h_david')}" alt=""><p>${esc(tr(win
-    ? 'ბანაკში დიდებით ახალ მეფეებს იძენ, მეფეებს ლეველს უწევ და კოშკებს აძლიერებ. მერე შემდეგ ბრძოლაზე წადი!'
-    : 'ბანაკში დიდებით ახალ მეფეებს იძენ, მეფეებს ლეველს უწევ და კოშკებს აძლიერებ. გაძლიერდი და ისევ სცადე!'))}</p></div>`);
+    ? 'ბანაკში მონეტებით ახალ მეფეებს იძენ, მეფეებს ლეველს უწევ და კოშკებს აძლიერებ. მერე შემდეგ ბრძოლაზე წადი!'
+    : 'ბანაკში მონეტებით ახალ მეფეებს იძენ, მეფეებს ლეველს უწევ და კოშკებს აძლიერებ. გაძლიერდი და ისევ სცადე!'))}</p></div>`);
   const b = $('#resBody [data-go="camp"]');
   if (b) b.classList.add('tutglow');
 }
@@ -4660,6 +5732,23 @@ function mergeSave(s) {
   if (Array.isArray(s.sel)) { const sel = [...new Set(s.sel)].filter(k => isKing(k) && d.heroes[k] && d.heroes[k].owned).slice(0, 2); if (sel.length) d.sel = sel; }
   d.sound = s.sound !== false; d.music = s.music !== false; d.seenHelp = !!s.seenHelp; d.grid = !!s.grid;
   d.tutDone = !!s.tutDone || d.maps.some(m => m.won);          // a player who has already won a battle needs no tutorial
+  // the bazaar: a save from before it keeps the starting gift of diamonds and feathers
+  for (const k of ['dia', 'feath', 'shards']) if (Number.isFinite(s[k])) d[k] = Math.max(0, Math.floor(s[k]));
+  const isObj = o => o && typeof o === 'object' && !Array.isArray(o);
+  if (isObj(s.own)) for (const id in s.own) if (s.own[id] && (SKINS[id] || (id.startsWith('wp_') && WEAPONS[id.slice(3)]))) d.own[id] = 1;
+  if (isObj(s.eq)) {
+    if (isObj(s.eq.skin)) for (const h in s.eq.skin) { const id = s.eq.skin[h]; if (HEROES[h] && id && d.own[id] && SKINS[id].hero === h) d.eq.skin[h] = id; }
+    if (isObj(s.eq.wp)) for (const h in s.eq.wp) { const k = s.eq.wp[h]; if (HEROES[h] && k && d.own['wp_' + k] && WEAPONS[k].hero === h) d.eq.wp[h] = k; }
+  }
+  if (isObj(s.ch)) for (const k of ['free', 'p_silver', 'p_gold', 'n']) if (Number.isFinite(s.ch[k])) d.ch[k] = s.ch[k];
+  if (isObj(s.day) && typeof s.day.d === 'string' && Array.isArray(s.day.q) && s.day.q.every(q => isObj(q) && QUESTS.some(Q => Q.id === q.id)))
+    d.day = { d: s.day.d, q: s.day.q.map(q => ({ id: q.id, have: Math.max(0, +q.have || 0), got: !!q.got })) };
+  if (isObj(s.login) && typeof s.login.last === 'string') d.login = { n: clamp(s.login.n | 0, 0, LOGIN.length - 1), last: s.login.last };
+  if (isObj(s.pass) && Number.isFinite(s.pass.s)) d.pass = { s: s.pass.s, xp: Math.max(0, +s.pass.xp || 0), prem: !!s.pass.prem, f: (s.pass.f || []).filter(Number.isFinite), p: (s.pass.p || []).filter(Number.isFinite) };
+  if (isObj(s.offers) && typeof s.offers.d === 'string' && Array.isArray(s.offers.s)) d.offers = { d: s.offers.d, s: s.offers.s, sold: Array.isArray(s.offers.sold) ? s.offers.sold : [] };
+  if (isObj(s.starter) && Number.isFinite(s.starter.t)) d.starter = { t: s.starter.t, bought: !!s.starter.bought, seen: s.starter.seen ? 1 : 0 };
+  if (isObj(s.iap)) d.iap = { n: s.iap.n | 0, first: isObj(s.iap.first) ? s.iap.first : {}, tok: isObj(s.iap.tok) ? s.iap.tok : {} };
+  if (isObj(s.story)) d.story = s.story;
   return d;
 }
 function loadGame() {
@@ -4719,6 +5808,7 @@ async function start(data) {
   AU.on = SAVE.sound; AU.musicOn = SAVE.music;
   setTouch(matchMedia('(pointer: coarse)').matches);
   soundLabel(); bindInput();
+  IAP.init(); ADS.init();
   $('#lineup').innerHTML = HERO_ORDER.map(k => `<img src="${ART_URL('por_h_' + k)}" alt="${esc(HEROES[k].name)}" title="${esc(HEROES[k].name)}">`).join('');
   for (const id of ['tEyebrow', 'mEyebrow', 'cEyebrow']) $('#' + id).textContent = mtav($('#' + id).textContent);
   $('#titleBtns').style.visibility = 'hidden';
@@ -4738,7 +5828,7 @@ if (location.hash === '#test') window.__T = {
   get G() { return G; }, get GRID() { return GRID; }, get SAVE() { return SAVE; }, setSave(s) { SAVE = mergeSave(s); saveGame(); },
   MAPS, TOWERS, HEROES, newBattle, startBattle, build, upgrade, sell, convert, startWave, callEarly, update, castSkill, autoTarget, placeCheck, commandHero,
   spawnEnemy, fx, pathFrom, pathLen, computeDist, skillTargeted, go, openPre, handleTap, openTower, closeRadial, skillButton, selectHero, showResult, endBattle, idx, cellX, cellY, artOk, UI, fit, render,
-  setPlace, placeHover, placeAt, summonHero, summonCost, magnetTarget, archerSpot, cellOf, hudInit, VIEW, hurlEnemy, LIFT, deploySquad, squadReady, SQUADS, pickSquad, champReady, KINGS, CHAMPS, renderHeroBar, motherRises, thunderStrike, REAR, dismount, startTutorial, tutStep, get TUT() { return TUT; }, DUEL, startDuel, tryDuel, duelFrame
+  setPlace, placeHover, placeAt, summonHero, summonCost, magnetTarget, archerSpot, cellOf, hudInit, VIEW, hurlEnemy, LIFT, deploySquad, squadReady, SQUADS, pickSquad, champReady, KINGS, CHAMPS, renderHeroBar, motherRises, thunderStrike, REAR, dismount, startTutorial, tutStep, get TUT() { return TUT; }, DUEL, startDuel, tryDuel, duelFrame, openShop, renderShop, openChestFx, openChest, give, passState, passXp, dayState, metaEv, offersToday, skinImg, prepSkin, SKINS, WEAPONS, CHESTS, equip, grantItem, offerRevive, closeBox
 };
 
 })();
