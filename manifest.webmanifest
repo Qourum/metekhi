@@ -1,4 +1,5 @@
 {
+ "id": "/metekhi/",
  "name": "მეტეხი — მეფეთა ლაშქარი",
  "short_name": "მეტეხი",
  "lang": "ka",
@@ -25,6 +26,33 @@
    "sizes": "512x512",
    "type": "image/png",
    "purpose": "maskable"
+  }
+ ],
+ "categories": [
+  "games",
+  "entertainment"
+ ],
+ "screenshots": [
+  {
+   "src": "screens/s1.jpg",
+   "sizes": "1280x720",
+   "type": "image/jpeg",
+   "form_factor": "wide",
+   "label": "ლაბირინთი და კოშკები"
+  },
+  {
+   "src": "screens/s2.jpg",
+   "sizes": "1280x720",
+   "type": "image/jpeg",
+   "form_factor": "wide",
+   "label": "ვახტანგ გორგასალი სპილოს ეჭიდება"
+  },
+  {
+   "src": "screens/s3.jpg",
+   "sizes": "1280x720",
+   "type": "image/jpeg",
+   "form_factor": "wide",
+   "label": "ქაჯეთი: დედოფალი და ობელისკი"
   }
  ]
 }
