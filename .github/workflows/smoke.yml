@@ -1,0 +1,58 @@
+# Smoke test of the Play app on an Android emulator. Runs only for commits whose message contains [smoke].
+# Uses the unsigned APK from the android-out branch, signed here with a throwaway key.
+name: Android smoke test
+
+on:
+  push:
+    branches: [android]
+
+permissions:
+  contents: write
+
+jobs:
+  smoke:
+    if: contains(github.event.head_commit.message, '[smoke]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          ref: android-out
+          path: out
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - name: Sign with a throwaway key
+        run: |
+          keytool -genkeypair -keystore t.jks -storepass android -keypass android -alias t -keyalg RSA -keysize 2048 -validity 30 -dname CN=smoke
+          java -jar out/apksigner.jar sign --ks t.jks --ks-pass pass:android --out app.apk out/metekhi-unsigned-aligned.apk
+          pip install --quiet websocket-client
+      - name: Run on the emulator
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 34
+          target: google_apis
+          arch: x86_64
+          profile: pixel_6
+          disable-animations: true
+          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+          script: bash .github/smoke.sh
+      - name: Publish the results to the android-smoke branch
+        if: always()
+        env:
+          TOKEN: ${{ github.token }}
+        run: |
+          set -eux
+          mkdir -p shots && cd shots
+          echo "${GITHUB_SHA} ${{ job.status }}" > status.txt
+          git init -q -b android-smoke
+          git add -A
+          git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" commit -q -m "Smoke test of ${GITHUB_SHA}"
+          git push -f "https://x-access-token:${TOKEN}@github.com/${GITHUB_REPOSITORY}.git" HEAD:android-smoke
