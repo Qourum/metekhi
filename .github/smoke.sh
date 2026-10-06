@@ -12,6 +12,8 @@ adb shell am force-stop com.android.chrome || true
 adb shell pm list packages | sort > $S/packages.txt
 adb shell dumpsys package com.android.chrome | grep -m1 versionName > $S/chrome.txt || true
 adb install -r app.apk > $S/install.txt 2>&1
+adb shell settings put secure immersive_mode_confirmations confirmed || true
+sleep 20; adb shell am force-stop com.google.android.apps.nexuslauncher || true; sleep 5
 adb logcat -c
 adb shell am start -W -n io.github.qourum.metekhi/.LauncherActivity > $S/start.txt 2>&1
 sleep 30
@@ -23,6 +25,8 @@ adb shell dumpsys window displays | grep -E "cur=|mRotation|rotation=" | head -5
 adb forward tcp:9222 localabstract:chrome_devtools_remote
 curl -s localhost:9222/json > $S/tabs.json
 python3 .github/page_state.py > $S/page.json 2>&1
+sleep 2
+adb exec-out screencap -p > $S/3_bazaar.png
 adb logcat -d > $S/logcat_full.txt
 grep -E "AndroidRuntime|FATAL|metekhi|TrustedWebActivity|TwaLauncher|DigitalGoods|PlayBilling|cr_" $S/logcat_full.txt | tail -300 > $S/logcat.txt
 true
