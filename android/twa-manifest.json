@@ -21,8 +21,8 @@
     "path": "./android.keystore",
     "alias": "metekhi"
   },
-  "appVersion": "1.0.0",
-  "appVersionCode": 1,
+  "appVersion": "1.0.1",
+  "appVersionCode": 2,
   "shortcuts": [],
   "generatorApp": "bubblewrap-cli",
   "webManifestUrl": "https://qourum.github.io/metekhi/manifest.webmanifest",
@@ -35,7 +35,7 @@
   "alphaDependencies": {
     "enabled": true
   },
-  "enableSiteSettingsShortcut": false,
+  "enableSiteSettingsShortcut": true,
   "isChromeOSOnly": false,
   "isMetaQuest": false,
   "fullScopeUrl": "https://qourum.github.io/metekhi/",
