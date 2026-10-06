@@ -40,7 +40,12 @@
   "isMetaQuest": false,
   "fullScopeUrl": "https://qourum.github.io/metekhi/",
   "minSdkVersion": 23,
-  "fingerprints": [],
+  "fingerprints": [
+    {
+      "name": "upload",
+      "value": "CF:6A:64:1C:F0:2B:DD:21:F9:A9:E5:B5:6A:4C:26:DB:F9:4F:6D:0F:E2:86:F2:44:9A:33:C2:B5:6E:2B:3A:05"
+    }
+  ],
   "additionalTrustedOrigins": [],
   "retainedBundles": []
 }

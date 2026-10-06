@@ -1,12 +1,13 @@
 [
   {
-    "relation": ["delegate_permission/common.handle_all_urls"],
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
     "target": {
       "namespace": "android_app",
       "package_name": "io.github.qourum.metekhi",
       "sha256_cert_fingerprints": [
-        "PLAY_APP_SIGNING_SHA256 — Play Console → Test and release → App integrity → App signing key certificate",
-        "UPLOAD_KEY_SHA256 — keytool -list -v -keystore android.keystore -alias metekhi"
+        "CF:6A:64:1C:F0:2B:DD:21:F9:A9:E5:B5:6A:4C:26:DB:F9:4F:6D:0F:E2:86:F2:44:9A:33:C2:B5:6E:2B:3A:05"
       ]
     }
   }
