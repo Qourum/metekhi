@@ -1,0 +1,46 @@
+{
+  "packageId": "io.github.qourum.metekhi",
+  "host": "qourum.github.io",
+  "name": "მეტეხი — მეფეთა ლაშქარი",
+  "launcherName": "მეტეხი",
+  "display": "fullscreen",
+  "orientation": "landscape",
+  "themeColor": "#0D1016",
+  "themeColorDark": "#0D1016",
+  "navigationColor": "#0D1016",
+  "navigationColorDark": "#0D1016",
+  "navigationDividerColor": "#0D1016",
+  "navigationDividerColorDark": "#0D1016",
+  "backgroundColor": "#0D1016",
+  "enableNotifications": true,
+  "startUrl": "/metekhi/",
+  "iconUrl": "https://qourum.github.io/metekhi/icon-512.png",
+  "maskableIconUrl": "https://qourum.github.io/metekhi/icon-512-maskable.png",
+  "splashScreenFadeOutDuration": 300,
+  "signingKey": {
+    "path": "./android.keystore",
+    "alias": "metekhi"
+  },
+  "appVersion": "1.0.0",
+  "appVersionCode": 1,
+  "shortcuts": [],
+  "generatorApp": "bubblewrap-cli",
+  "webManifestUrl": "https://qourum.github.io/metekhi/manifest.webmanifest",
+  "fallbackType": "customtabs",
+  "features": {
+    "playBilling": {
+      "enabled": true
+    }
+  },
+  "alphaDependencies": {
+    "enabled": true
+  },
+  "enableSiteSettingsShortcut": false,
+  "isChromeOSOnly": false,
+  "isMetaQuest": false,
+  "fullScopeUrl": "https://qourum.github.io/metekhi/",
+  "minSdkVersion": 21,
+  "fingerprints": [],
+  "additionalTrustedOrigins": [],
+  "retainedBundles": []
+}

@@ -1,0 +1,63 @@
+# Builds the Google Play app of "Metekhi" (a Trusted Web Activity for https://qourum.github.io/metekhi/).
+# The build is UNSIGNED on purpose: the upload key never comes to GitHub. The owner signs the bundle
+# with android.keystore (jarsigner for the .aab, apksigner for the test .apk).
+# Results, the build log and the tools needed for signing are pushed to the "android-out" branch.
+name: Android app
+
+on:
+  push:
+    branches: [android]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: android-build
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Build the unsigned bundle and APK
+        working-directory: android
+        run: |
+          set -o pipefail
+          mkdir -p ../out
+          chmod +x gradlew
+          ./gradlew --no-daemon --stacktrace :app:bundleRelease :app:assembleRelease 2>&1 | tee ../out/build.log
+
+      - name: Collect the results
+        run: |
+          set -eux
+          BT=$(ls -d "$ANDROID_HOME"/build-tools/* | sort -V | tail -1)
+          basename "$BT" > out/build-tools.txt
+          cp android/app/build/outputs/bundle/release/app-release.aab out/metekhi-unsigned.aab
+          "$BT/zipalign" -f -p 4 android/app/build/outputs/apk/release/app-release-unsigned.apk out/metekhi-unsigned-aligned.apk
+          "$BT/zipalign" -c -p 4 out/metekhi-unsigned-aligned.apk
+          cp "$BT/lib/apksigner.jar" out/
+          "$BT/aapt2" dump badging out/metekhi-unsigned-aligned.apk > out/badging.txt
+          (cd android && ./gradlew --no-daemon -q :app:dependencies --configuration releaseRuntimeClasspath) > out/deps.txt 2>&1 || true
+          ls -la out
+
+      - name: Publish to the android-out branch
+        if: always()
+        env:
+          TOKEN: ${{ github.token }}
+        run: |
+          set -eux
+          mkdir -p out && cd out
+          echo "${GITHUB_SHA} ${{ job.status }}" > status.txt
+          git init -q -b android-out
+          git add -A
+          git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" commit -q -m "Android build of ${GITHUB_SHA}"
+          git push -f "https://x-access-token:${TOKEN}@github.com/${GITHUB_REPOSITORY}.git" HEAD:android-out
