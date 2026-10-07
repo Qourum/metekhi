@@ -1963,151 +1963,312 @@ function heroPath(x0, y0, x1, y1) {
   return out;
 }
 
-// ===== sound: everything synthesized with WebAudio =====
-const AU = { ctx: null, master: null, sfxGain: null, musGain: null, noise: null, last: {}, music: null, on: true, musicOn: true };
+// ===== sound: everything synthesized with WebAudio, no sound files =====
+// The mix: every effect is a voice (a gain, panned to where it happens on the field) feeding the effects bus; effects and
+// music meet in a compressor before the speakers, so a crowded battle never clips or blares, and a send carries some of
+// most effects into a short generated room reverb. Each effect varies a little every time (pitch, level) so a volley never
+// sounds like one sample repeated; the same effect is thinned out when many fire at once; heavy blows carry some
+// mid-range body, so they are still heard on a phone's small speaker. The music is a doli in 6/8 under a plucked panduri
+// (Karplus-Strong strings) playing a short phrase in fifths, with a quiet drone in battle.
+const AU = { ctx: null, sfxGain: null, musGain: null, sfxSend: null, musSend: null, noise: null, last: {}, crowd: {}, ks: {}, music: null, musicKind: null, on: true, musicOn: true };
+const SFX_VOL = 0.62, MUS_VOL = 0.11;            // (the compressor adds some make-up gain to both)
+
+// the mixing graph on a context (the speakers' one, or an offline one for the tests)
+function auGraph(C) {
+  const A = { ctx: C, last: {}, crowd: {}, ks: {} };
+  const comp = C.createDynamicsCompressor();
+  comp.threshold.value = -18; comp.knee.value = 10; comp.ratio.value = 4; comp.attack.value = 0.003; comp.release.value = 0.25;
+  const master = C.createGain(); master.gain.value = 0.92;
+  comp.connect(master); master.connect(C.destination);
+  const soft = C.createBiquadFilter(); soft.type = 'highshelf'; soft.frequency.value = 6500; soft.gain.value = -5;     // takes the edge off hiss and clicks
+  soft.connect(comp);
+  A.sfxGain = C.createGain(); A.sfxGain.gain.value = SFX_VOL; A.sfxGain.connect(soft);
+  A.musGain = C.createGain(); A.musGain.gain.value = MUS_VOL; A.musGain.connect(comp);
+  // the room: a stereo burst of noise dying away over 1.3 seconds, darker as it fades
+  const sr = C.sampleRate, n = Math.floor(sr * 1.3), ir = C.createBuffer(2, n, sr);
+  for (let ch = 0; ch < 2; ch++) {
+    const d = ir.getChannelData(ch); let lp = 0;
+    for (let i = 0; i < n; i++) { const k = i / n; lp += (Math.random() * 2 - 1 - lp) * (0.6 - 0.48 * k); d[i] = lp * Math.pow(1 - k, 2.4) * Math.min(1, i / (sr * 0.01)); }
+  }
+  const verb = C.createConvolver(); verb.buffer = ir;
+  const wet = C.createGain(); wet.gain.value = 0.55; verb.connect(wet); wet.connect(soft);
+  A.sfxSend = C.createGain(); A.sfxSend.gain.value = SFX_VOL; A.sfxSend.connect(verb);
+  A.musSend = C.createGain(); A.musSend.gain.value = MUS_VOL; A.musSend.connect(verb);
+  const len = Math.floor(sr * 1.2), buf = C.createBuffer(1, len, sr), d = buf.getChannelData(0);
+  for (let i = 0; i < len; i++) d[i] = Math.random() * 2 - 1;
+  A.noise = buf;
+  return A;
+}
 function auInit() {
-  if (AU.ctx) { if (AU.ctx.state === 'suspended') AU.ctx.resume().catch(() => {}); return; }
+  if (AU.ctx) { if (AU.ctx.state !== 'running' && AU.on) AU.ctx.resume().catch(() => {}); return; }
   try {
-    const C = new (window.AudioContext || window.webkitAudioContext)();
-    AU.ctx = C; AU.master = C.createGain(); AU.master.gain.value = 0.7; AU.master.connect(C.destination);
-    AU.sfxGain = C.createGain(); AU.sfxGain.gain.value = 0.55; AU.sfxGain.connect(AU.master);
-    AU.musGain = C.createGain(); AU.musGain.gain.value = 0.22; AU.musGain.connect(AU.master);
-    const len = C.sampleRate * 1.2, buf = C.createBuffer(1, len, C.sampleRate), d = buf.getChannelData(0);
-    for (let i = 0; i < len; i++) d[i] = Math.random() * 2 - 1;
-    AU.noise = buf;
+    const AC = window.AudioContext || window.webkitAudioContext;
+    Object.assign(AU, auGraph(new AC({ latencyHint: 'interactive' })));
+    auApply();
+    // a phone that leaves the game (another app, the screen off) leaves it silent; coming back picks the sound up again
+    document.addEventListener('visibilitychange', () => {
+      if (!AU.ctx) return;
+      if (document.hidden) AU.ctx.suspend().catch(() => {});
+      else if (AU.on) AU.ctx.resume().catch(() => {});
+    });
+    // iOS can interrupt the sound (a call, the silent switch); the next touch brings it back
+    document.addEventListener('pointerdown', () => { if (AU.ctx && AU.on && AU.ctx.state !== 'running') AU.ctx.resume().catch(() => {}); }, { passive: true });
   } catch (e) { AU.ctx = null; }
 }
-function auApply() { if (!AU.ctx) return; AU.sfxGain.gain.value = AU.on ? 0.55 : 0; AU.musGain.gain.value = AU.on && AU.musicOn ? 0.22 : 0; }
-function nz(t, dur, type, freq, q, gain, dest) {
-  const C = AU.ctx, s = C.createBufferSource(); s.buffer = AU.noise;
-  const f = C.createBiquadFilter(); f.type = type; f.frequency.value = freq; f.Q.value = q;
-  const g = C.createGain(); g.gain.setValueAtTime(gain, t); g.gain.exponentialRampToValueAtTime(0.001, t + dur);
-  s.connect(f); f.connect(g); g.connect(dest || AU.sfxGain); s.start(t, Math.random() * 0.5); s.stop(t + dur + 0.02);
+function auApply() {
+  if (!AU.ctx) return;
+  const s = AU.on ? SFX_VOL : 0, m = AU.on && AU.musicOn ? MUS_VOL : 0;
+  AU.sfxGain.gain.value = s; AU.sfxSend.gain.value = s; AU.musGain.gain.value = m; AU.musSend.gain.value = m;
 }
-function osc(t, dur, type, f0, f1, gain, dest) {
+
+// ----- the building blocks; d is where the sound goes (a voice, or the music bus) -----
+// a burst of filtered noise; f1: the filter glides there
+function nz(d, t, dur, type, f, q, gain, f1) {
+  const C = AU.ctx, s = C.createBufferSource(); s.buffer = AU.noise;
+  const fl = C.createBiquadFilter(); fl.type = type; fl.frequency.setValueAtTime(f, t); fl.Q.value = q;
+  if (f1) fl.frequency.exponentialRampToValueAtTime(f1, t + dur);
+  const g = C.createGain(); g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(gain, t + Math.min(0.006, dur * 0.25)); g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+  s.loop = true; s.connect(fl); fl.connect(g); g.connect(d); s.start(t, Math.random() * 1.1); s.stop(t + dur + 0.03);
+}
+// a tone with a quick attack and an exponential fall; f1: the pitch glides there
+function tn(d, t, dur, type, f0, f1, gain, att = 0.005) {
   const C = AU.ctx, o = C.createOscillator(); o.type = type; o.frequency.setValueAtTime(f0, t);
   if (f1) o.frequency.exponentialRampToValueAtTime(f1, t + dur);
-  const g = C.createGain(); g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(gain, t + 0.008); g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
-  o.connect(g); g.connect(dest || AU.sfxGain); o.start(t); o.stop(t + dur + 0.02);
+  const g = C.createGain(); g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(gain, t + att); g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+  o.connect(g); g.connect(d); o.start(t); o.stop(t + dur + 0.03);
 }
-const SFX_GAP = { slash: 0.05, slap: 0.08, whoosh: 0.12, heave: 0.2, clash: 0.07, block: 0.08, bow: 0.06, gun: 0.07, boom: 0.1, die: 0.08, coin: 0.09, deploy: 0.05, stone: 0.1, bolt: 0.08, oil: 0.25, zap: 0.08, thud: 0.1, leak: 0.2, thunder: 0.12, neigh: 0.6, chains: 0.4, roar: 1.2, trumpet: 0.6, fanfare: 1, page: 0.15, screech: 0.5, hiss: 0.3, hex: 0.25 };
-function sfx(name) {
-  if (!AU.ctx || !AU.on) return;
-  const C = AU.ctx, t = C.currentTime;
-  if (SFX_GAP[name] && AU.last[name] && t - AU.last[name] < SFX_GAP[name]) return;
-  AU.last[name] = t;
-  switch (name) {
-    case 'clash': nz(t, 0.07, 'bandpass', 2600 + Math.random() * 900, 4, 0.5); osc(t, 0.09, 'triangle', 1400 + Math.random() * 500, 900, 0.08); break;
-    case 'block': osc(t, 0.16, 'square', 2100, 1700, 0.06); nz(t, 0.05, 'highpass', 4000, 1, 0.3); break;
-    case 'bow': nz(t, 0.12, 'highpass', 2500, 0.7, 0.18); osc(t, 0.05, 'triangle', 300, 180, 0.08); break;
-    case 'gun': nz(t, 0.22, 'lowpass', 1400, 0.8, 0.7); osc(t, 0.16, 'sine', 140, 50, 0.4); break;
-    case 'boom': nz(t, 0.7, 'lowpass', 500, 0.7, 0.9); osc(t, 0.6, 'sine', 90, 32, 0.7); break;
-    case 'die': osc(t, 0.12, 'sine', 160, 70, 0.12); break;
-    case 'deploy': osc(t, 0.14, 'sine', 150, 70, 0.4); nz(t, 0.05, 'bandpass', 900, 2, 0.15); break;
-    case 'coin': osc(t, 0.07, 'square', 1320, 0, 0.05); osc(t + 0.06, 0.1, 'square', 1760, 0, 0.05); break;
-    case 'horn': { const C2 = AU.ctx; [0, 0.32].forEach((d, i) => { const o = C2.createOscillator(); o.type = 'sawtooth'; o.frequency.setValueAtTime(i ? 247 : 196, t + d); const f = C2.createBiquadFilter(); f.type = 'lowpass'; f.frequency.value = 900; const g = C2.createGain(); g.gain.setValueAtTime(0.0001, t + d); g.gain.exponentialRampToValueAtTime(0.18, t + d + 0.06); g.gain.setValueAtTime(0.18, t + d + 0.22); g.gain.exponentialRampToValueAtTime(0.0001, t + d + 0.42); o.connect(f); f.connect(g); g.connect(AU.sfxGain); o.start(t + d); o.stop(t + d + 0.5); }); break; }
-    case 'skill': [523, 659, 784].forEach((f, i) => osc(t + i * 0.06, 0.25, 'triangle', f, 0, 0.12)); break;
-    case 'zap': for (let i = 0; i < 5; i++) nz(t + i * 0.03, 0.05, 'highpass', 3000 + Math.random() * 3000, 1, 0.35); osc(t, 0.2, 'square', 90, 60, 0.06); break;
-    case 'howl': { const C2 = AU.ctx, o = C2.createOscillator(); o.type = 'sine'; o.frequency.setValueAtTime(260, t); o.frequency.exponentialRampToValueAtTime(620, t + 0.35); o.frequency.exponentialRampToValueAtTime(420, t + 1.1); const v = C2.createOscillator(); v.frequency.value = 7; const vg = C2.createGain(); vg.gain.value = 14; v.connect(vg); vg.connect(o.frequency); const g = C2.createGain(); g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(0.22, t + 0.12); g.gain.exponentialRampToValueAtTime(0.0001, t + 1.2); o.connect(g); g.connect(AU.sfxGain); o.start(t); v.start(t); o.stop(t + 1.25); v.stop(t + 1.25); break; }
-    case 'bless': [880, 1109, 1319, 1760].forEach((f, i) => osc(t + i * 0.09, 0.7, 'sine', f, 0, 0.09)); break;
-    case 'verse': [392, 440, 523, 587, 523].forEach((f, i) => osc(t + i * 0.11, 0.42, 'triangle', f, f * 1.01, 0.07)); nz(t, 0.5, 'bandpass', 1800, 3, 0.06); break;
-    case 'charge': nz(t, 0.6, 'lowpass', 300, 1, 0.5); [392, 494, 587].forEach((f, i) => osc(t + i * 0.08, 0.4, 'sawtooth', f, 0, 0.05)); break;
-    case 'hypno': [330, 311, 294].forEach((f, i) => osc(t + i * 0.12, 0.5, 'sine', f, f * 0.98, 0.1)); break;
-    case 'win': [523, 659, 784, 1047].forEach((f, i) => osc(t + i * 0.13, 0.5, 'triangle', f, 0, 0.16)); break;
-    case 'lose': [392, 349, 311, 262].forEach((f, i) => osc(t + i * 0.18, 0.5, 'triangle', f, 0, 0.14)); break;
-    case 'build': nz(t, 0.06, 'bandpass', 700, 3, 0.45); nz(t + 0.07, 0.05, 'bandpass', 900, 3, 0.35); osc(t, 0.1, 'triangle', 220, 150, 0.12); break;
-    case 'sell': [1320, 1100, 880].forEach((f, i) => osc(t + i * 0.05, 0.08, 'square', f, 0, 0.04)); break;
-    case 'upgrade': [659, 880, 1175].forEach((f, i) => osc(t + i * 0.07, 0.22, 'triangle', f, 0, 0.12)); nz(t, 0.08, 'bandpass', 800, 2, 0.25); break;
-    case 'stone': nz(t, 0.18, 'lowpass', 900, 0.8, 0.3); osc(t, 0.12, 'triangle', 260, 120, 0.1); break;
-    case 'thud': nz(t, 0.32, 'lowpass', 380, 0.8, 0.8); osc(t, 0.28, 'sine', 80, 38, 0.45); break;
-    case 'bolt': osc(t, 0.18, 'sawtooth', 180, 90, 0.08); nz(t, 0.1, 'highpass', 1800, 0.7, 0.25); break;
-    case 'oil': nz(t, 0.5, 'highpass', 2600, 0.6, 0.22); nz(t, 0.25, 'lowpass', 500, 1, 0.25); break;
-    case 'bell': [523, 1046, 1568].forEach((f, i) => osc(t, 1.4 - i * 0.3, 'sine', f, 0, 0.11 / (i + 1))); break;
-    case 'leak': osc(t, 0.5, 'sawtooth', 146, 110, 0.12); osc(t + 0.12, 0.5, 'sawtooth', 110, 98, 0.1); break;
-    case 'wave': { const C2 = AU.ctx; [0, 0.28, 0.56].forEach((d, i) => { const o = C2.createOscillator(); o.type = 'sawtooth'; o.frequency.setValueAtTime([196, 196, 262][i], t + d); const f = C2.createBiquadFilter(); f.type = 'lowpass'; f.frequency.value = 1000; const g = C2.createGain(); g.gain.setValueAtTime(0.0001, t + d); g.gain.exponentialRampToValueAtTime(0.16, t + d + 0.05); g.gain.setValueAtTime(0.16, t + d + 0.2); g.gain.exponentialRampToValueAtTime(0.0001, t + d + (i === 2 ? 0.7 : 0.3)); o.connect(f); f.connect(g); g.connect(AU.sfxGain); o.start(t + d); o.stop(t + d + 0.8); }); break; }
-    case 'click': osc(t, 0.04, 'square', 900, 0, 0.04); break;
-    case 'screech': {     // the firebird's cry: a high wavering call that falls away
-      const C2 = AU.ctx, o = C2.createOscillator(); o.type = 'sawtooth'; o.frequency.setValueAtTime(1500, t); o.frequency.exponentialRampToValueAtTime(2300, t + 0.12); o.frequency.exponentialRampToValueAtTime(900, t + 0.75);
-      const v = C2.createOscillator(); v.frequency.value = 23; const vg = C2.createGain(); vg.gain.value = 70; v.connect(vg); vg.connect(o.frequency);
-      const f = C2.createBiquadFilter(); f.type = 'bandpass'; f.frequency.value = 1700; f.Q.value = 1.4;
-      const g2 = C2.createGain(); g2.gain.setValueAtTime(0.0001, t); g2.gain.exponentialRampToValueAtTime(0.16, t + 0.05); g2.gain.exponentialRampToValueAtTime(0.0001, t + 0.8);
-      o.connect(f); f.connect(g2); g2.connect(AU.sfxGain); o.start(t); v.start(t); o.stop(t + 0.82); v.stop(t + 0.82); break;
-    }
-    // the serpent's spit: a sharp hiss that falls away
-    case 'hiss': { const C2 = AU.ctx, n = C2.createBufferSource(); n.buffer = AU.noise; const f = C2.createBiquadFilter(); f.type = 'highpass'; f.frequency.setValueAtTime(5200, t); f.frequency.exponentialRampToValueAtTime(2200, t + 0.5); const g = C2.createGain(); g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(0.28, t + 0.04); g.gain.exponentialRampToValueAtTime(0.0001, t + 0.55); n.connect(f); f.connect(g); g.connect(AU.sfxGain); n.start(t, Math.random() * 0.5); n.stop(t + 0.6); osc(t + 0.04, 0.3, 'sine', 220, 120, 0.05); break; }
-    // a sorcerer's hex: a cold shimmer of detuned bells
-    case 'hex': [1245, 1319, 1661].forEach((f, i) => osc(t + i * 0.05, 0.45, 'sine', f, f * 0.94, 0.05)); osc(t, 0.35, 'sawtooth', 160, 120, 0.035); break;
-    case 'page': nz(t, 0.16, 'bandpass', 2300, 0.9, 0.2); nz(t + 0.08, 0.14, 'highpass', 3600, 0.8, 0.1); break;      // a parchment page turning
-    case 'chains': for (let i = 0; i < 8; i++) { const d = i * 0.06 + Math.random() * 0.03; osc(t + d, 0.1, 'square', 1700 + Math.random() * 1500, 1100, 0.022); nz(t + d, 0.045, 'bandpass', 4600, 6, 0.16); } break;
-    case 'roar': {     // a giant's roar: a low growling voice and the mountain rumbling under it
-      const C2 = AU.ctx, o = C2.createOscillator(); o.type = 'sawtooth';
-      o.frequency.setValueAtTime(88, t); o.frequency.exponentialRampToValueAtTime(128, t + 0.35); o.frequency.exponentialRampToValueAtTime(66, t + 1.35);
-      const v = C2.createOscillator(); v.frequency.value = 11; const vg = C2.createGain(); vg.gain.value = 8; v.connect(vg); vg.connect(o.frequency);
-      const f = C2.createBiquadFilter(); f.type = 'lowpass'; f.frequency.value = 560; f.Q.value = 3;
-      const g = C2.createGain(); g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(0.3, t + 0.14); g.gain.exponentialRampToValueAtTime(0.0001, t + 1.45);
-      o.connect(f); f.connect(g); g.connect(AU.sfxGain); o.start(t); v.start(t); o.stop(t + 1.5); v.stop(t + 1.5);
-      nz(t + 0.08, 1.3, 'lowpass', 140, 0.8, 0.8); break;
-    }
-    case 'slap': nz(t, 0.05, 'highpass', 2400, 0.8, 0.75); nz(t, 0.11, 'bandpass', 1100, 1.4, 0.4); osc(t, 0.1, 'sine', 190, 90, 0.22); break;
-    case 'heave': osc(t, 0.42, 'sawtooth', 118, 82, 0.07); nz(t, 0.35, 'lowpass', 420, 1, 0.22); break;
-    case 'whoosh': { const C2 = AU.ctx, n = C2.createBufferSource(); n.buffer = AU.noise; const f = C2.createBiquadFilter(); f.type = 'bandpass'; f.Q.value = 1.6; f.frequency.setValueAtTime(380, t); f.frequency.exponentialRampToValueAtTime(1500, t + 0.38); const g = C2.createGain(); g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(0.32, t + 0.12); g.gain.exponentialRampToValueAtTime(0.0001, t + 0.44); n.connect(f); f.connect(g); g.connect(AU.sfxGain); n.start(t, Math.random() * 0.5); n.stop(t + 0.46); break; }
-    case 'slash': nz(t, 0.09, 'bandpass', 3600, 1.6, 0.45); osc(t + 0.015, 0.1, 'triangle', 2600, 1700, 0.045); break;
-    case 'crack': nz(t, 0.04, 'highpass', 3200, 1, 0.6); osc(t, 0.07, 'square', 640, 260, 0.06); break;
-    // the crack of a lightning stroke and the thunder rolling after it
-    case 'thunder': nz(t, 0.07, 'highpass', 2600, 0.8, 0.9); nz(t + 0.02, 0.65, 'lowpass', 260, 0.7, 1.1); nz(t + 0.38, 0.65, 'lowpass', 160, 0.8, 0.9); nz(t + 0.78, 0.6, 'lowpass', 110, 0.9, 0.6); osc(t, 0.9, 'sine', 72, 34, 0.45); break;
-    case 'neigh': {      // a horse's whinny: a rising then falling wavering cry
-      const C2 = AU.ctx, o = C2.createOscillator(); o.type = 'sawtooth';
-      o.frequency.setValueAtTime(520, t); o.frequency.linearRampToValueAtTime(980, t + 0.12); o.frequency.linearRampToValueAtTime(760, t + 0.35); o.frequency.exponentialRampToValueAtTime(330, t + 0.85);
-      const v = C2.createOscillator(); v.frequency.value = 11; const vg = C2.createGain(); vg.gain.value = 55; v.connect(vg); vg.connect(o.frequency);
-      const f = C2.createBiquadFilter(); f.type = 'bandpass'; f.frequency.value = 1300; f.Q.value = 1.1;
-      const g = C2.createGain(); g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(0.16, t + 0.05); g.gain.setValueAtTime(0.14, t + 0.5); g.gain.exponentialRampToValueAtTime(0.0001, t + 0.9);
-      o.connect(f); f.connect(g); g.connect(AU.sfxGain); o.start(t); v.start(t); o.stop(t + 0.95); v.stop(t + 0.95);
-      nz(t, 0.25, 'bandpass', 2400, 2, 0.12); break;
-    }
-    case 'trumpet': {    // a war elephant's trumpet: a brassy blare that leaps up, wavers and breaks off
-      const C2 = AU.ctx, o = C2.createOscillator(); o.type = 'sawtooth';
-      o.frequency.setValueAtTime(300, t); o.frequency.exponentialRampToValueAtTime(820, t + 0.16); o.frequency.setValueAtTime(800, t + 0.55); o.frequency.exponentialRampToValueAtTime(470, t + 0.95);
-      const v = C2.createOscillator(); v.frequency.value = 24; const vg = C2.createGain(); vg.gain.value = 42; v.connect(vg); vg.connect(o.frequency);
-      const f = C2.createBiquadFilter(); f.type = 'bandpass'; f.frequency.value = 1200; f.Q.value = 1.6;
-      const g = C2.createGain(); g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(0.24, t + 0.05); g.gain.setValueAtTime(0.2, t + 0.72); g.gain.exponentialRampToValueAtTime(0.0001, t + 1.0);
-      o.connect(f); f.connect(g); g.connect(AU.sfxGain); o.start(t); v.start(t); o.stop(t + 1.05); v.stop(t + 1.05);
-      nz(t, 0.45, 'bandpass', 2600, 2.5, 0.12); break;
-    }
-    case 'fanfare': {    // a short brass call for the king's victory
-      const C2 = AU.ctx;
-      [[0, 262, 0.16], [0.13, 330, 0.16], [0.26, 392, 0.16], [0.4, 523, 0.7]].forEach(([d, fq, len]) => {
-        const o = C2.createOscillator(); o.type = 'sawtooth'; o.frequency.setValueAtTime(fq, t + d);
-        const lp = C2.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 1500;
-        const g = C2.createGain(); g.gain.setValueAtTime(0.0001, t + d); g.gain.exponentialRampToValueAtTime(0.15, t + d + 0.04); g.gain.setValueAtTime(0.15, t + d + len * 0.7); g.gain.exponentialRampToValueAtTime(0.0001, t + d + len);
-        o.connect(lp); lp.connect(g); g.connect(AU.sfxGain); o.start(t + d); o.stop(t + d + len + 0.05);
-      });
-      break;
-    }
+// struck metal, a bell, a coin: sine partials at the given ratios, each dying at its own rate
+function modes(d, t, f, R, D, G) { for (let i = 0; i < R.length; i++) tn(d, t, D[i], 'sine', f * R[i], 0, G[i], 0.002); }
+const BAR = [1, 2.756, 5.404, 8.933];                                   // a free metal bar (a blade, a chain link)
+const BELL = [0.56, 0.92, 1.19, 1.71, 2, 2.74, 3, 3.76, 4.07];          // a church bell's partials
+// a plucked string (Karplus-Strong): a burst of noise circulating in a delay line, softened at every pass. Made at
+// 22 kHz (the player resamples it), two variants of each note kept, so repeated notes are never quite the same
+const KS_RATE = 22050;
+function ksBuf(f, len, damp, bright) {
+  const C = AU.ctx, key = Math.round(f) + ':' + len + ':' + damp + ':' + (bright ? 1 : 0) + ':' + ((Math.random() * 2) | 0);
+  if (AU.ks[key]) return AU.ks[key];
+  const sr = KS_RATE, n = Math.floor(sr * len), b = C.createBuffer(1, n, sr), out = b.getChannelData(0), P = Math.max(2, Math.round(sr / f - 0.5)), ring = new Float32Array(P);
+  for (let i = 0; i < P; i++) ring[i] = Math.random() * 2 - 1;
+  if (!bright) for (let i = 1; i < P; i++) ring[i] = (ring[i] + ring[i - 1]) * 0.5;
+  let j = 0;
+  for (let i = 0; i < n; i++) { const a = ring[j], nx = ring[(j + 1) % P]; out[i] = a; ring[j] = (a + nx) * 0.5 * damp; j = (j + 1) % P; }
+  return (AU.ks[key] = b);
+}
+function pluck(d, t, f, len, gain, damp = 0.996, bright = true) {
+  const C = AU.ctx, s = C.createBufferSource(); s.buffer = ksBuf(f, len, damp, bright);
+  const g = C.createGain(); g.gain.setValueAtTime(gain, t); g.gain.setValueAtTime(gain, t + len * 0.75); g.gain.linearRampToValueAtTime(0, t + len);
+  s.connect(g); g.connect(d); s.start(t); s.stop(t + len + 0.02);
+}
+// brass (a horn, the war horn, a fanfare): two detuned saws through a lowpass that opens as the note swells, a scoop up
+// into the pitch and a slow vibrato
+function brass(d, t, f, dur, gain, bright = 2200) {
+  const C = AU.ctx, g = C.createGain(), lp = C.createBiquadFilter(); lp.type = 'lowpass'; lp.Q.value = 1.1;
+  lp.frequency.setValueAtTime(f * 1.5, t); lp.frequency.exponentialRampToValueAtTime(bright, t + 0.09);
+  lp.frequency.setValueAtTime(bright, t + dur * 0.7); lp.frequency.exponentialRampToValueAtTime(f * 1.4, t + dur);
+  g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(gain, t + 0.07); g.gain.setValueAtTime(gain * 0.85, t + dur * 0.75); g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+  const vib = C.createOscillator(), vg = C.createGain(); vib.frequency.value = 5.2; vg.gain.value = f * 0.006; vib.connect(vg);
+  for (const k of [1, 1.004]) {
+    const o = C.createOscillator(); o.type = 'sawtooth'; o.frequency.setValueAtTime(f * k * 0.97, t); o.frequency.exponentialRampToValueAtTime(f * k, t + 0.05);
+    vg.connect(o.frequency); o.connect(lp); o.start(t); o.stop(t + dur + 0.05);
+  }
+  lp.connect(g); g.connect(d); vib.start(t); vib.stop(t + dur + 0.05);
+}
+// a skin drum: a falling sine, an overtone for small speakers and the slap of the hand
+function drum(d, t, f0, f1, dur, gain, slap = 0.3) {
+  tn(d, t, dur, 'sine', f0, f1, gain, 0.002);
+  tn(d, t, dur * 0.5, 'triangle', f0 * 1.6, f1 * 1.6, gain * 0.22, 0.002);
+  if (slap) nz(d, t, 0.03, 'bandpass', 1900, 1.2, gain * slap);
+}
+// a little grit (tanh) for blasts and roars: their low end grows harmonics a phone can play
+function grit(d, k = 3) {
+  const C = AU.ctx, w = C.createWaveShaper(), n = 512, c = new Float32Array(n);
+  for (let i = 0; i < n; i++) { const x = i / (n - 1) * 2 - 1; c[i] = Math.tanh(x * k) / Math.tanh(k); }
+  w.curve = c; w.connect(d);
+  return w;
+}
+// a vocal cry with vibrato through a formant band (a horse, an elephant, the firebird, a wolf, a giant)
+function cry(d, t, type, F, T, vibF, vibA, band, q, gain, att = 0.05) {
+  const C = AU.ctx, o = C.createOscillator(); o.type = type;
+  o.frequency.setValueAtTime(F[0], t);
+  for (let i = 1; i < F.length; i++) o.frequency.exponentialRampToValueAtTime(F[i], t + T[i - 1]);
+  const v = C.createOscillator(), vg = C.createGain(); v.frequency.value = vibF; vg.gain.value = vibA; v.connect(vg); vg.connect(o.frequency);
+  const f = C.createBiquadFilter(); f.type = 'bandpass'; f.frequency.value = band; f.Q.value = q;
+  const end = T[T.length - 1], g = C.createGain(); g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(gain, t + att); g.gain.setValueAtTime(gain * 0.85, t + end * 0.7); g.gain.exponentialRampToValueAtTime(0.0001, t + end);
+  o.connect(f); f.connect(g); g.connect(d); o.start(t); v.start(t); o.stop(t + end + 0.05); v.stop(t + end + 0.05);
+}
+
+// ----- the effects: (voice, time, r: a pitch factor near 1) -----
+const SFX = {
+  click: (v, t, r) => { nz(v, t, 0.035, 'bandpass', 2200 * r, 1.5, 0.5); tn(v, t, 0.04, 'sine', 1100 * r, 720 * r, 0.09); },
+  coin: (v, t, r) => { modes(v, t, 2093 * r, [1, 2.41, 3.89], [0.24, 0.14, 0.08], [0.09, 0.05, 0.03]); modes(v, t + 0.07, 2637 * r, [1, 2.41, 3.89], [0.32, 0.16, 0.09], [0.08, 0.04, 0.025]); nz(v, t, 0.02, 'highpass', 5000, 1, 0.1); },
+  sell: (v, t, r) => { modes(v, t, 2637 * r, [1, 2.41], [0.22, 0.12], [0.08, 0.04]); modes(v, t + 0.08, 2093 * r, [1, 2.41], [0.26, 0.14], [0.08, 0.04]); modes(v, t + 0.16, 1760 * r, [1, 2.41], [0.34, 0.16], [0.07, 0.03]); },
+  build: (v, t, r) => { for (let k = 0; k < 3; k++) { const s = t + k * 0.075; nz(v, s, 0.07, 'bandpass', (520 + k * 90) * r, 5, 0.5); tn(v, s, 0.09, 'triangle', (190 + k * 20) * r, 130, 0.14); } },
+  upgrade: (v, t, r) => { [784, 988, 1175, 1568].forEach((f, i) => modes(v, t + i * 0.07, f * r, [1, 2, 3.01, 4.2], [0.6, 0.35, 0.2, 0.12], [0.07, 0.03, 0.015, 0.01])); nz(v, t, 0.4, 'highpass', 6000, 0.7, 0.03); },
+  skill: (v, t, r) => { nz(v, t, 0.3, 'bandpass', 500, 1.4, 0.18, 2400); [659, 880, 1319].forEach((f, i) => modes(v, t + 0.08 + i * 0.06, f * r, [1, 2.01, 3.02], [0.5, 0.3, 0.2], [0.06, 0.025, 0.012])); },
+  deploy: (v, t, r) => { drum(v, t, 150 * r, 70, 0.16, 0.4, 0.25); nz(v, t + 0.02, 0.12, 'bandpass', 900, 1.5, 0.12); },
+  wave: (v, t) => { brass(v, t, 196, 0.34, 0.16); brass(v, t + 0.36, 196, 0.3, 0.16); brass(v, t + 0.7, 262, 0.8, 0.18); drum(v, t, 92, 50, 0.4, 0.4, 0.15); drum(v, t + 0.7, 92, 50, 0.45, 0.45, 0.15); },
+  horn: (v, t, r) => { brass(v, t, 196 * r, 0.42, 0.17); brass(v, t + 0.36, 247 * r, 0.58, 0.17); },
+  fanfare: (v, t) => { [[0, 262, 0.18], [0.14, 330, 0.18], [0.28, 392, 0.18], [0.44, 523, 0.8]].forEach(([d, f, l]) => brass(v, t + d, f, l, 0.15, 2600)); },
+  win: (v, t) => { [[0, 392, 0.2], [0.16, 523, 0.2], [0.32, 659, 0.2], [0.5, 784, 0.9]].forEach(([d, f, l]) => brass(v, t + d, f, l, 0.13, 2800)); modes(v, t + 0.5, 1568, BELL, [2, 1.6, 1.3, 1, 0.9, 0.7, 0.6, 0.5, 0.4], [0.03, 0.025, 0.03, 0.02, 0.02, 0.012, 0.01, 0.008, 0.008]); },
+  lose: (v, t) => { [[0, 196, 0.4], [0.32, 175, 0.4], [0.64, 156, 0.4], [0.96, 131, 1.1]].forEach(([d, f, l]) => brass(v, t + d, f, l, 0.13, 900)); drum(v, t + 0.96, 70, 40, 0.8, 0.45, 0.1); },
+  leak: (v, t) => { brass(v, t, 147, 0.4, 0.13, 900); brass(v, t + 0.22, 110, 0.62, 0.13, 760); drum(v, t, 78, 42, 0.5, 0.38, 0.1); },
+  // arrows: the string's twang and the arrow's hiss
+  bow: (v, t, r) => { pluck(v, t, 105 * r, 0.18, 0.5, 0.97, false); nz(v, t + 0.01, 0.16, 'bandpass', 2600 * r, 1.4, 0.15, 1100); },
+  // a catapult lets go: a wooden thunk, the arm's creak and the stone's flight
+  stone: (v, t, r) => { tn(v, t, 0.14, 'triangle', 150 * r, 80, 0.3); nz(v, t, 0.1, 'bandpass', 380 * r, 3, 0.7); nz(v, t + 0.05, 0.3, 'bandpass', 500, 1, 0.3, 1400); },
+  // a ballista: a heavy cord and a bolt that hums away
+  bolt: (v, t, r) => { pluck(v, t, 72 * r, 0.22, 0.6, 0.95, false); nz(v, t, 0.06, 'bandpass', 900 * r, 2, 0.32); nz(v, t + 0.02, 0.22, 'bandpass', 1800, 1.2, 0.14, 700); },
+  // boiling oil: a sizzle over the pour, bubbles popping
+  oil: (v, t, r) => { nz(v, t, 0.6, 'highpass', 3200 * r, 0.7, 0.25); nz(v, t, 0.3, 'lowpass', 600, 1, 0.3); for (let i = 0; i < 5; i++) tn(v, t + i * 0.08 + Math.random() * 0.04, 0.06, 'sine', 260 + Math.random() * 260, 520, 0.05); },
+  // a heavy blow lands: the ground's thump, a body for small speakers, gravel flying
+  thud: (v, t, r) => {
+    tn(v, t, 0.32, 'sine', 95 * r, 42, 0.55); tn(v, t, 0.18, 'triangle', 190 * r, 90, 0.18); nz(v, t, 0.28, 'lowpass', 520, 0.8, 0.6, 180);
+    for (let i = 0; i < 6; i++) nz(v, t + 0.03 + Math.random() * 0.2, 0.035, 'bandpass', 2000 + Math.random() * 2500, 2, 0.06);
+  },
+  boom: (v, t, r) => { const g = grit(v); nz(g, t, 0.9, 'lowpass', 2400 * r, 0.7, 0.8, 160); tn(g, t, 0.8, 'sine', 80 * r, 32, 0.7); tn(v, t, 0.25, 'triangle', 220 * r, 90, 0.2); },
+  // swords meet: a short ring of steel over the knock of the blow
+  clash: (v, t, r) => { modes(v, t, (1700 + Math.random() * 700) * r, BAR, [0.22, 0.12, 0.07, 0.04], [0.14, 0.08, 0.05, 0.03]); nz(v, t, 0.035, 'highpass', 3000, 0.9, 0.5); tn(v, t, 0.06, 'triangle', 300 * r, 200, 0.1); },
+  block: (v, t, r) => { modes(v, t, 900 * r, BAR, [0.18, 0.1, 0.06, 0.03], [0.14, 0.07, 0.04, 0.02]); nz(v, t, 0.05, 'bandpass', 1500, 1, 0.5); },
+  slap: (v, t, r) => { nz(v, t, 0.06, 'bandpass', 1300 * r, 1.2, 0.6); nz(v, t, 0.03, 'highpass', 3000, 1, 0.28); tn(v, t, 0.12, 'sine', 170 * r, 80, 0.25); },
+  slash: (v, t, r) => { nz(v, t, 0.16, 'bandpass', 1400 * r, 1, 0.9, 5200); modes(v, t + 0.05, 3400 * r, [1, 2.76], [0.12, 0.06], [0.06, 0.03]); },
+  crack: (v, t, r) => { nz(v, t, 0.04, 'highpass', 3200, 1, 0.55); tn(v, t, 0.07, 'triangle', 640 * r, 260, 0.08); },
+  // a foe falls: a body on the ground and the rattle of his gear
+  die: (v, t, r) => { nz(v, t, 0.16, 'lowpass', 700 * r, 0.9, 0.5, 200); tn(v, t, 0.14, 'sine', 150 * r, 70, 0.22); nz(v, t + 0.06, 0.05, 'bandpass', 2600, 3, 0.08); },
+  // a rifle: the crack, the blast and its echo off the hills (the room)
+  gun: (v, t, r) => { nz(v, t, 0.025, 'highpass', 2500, 0.8, 0.75); const g = grit(v, 2); nz(g, t, 0.22, 'lowpass', 1600 * r, 0.8, 0.55, 400); tn(g, t, 0.16, 'sine', 140 * r, 50, 0.42); },
+  zap: (v, t, r) => { for (let i = 0; i < 5; i++) nz(v, t + i * 0.028 + Math.random() * 0.01, 0.04, 'highpass', 2500 + Math.random() * 3500, 1.5, 0.2); tn(v, t, 0.2, 'sine', 120 * r, 60, 0.12); tn(v, t, 0.14, 'triangle', 880 * r, 1760, 0.03); },
+  whoosh: (v, t, r) => nz(v, t, 0.44, 'bandpass', 380 * r, 0.9, 1, 1500),
+  // a sword whirling in place: a swish whose pitch swings round and round
+  whirl: (v, t, r) => {
+    const C = AU.ctx, s = C.createBufferSource(); s.buffer = AU.noise; s.loop = true;
+    const f = C.createBiquadFilter(); f.type = 'bandpass'; f.frequency.value = 1100 * r; f.Q.value = 1.3;
+    const lfo = C.createOscillator(), lg = C.createGain(); lfo.frequency.value = 4.8; lg.gain.value = 520; lfo.connect(lg); lg.connect(f.frequency);
+    const g = C.createGain(); g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(0.24, t + 0.1); g.gain.setValueAtTime(0.24, t + 0.85); g.gain.exponentialRampToValueAtTime(0.0001, t + 1.2);
+    s.connect(f); f.connect(g); g.connect(v); s.start(t, Math.random()); lfo.start(t); s.stop(t + 1.25); lfo.stop(t + 1.25);
+  },
+  heave: (v, t, r) => { tn(v, t, 0.42, 'triangle', 118 * r, 82, 0.2); nz(v, t, 0.35, 'lowpass', 420, 1, 0.4); nz(v, t + 0.1, 0.25, 'bandpass', 700, 2, 0.06); },
+  page: (v, t) => { nz(v, t, 0.16, 'bandpass', 2300, 0.9, 0.2); nz(v, t + 0.08, 0.14, 'highpass', 3600, 0.8, 0.1); },
+  // a sorcerer's hex: a cold shimmer of detuned bells
+  hex: (v, t, r) => { [1245, 1319, 1661].forEach((f, i) => tn(v, t + i * 0.05, 0.5, 'sine', f * r, f * 0.94, 0.05)); tn(v, t, 0.35, 'triangle', 160, 120, 0.05); },
+  hypno: (v, t, r) => [330, 311, 294].forEach((f, i) => tn(v, t + i * 0.12, 0.55, 'sine', f * r, f * 0.98, 0.09)),
+  holy: (v, t, r) => { modes(v, t, 1320 * r, [1, 2.01, 3.03], [0.35, 0.2, 0.12], [0.1, 0.045, 0.02]); nz(v, t, 0.12, 'highpass', 5200, 0.8, 0.03); },
+  bless: (v, t, r) => [880, 1109, 1319, 1760].forEach((f, i) => modes(v, t + i * 0.09, f * r, [1, 2.01, 3.02], [0.9, 0.5, 0.3], [0.05, 0.02, 0.01])),
+  // Mikha's verse: a chonguri's strings under the words
+  verse: (v, t, r) => { [392, 440, 523, 587, 523].forEach((f, i) => pluck(v, t + i * 0.11, f * r, 0.9, 0.16, 0.997)); nz(v, t, 0.5, 'bandpass', 1800, 3, 0.04); },
+  // a battle cry: the drums roll and a horn calls
+  charge: (v, t, r) => { for (let i = 0; i < 6; i++) drum(v, t + i * 0.07, 120 * r, 70, 0.12, 0.22 + i * 0.03, 0.2); brass(v, t + 0.05, 262 * r, 0.4, 0.12); },
+  // the bell of Metekhi and of Gergeti: a deep strike, its partials dying away one by one
+  bell: (v, t) => { modes(v, t, 330, BELL, [4.5, 3.4, 2.6, 2.2, 1.9, 1.6, 1.3, 1.1, 0.9], [0.09, 0.07, 0.08, 0.05, 0.05, 0.035, 0.03, 0.02, 0.02]); nz(v, t, 0.05, 'bandpass', 1800, 1, 0.14); },
+  chains: (v, t, r) => { for (let i = 0; i < 8; i++) { const s = t + i * 0.055 + Math.random() * 0.03; modes(v, s, (2400 + Math.random() * 2200) * r, [1, 2.4, 4.1], [0.07, 0.05, 0.03], [0.04, 0.02, 0.012]); nz(v, s, 0.03, 'bandpass', 5000, 4, 0.07); } },
+  // the crack of a lightning stroke and the thunder rolling after it
+  thunder: (v, t) => { nz(v, t, 0.07, 'highpass', 2600, 0.8, 0.8); const g = grit(v, 2); nz(g, t + 0.02, 0.65, 'lowpass', 260, 0.7, 1); nz(g, t + 0.38, 0.65, 'lowpass', 160, 0.8, 0.8); nz(g, t + 0.78, 0.6, 'lowpass', 110, 0.9, 0.55); tn(g, t, 0.9, 'sine', 72, 34, 0.4); },
+  // a giant's roar: a low growling voice and the mountain rumbling under it
+  roar: (v, t) => { const g = grit(v, 2.5); cry(g, t, 'sawtooth', [88, 128, 66], [0.35, 1.35, 1.45], 11, 8, 560, 3, 0.3, 0.14); nz(v, t + 0.08, 1.3, 'lowpass', 140, 0.8, 0.7); },
+  // a horse's whinny: a rising then falling wavering cry
+  neigh: (v, t, r) => { cry(v, t, 'sawtooth', [520 * r, 980 * r, 760 * r, 330 * r], [0.12, 0.35, 0.85, 0.9], 11, 55, 1300, 1.1, 0.15); nz(v, t, 0.25, 'bandpass', 2400, 2, 0.1); },
+  // a war elephant's trumpet: a brassy blare that leaps up, wavers and breaks off
+  trumpet: (v, t) => { cry(v, t, 'sawtooth', [300, 820, 800, 470], [0.16, 0.55, 0.95, 1], 24, 42, 1200, 1.6, 0.22); nz(v, t, 0.45, 'bandpass', 2600, 2.5, 0.1); },
+  // the firebird's cry: a high wavering call that falls away
+  screech: (v, t) => cry(v, t, 'sawtooth', [1500, 2300, 900], [0.12, 0.75, 0.8], 23, 70, 1700, 1.4, 0.14),
+  // a wolf's howl, rising and sinking
+  howl: (v, t) => cry(v, t, 'sine', [260, 620, 420], [0.35, 1.1, 1.2], 7, 14, 700, 0.5, 0.18, 0.12),
+  // the serpent's spit: a sharp hiss that falls away
+  hiss: (v, t) => { nz(v, t, 0.55, 'highpass', 5200, 0.7, 0.26, 2200); tn(v, t + 0.04, 0.3, 'sine', 220, 120, 0.05); }
+};
+// per effect: [never closer than (s), at most this many in a quarter second, room (reverb send), level]
+const SFX_META = {
+  click: [0.03, 3, 0, 0.9], coin: [0.09, 2, 0.12, 0.9], sell: [0.15, 1, 0.12, 0.9], build: [0.06, 2, 0.12, 1], upgrade: [0.1, 2, 0.3, 0.9], skill: [0.1, 2, 0.3, 1], deploy: [0.05, 3, 0.15, 1],
+  wave: [0.6, 1, 0.35, 1], horn: [0.3, 1, 0.35, 1], fanfare: [1, 1, 0.35, 1], win: [1, 1, 0.35, 1], lose: [1, 1, 0.35, 1], leak: [0.2, 2, 0.3, 1],
+  bow: [0.07, 3, 0.08, 0.85], stone: [0.1, 2, 0.1, 1], bolt: [0.08, 2, 0.1, 0.9], oil: [0.25, 1, 0.1, 0.9], thud: [0.08, 3, 0.18, 1], boom: [0.1, 2, 0.35, 1],
+  clash: [0.06, 3, 0.12, 0.9], block: [0.08, 2, 0.12, 0.9], slap: [0.08, 2, 0.08, 1], slash: [0.05, 3, 0.1, 0.9], crack: [0.05, 2, 0.1, 1], die: [0.06, 4, 0.06, 1],
+  gun: [0.07, 3, 0.4, 0.85], zap: [0.08, 2, 0.15, 0.9], whoosh: [0.12, 2, 0.12, 1], whirl: [0.5, 1, 0.15, 1], heave: [0.2, 1, 0.1, 1], page: [0.15, 1, 0.1, 1], hex: [0.25, 1, 0.3, 1], hypno: [0.3, 1, 0.4, 1],
+  holy: [0.08, 2, 0.3, 0.8], bless: [0.3, 1, 0.4, 1], verse: [0.3, 1, 0.35, 1], charge: [0.3, 1, 0.25, 1], bell: [0.4, 2, 0.45, 1], chains: [0.4, 1, 0.15, 1], thunder: [0.12, 2, 0.3, 1], roar: [1.2, 1, 0.3, 1],
+  neigh: [0.6, 1, 0.25, 1], trumpet: [0.6, 1, 0.3, 1], screech: [0.5, 1, 0.3, 1], howl: [1, 1, 0.35, 1], hiss: [0.3, 1, 0.15, 1]
+};
+// one voice: its level, its place left to right (x on the field) and how much of it reaches the room
+function voice(lvl, x, wet) {
+  const C = AU.ctx, g = C.createGain(); g.gain.value = lvl;
+  let o = g;
+  if (x != null && C.createStereoPanner) { const p = C.createStereoPanner(); p.pan.value = clamp((x / FW - 0.5) * 1.5, -0.75, 0.75); g.connect(p); o = p; }
+  o.connect(AU.sfxGain);
+  if (wet) { const s = C.createGain(); s.gain.value = wet; o.connect(s); s.connect(AU.sfxSend); }
+  return g;
+}
+// x: where on the field it happens (left-right panning); without it the sound is in the middle
+function sfx(name, x) {
+  const make = SFX[name];
+  if (!AU.ctx || !AU.on || !make) return;
+  const t = AU.ctx.currentTime + 0.005, M = SFX_META[name] || [0.05, 3, 0.1, 1];
+  if (AU.last[name] != null && t - AU.last[name] < M[0]) return;
+  const near = (AU.crowd[name] || []).filter(s => t - s < 0.25);
+  if (near.length >= M[1]) return;
+  near.push(t); AU.crowd[name] = near; AU.last[name] = t;
+  make(voice(M[3] * rnd(0.86, 1.04) / (1 + 0.3 * (near.length - 1)), x, M[2]), t, rnd(0.95, 1.05));
+}
+
+// ----- music: a doli in 6/8, a panduri in fifths over it; in battle faster, with a low drone -----
+// the panduri's phrase: four bars, a fifth (root and fifth, the octave above) and two notes of a falling tune in each
+const NOTE = { E2: 82.41, G2: 98, A2: 110, B2: 123.47, D3: 146.83, E3: 164.81, A3: 220, B3: 246.94, C4: 261.63, D4: 293.66, E4: 329.63 };
+const PHRASE = [[['A2', 'E3', 'A3'], 'E4', 'D4'], [['G2', 'D3'], 'D4', 'C4'], [['A2', 'E3', 'A3'], 'C4', 'B3'], [['E2', 'B2'], 'B3', 'A3']];
+const MUSIC = {
+  camp: { bpm: 84, doli: 'D..t..', fill: 'D..tt.', strum: [0], tune: [3], gain: 0.85 },
+  battle: { bpm: 112, doli: 'D.tDtt', fill: 'DtDtDD', strum: [0, 3], tune: [2, 5], gain: 1, drone: true }
+};
+// the music's own bus: dry to the music gain, a little of it into the room
+function musicBus(C) {
+  const o = C.createGain(), s = C.createGain(); s.gain.value = 0.3;
+  o.connect(AU.musGain); o.connect(s); s.connect(AU.musSend);
+  return o;
+}
+// schedule the music's notes from S.next up to the time `until` (S: the running state)
+function musicNotes(S, until, dest) {
+  const M = MUSIC[S.kind], step = 60 / M.bpm / 2;
+  while (S.next < until) {
+    const t = S.next, bar = Math.floor(S.i / 6), k = S.i % 6, P = PHRASE[bar % 4], g = M.gain * rnd(0.9, 1.05);
+    const beat = ((bar % 8) === 7 ? M.fill : M.doli)[k];
+    if (beat === 'D') drum(dest, t, 105, 55, 0.28, 0.42 * g, 0.12);
+    else if (beat === 't') { nz(dest, t, 0.05, 'bandpass', 2300, 2.5, 0.2 * g); tn(dest, t, 0.05, 'triangle', 420, 300, 0.05 * g); }
+    if (M.strum.includes(k)) P[0].forEach((n, j) => pluck(dest, t + j * 0.018, NOTE[n], 1.1, 0.13 * g * (k ? 0.7 : 1), 0.996, j > 0));
+    const ti = M.tune.indexOf(k);
+    if (ti >= 0) pluck(dest, t, NOTE[P[1 + ti]], 0.8, 0.11 * g, 0.995);
+    S.next += step; S.i++;
   }
 }
-// doli drum loop (6/8) with a low drone during battles
+function musicDrone(C, dest) {
+  const lp = C.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 280;
+  const g = C.createGain(); g.gain.value = 0.035; lp.connect(g); g.connect(dest);
+  const lfo = C.createOscillator(), lg = C.createGain(); lfo.frequency.value = 0.13; lg.gain.value = 0.012; lfo.connect(lg); lg.connect(g.gain);
+  const oscs = [55, 82.41].map(f => { const o = C.createOscillator(); o.type = 'triangle'; o.frequency.value = f; o.connect(lp); return o; });
+  [lfo, ...oscs].forEach(o => o.start());
+  return [lfo, ...oscs];
+}
 function musicStart(kind) {
   if (!AU.ctx) return;
   musicStop();
-  const C = AU.ctx, bpm = kind === 'battle' ? 112 : 84, step = 60 / bpm / 2;
-  const drones = [];
-  if (kind === 'battle') {
-    [110, 164.8].forEach((f, i) => { const o = C.createOscillator(); o.type = 'sawtooth'; o.frequency.value = f; const lp = C.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 380; const g = C.createGain(); g.gain.value = i ? 0.05 : 0.07; o.connect(lp); lp.connect(g); g.connect(AU.musGain); o.start(); drones.push(o); });
-  }
-  let next = C.currentTime + 0.05, i = 0;
-  const pat = kind === 'battle' ? ['B', '.', 'r', 'B', 'r', 'r'] : ['B', '.', '.', 'r', '.', '.'];
-  const id = setInterval(() => {
-    if (!AU.ctx) return;
-    while (next < C.currentTime + 0.15) {
-      const p = pat[i % pat.length];
-      if (p === 'B') { osc(next, 0.22, 'sine', 120, 55, 0.5, AU.musGain); nz(next, 0.05, 'lowpass', 600, 1, 0.2, AU.musGain); }
-      else if (p === 'r') nz(next, 0.05, 'bandpass', 2200, 3, 0.18, AU.musGain);
-      next += step; i++;
-    }
-  }, 30);
+  const C = AU.ctx, S = { kind, next: C.currentTime + 0.08, i: 0 };
+  const bus = musicBus(C), drones = MUSIC[kind].drone ? musicDrone(C, bus) : [];
+  const id = setInterval(() => { if (AU.ctx === C) musicNotes(S, C.currentTime + 0.2, bus); }, 40);
   AU.music = { id, drones };
 }
-function musicStop() { if (AU.music) { clearInterval(AU.music.id); AU.music.drones.forEach(o => { try { o.stop(); } catch (e) {} }); AU.music = null; } }
+function musicStop() { if (AU.music) { clearInterval(AU.music.id); AU.music.drones.forEach(o => { try { o.stop(); } catch (e) { } }); AU.music = null; } }
+
+// tests: an effect (or some seconds of music) rendered offline at 44.1 kHz -> its peak, its loudness, how long it rings
+// and where it sits left to right
+async function auRender(name, secs = 2.5, x = null, raw = false) {
+  const OAC = window.OfflineAudioContext || window.webkitOfflineAudioContext, C = new OAC(2, Math.floor(44100 * secs), 44100);
+  const keep = Object.assign({}, AU);
+  Object.assign(AU, auGraph(C), { on: true, musicOn: true });
+  if (MUSIC[name]) { const S = { kind: name, next: 0.05, i: 0 }, bus = musicBus(C); if (MUSIC[name].drone) musicDrone(C, bus); musicNotes(S, secs - 0.2, bus); }
+  else sfx(name, x);
+  const buf = await C.startRendering();
+  Object.assign(AU, keep);
+  const L = buf.getChannelData(0), R = buf.getChannelData(1);
+  let peak = 0, sum = 0, last = 0, sl = 0, sr = 0;
+  for (let i = 0; i < L.length; i++) { const a = Math.max(Math.abs(L[i]), Math.abs(R[i])); if (a > peak) peak = a; sum += (L[i] * L[i] + R[i] * R[i]) / 2; if (a > 0.003) last = i; sl += Math.abs(L[i]); sr += Math.abs(R[i]); }
+  const out = { name, peak: +peak.toFixed(3), rms: +Math.sqrt(sum / L.length).toFixed(4), len: +(last / 44100).toFixed(2), pan: +((sr - sl) / Math.max(1e-9, sr + sl)).toFixed(2) };
+  if (raw) out.raw = Array.from(L.filter((_, i) => i % 4 === 0), v => Math.round(v * 32767));
+  return out;
+}
 
 // ===== battle state and simulation =====
 let G = null;
@@ -2255,9 +2416,9 @@ function kill(e, src) {
   }
   if (src && src.key === 'tariel') src.stack = Math.min(10, (src.stack || 0) + 1);
   if (!G.demo) { metaEv('kill'); if (e.st.boss) metaEv('boss'); }
-  if (e.st.boss) { fx('boom', e.x, e.y - 20, { r: 70 }); G.shake = Math.max(G.shake, 0.4); sfx('boom'); if (!G.demo) { onBossDown(e); freeChicks(); } }
+  if (e.st.boss) { fx('boom', e.x, e.y - 20, { r: 70 }); G.shake = Math.max(G.shake, 0.4); sfx('boom', e.x); if (!G.demo) { onBossDown(e); freeChicks(); } }
   if (e.st.guard) queenFalls(e);
-  else sfx('die');
+  else sfx('die', e.x);
 }
 function releaseEnemy(e) {
   const b = e.blocker;
@@ -2307,8 +2468,8 @@ function updFlight(e, dt) {
     if (!o.dead) o.stunT = Math.max(o.stunT, F.stun * 0.8);
   }
   fx('puff', e.x, e.y, { n: F.big ? 16 : 7, col: '#d9c9a6', spread: F.big ? 54 : 28 });
-  if (F.big) { fx('shock', e.x, e.y, { r: F.sr }); G.shake = Math.max(G.shake, 0.35); sfx('thud'); }
-  else sfx('stone');
+  if (F.big) { fx('shock', e.x, e.y, { r: F.sr }); G.shake = Math.max(G.shake, 0.35); sfx('thud', e.x); }
+  else sfx('die', e.x);              // a hurled foe hits the ground
 }
 function splashHit(x, y, r, dmg, type, src) {
   let n = 0;
@@ -2350,10 +2511,10 @@ function updEnemy(e, dt) {
         if (e.st.trample) { for (const d of defenders()) if (dist2(d.x, d.y, e.x, e.y) < 48 * 48) hitDefender(d, e.st.dmg, e); }
         else if (e.st.stomp) {           // the iron giant's hammer comes down on everyone around it
           for (const d of defenders()) if (dist2(d.x, d.y, e.x + e.face * 16, e.y) < 56 * 56) hitDefender(d, e.st.dmg, e);
-          fx('shock', e.x + e.face * 22, e.y, { r: 44 }); G.shake = Math.max(G.shake, 0.12); sfx('thud');
+          fx('shock', e.x + e.face * 22, e.y, { r: 44 }); G.shake = Math.max(G.shake, 0.12); sfx('thud', e.x);
         }
         else hitDefender(b, e.st.dmg, e);
-        sfx('clash');
+        sfx('clash', e.x);
       }
       return;
     }
@@ -2429,10 +2590,10 @@ function enemyShoot(e, dt) {
   e.face = best.x < e.x ? -1 : 1;
   if (e.shootT > 0) return;                       // drawing the bow / raising the gun
   e.shootT = e.st.rate; e.lunge = 0.12; e.shotA = 0; e.aim = false;
-  if (e.st.cannon) { G.projs.push({ k: 'eball', x0: e.x, y0: e.y - 26, x1: best.x, y1: best.y, t: 0, T: 0.9, dmg: e.st.dmg, splash: 48 }); fx('puff', e.x + e.face * 30, e.y - 26, { n: 5, col: '#e8e2d6' }); sfx('boom'); }
-  else if (e.st.gun) { hitDefender(best, e.st.dmg, e); fx('tracer', e.x + e.face * 16, e.y - 30, { x2: best.x, y2: best.y - 30, col: '#ffe9a8' }); sfx('gun'); }
-  else if (e.st.bolt) { G.projs.push({ k: 'ebolt', x: e.x + e.face * 18, y: e.y - 46, d: best, sp: 380, dmg: e.st.dmg }); sfx('zap'); }   // a sorcerer's violet bolt
-  else { G.projs.push({ k: 'earrow', x: e.x, y: e.y - 30, d: best, sp: 520, dmg: e.st.dmg }); sfx('bow'); }
+  if (e.st.cannon) { G.projs.push({ k: 'eball', x0: e.x, y0: e.y - 26, x1: best.x, y1: best.y, t: 0, T: 0.9, dmg: e.st.dmg, splash: 48 }); fx('puff', e.x + e.face * 30, e.y - 26, { n: 5, col: '#e8e2d6' }); sfx('boom', e.x); }
+  else if (e.st.gun) { hitDefender(best, e.st.dmg, e); fx('tracer', e.x + e.face * 16, e.y - 30, { x2: best.x, y2: best.y - 30, col: '#ffe9a8' }); sfx('gun', e.x); }
+  else if (e.st.bolt) { G.projs.push({ k: 'ebolt', x: e.x + e.face * 18, y: e.y - 46, d: best, sp: 380, dmg: e.st.dmg }); sfx('zap', e.x); }   // a sorcerer's violet bolt
+  else { G.projs.push({ k: 'earrow', x: e.x, y: e.y - 30, d: best, sp: 520, dmg: e.st.dmg }); sfx('bow', e.x); }
 }
 
 // ===== tower behaviour =====
@@ -2492,7 +2653,7 @@ function updTower(t, dt) {
     const burn = L.burn * techMul('oil') * buffMul(t);
     for (const e of hit) { e.burnDps = e.burnT > 0 ? Math.max(e.burnDps, burn) : burn; e.burnT = 3; e.slowT = 2; e.slowP = Math.max(e.slowP, L.slow); }
     fx('oilring', t.x, t.y + 6, { r: R });
-    t.cd = L.rate; t.recoil = 1; sfx('oil');
+    t.cd = L.rate; t.recoil = 1; sfx('oil', t.x);
     return;
   }
   const targets = pickTargets(t.x, t.y, tRange(t, L), L.multi || 1);
@@ -2528,7 +2689,7 @@ function fireArcher(t, k, e, dmg) {
   a.shotA = 0;
   const bx = s.x + a.face * s.h * 0.42, by = s.y - s.h * (a.down ? 0.48 : 0.6);
   G.projs.push({ k: 'arrow', x: bx, y: by, e, sp: 600, dmg, type: 'phys', lx: e.x, ly: e.y });
-  sfx('bow');
+  sfx('bow', t.x);
 }
 function fireTower(t, e, L, dmg) {
   const top = t.y - artH(towerArt(t.kind, t.lvl)) * 0.62;
@@ -2537,11 +2698,11 @@ function fireTower(t, e, L, dmg) {
     let px = e.x, py = e.y;
     if (!e.blocker && e.stunT <= 0 && e.tgt >= 0) { const tx = cellX(e.tgt) - e.x, ty = cellY(e.tgt) - e.y, l = Math.hypot(tx, ty) || 1, v = e.speed * (1 - e.slowP) * T * 0.85; px += tx / l * Math.min(v, l + 30); py += ty / l * Math.min(v, l + 30); }
     G.projs.push({ k: 'stone', x0: t.x, y0: top + 10, x1: px, y1: py, t: 0, T, dmg, splash: L.splash, type: 'half' });
-    sfx('stone');
+    sfx('stone', t.x);
   } else if (t.kind === 'ballista') {
     const sx = t.x, sy = t.y - 26, dx = e.x - sx, dy = (e.y - 16) - sy, l = Math.hypot(dx, dy) || 1, sp = 780;
     G.projs.push({ k: 'bolt', x: sx, y: sy, vx: dx / l * sp, vy: dy / l * sp, life: tRange(t, L) * 1.15, dmg, pierce: L.pierce, hit: new Set(), type: 'pierce' });
-    sfx('bolt');
+    sfx('bolt', t.x);
   }
 }
 
@@ -2579,7 +2740,7 @@ function updProj(p, dt) {
           splashHit(p.x1, p.y1, p.splash, p.dmg, p.type || 'half', p.src); fx('boom', p.x1, p.y1, { r: p.splash * 0.75 });
           if (p.burn) { for (const e of G.enemies) if (!e.dead && dist2(e.x, e.y, p.x1, p.y1) < p.splash * p.splash) { e.burnT = Math.max(e.burnT, 3); e.burnDps = Math.max(e.burnDps, p.burn); } fx('puff', p.x1, p.y1, { n: 6, col: '#ff9a3a', spread: 30 }); }
         }
-        sfx(p.k === 'stone' ? 'thud' : 'boom');
+        sfx(p.k === 'stone' ? 'thud' : 'boom', p.x1);
         return false;
       }
       return true;
@@ -2907,7 +3068,7 @@ function meleeAI(d, dt) {
     }
     if (d.slap) slapAway(d, victims);
     else if (d.furyT > 0 && d.H && d.H.hurl) tarielThrow(d, victims);
-    sfx(d.slap ? 'slap' : 'clash');
+    sfx(d.slap ? 'slap' : 'clash', d.x);
   }
 }
 function rangedAI(d, dt) {
@@ -3337,9 +3498,9 @@ function ninjaScatter(d) {
 function heroShot(d, e) {
   const kind = d.kind === 'hero' ? d.H.proj : d.proj, sx = d.x + d.face * 14, sy = d.y - artH(d.art) * unitScale(d) * 0.55;
   let dmg = (d.kind === 'hero' ? heroDmg(d) : d.dmg) * buffDmg(d);
-  if (kind === 'holy') { G.projs.push({ k: 'holy', x: sx, y: sy, e, sp: 440, dmg, type: 'magic', src: d, lx: e.x, ly: e.y }); sfx('click'); }
-  else if (kind === 'arrow') { G.projs.push({ k: 'harrow', x: sx, y: sy, e, sp: 680, dmg, type: 'phys', src: d, lx: e.x, ly: e.y, burn: d.burn || 0 }); sfx('bow'); }
-  else if (kind === 'zap') { hurt(e, dmg, 'magic', d); fx('zap', sx, sy, { x2: e.x, y2: e.y - 26 }); sfx('zap'); }
+  if (kind === 'holy') { G.projs.push({ k: 'holy', x: sx, y: sy, e, sp: 440, dmg, type: 'magic', src: d, lx: e.x, ly: e.y }); sfx('holy', d.x); }
+  else if (kind === 'arrow') { G.projs.push({ k: 'harrow', x: sx, y: sy, e, sp: 680, dmg, type: 'phys', src: d, lx: e.x, ly: e.y, burn: d.burn || 0 }); sfx('bow', d.x); }
+  else if (kind === 'zap') { hurt(e, dmg, 'magic', d); fx('zap', sx, sy, { x2: e.x, y2: e.y - 26 }); sfx('zap', d.x); }
   else {
     let crit = false;
     if (d.key === 'kakutsa' && Math.random() < (d.wp === 'mauser' ? 0.3 : 0.2)) { dmg *= 2; crit = true; }
@@ -3347,7 +3508,7 @@ function heroShot(d, e) {
     fx('tracer', sx, sy, { x2: e.x, y2: e.y - 26, col: '#fff2b0' });
     if (crit) floatText(e.x, e.y - 60, 'x2', '#ffd76a', 0.8);
     if (d.key === 'abrag' && ++d.shots % (d.wp === 'glove' ? 2 : 3) === 0 && !e.dead) { e.stunT = Math.max(e.stunT, 1); fx('hawk', d.x, d.y - 60, { x2: e.x, y2: e.y - 40 }); }
-    sfx('gun');
+    sfx('gun', d.x);
   }
 }
 
@@ -4807,7 +4968,7 @@ function castBlade(h, x, y, S, pw) {
   G.blades.push({ h, S, pw, phase: 'out', t: 0, a: 0, x0: h.x, y0: h.y, gx: h.x, gy: h.y, tx: p.x, ty: p.y, hit: new Set(), spins: 0, N: S.spin - (fire ? 1 : 0), fire, trail: [] });
   h.face = p.x < h.x ? -1 : 1;
   h.atkA = 0;
-  sfx('whoosh');
+  sfx('whoosh', h.x);
 }
 // the shortest distance from a point to a segment, squared
 function segDist2(px, py, ax, ay, bx, by) {
@@ -4839,7 +5000,7 @@ function updBlade(b, dt) {
     const k = Math.min(1, b.t / BLADE.out);
     b.gx = lerp(b.x0, b.tx, easeOut(k)); b.gy = lerp(b.y0, b.ty, easeOut(k));
     bladeSweep(b, ax, ay, b.gx, b.gy);
-    if (k >= 1) { b.phase = 'spin'; b.t = 0; }
+    if (k >= 1) { b.phase = 'spin'; b.t = 0; sfx('whirl', b.tx); }
   } else if (b.phase === 'spin') {
     // the whirlwind: the sword circles the spot (an ellipse: the ground seen at a slant), every cut lands all round it
     const R = b.S.r, n = Math.min(b.N, Math.floor(b.t / BLADE.gap) + 1), th = b.t * 15, rr = R * 0.55 * Math.min(1, b.t / 0.15);
@@ -4849,9 +5010,9 @@ function updBlade(b, dt) {
       let cut = 0;
       for (const e of G.enemies) if (!e.dead && grounded(e) && dist2(e.x, e.y, b.tx, b.ty) <= R * R) { bladeCut(b, e, b.S.sdmg * b.pw); cut++; }
       fx('ring', b.tx, b.ty, { r: R, col: b.fire ? '#ffb347' : '#ffe9a8', T: 0.28 });
-      if (cut) sfx('slash');
+      if (cut) sfx('slash', b.tx);
     }
-    if (b.t >= bladeSpinT(b)) { b.phase = 'back'; b.t = 0; b.sx = b.gx; b.sy = b.gy; b.hit = new Set(); sfx('whoosh'); }
+    if (b.t >= bladeSpinT(b)) { b.phase = 'back'; b.t = 0; b.sx = b.gx; b.sy = b.gy; b.hit = new Set(); sfx('whoosh', b.gx); }
   } else {
     const h = b.h, home = h.state !== 'dead';
     const k = Math.min(1, b.t / BLADE.back), hx = home ? h.x : b.x0, hy = home ? h.y : b.y0;
@@ -4903,7 +5064,7 @@ function castBoulder(h, x, y, S, pw) {
   G.projs.push({ k: 'boulder', x0: h.x + h.face * 10, y0: h.y - 96, x1: x, y1: y, t: 0, T: 0.8, dmg: S.dmg * pw, r: S.r, stun: S.stun, src: h, a: 0 });
   h.face = x < h.x ? -1 : 1;
   h.atkA = 0;
-  sfx('heave');
+  sfx('heave', h.x);
 }
 function updBoulder(p, dt) {
   p.t += dt; p.a += dt * 7;
@@ -4915,7 +5076,7 @@ function updBoulder(p, dt) {
   fx('shock', p.x1, p.y1, { r: p.r }); fx('puff', p.x1, p.y1, { n: 16, col: '#b9ab92', spread: 56 });
   fx('rock', p.x1, p.y1, { T: 0.9 });
   G.shake = Math.max(G.shake, 0.45);
-  sfx('thud');
+  sfx('thud', p.x1); sfx('boom', p.x1);
   return false;
 }
 function drawBoulder(g, p) {
@@ -4936,7 +5097,7 @@ function castVerse(h, x, y, S, pw) {
   const L = [...VERSE_TXT], n = L.length, right = x >= h.x;
   G.verses.push({ h, S, pw, x0: h.x, y0: h.y - 52, x, y, t: 0, T: 0.62, done: false, letters: L.map((c, i) => ({ c, d: (right ? n - 1 - i : i) * 0.032, o: rnd(-16, 16), s: rnd(0.85, 1.15) })) });
   h.face = x < h.x ? -1 : 1;
-  sfx('verse');
+  sfx('verse', h.x);
 }
 function updVerse(v, dt) {
   v.t += dt;
@@ -7621,7 +7782,7 @@ if (location.hash === '#test') window.__T = {
   get G() { return G; }, get GRID() { return GRID; }, get SAVE() { return SAVE; }, setSave(s) { SAVE = mergeSave(s); saveGame(); },
   MAPS, TOWERS, HEROES, newBattle, startBattle, build, upgrade, sell, convert, startWave, callEarly, update, castSkill, autoTarget, placeCheck, commandHero,
   spawnEnemy, fx, pathFrom, pathLen, computeDist, skillTargeted, go, openPre, handleTap, openTower, closeRadial, skillButton, selectHero, showResult, endBattle, idx, cellX, cellY, artOk, UI, fit, render,
-  setPlace, placeHover, placeAt, summonHero, summonCost, magnetTarget, archerSpot, cellOf, hudInit, VIEW, hurlEnemy, LIFT, deploySquad, squadReady, SQUADS, pickSquad, champReady, KINGS, CHAMPS, renderHeroBar, motherRises, thunderStrike, REAR, dismount, startTutorial, tutStep, get TUT() { return TUT; }, DUEL, startDuel, tryDuel, duelFrame, openShop, renderShop, openChestFx, openChest, give, passState, passXp, dayState, metaEv, offersToday, skinImg, prepSkin, SKINS, WEAPONS, CHESTS, equip, grantItem, offerRevive, closeBox, playComic, comicNext, comicEnd, get COMIC() { return COMIC; }, STORY, storyIntro, storyOutro, storyWave, renderChron, readPage, storyBadge, claimChapter, LEGEND, legendInit, legendWave, legendTap, startDidgori, startAragvi, startSmiths, startDali, ringBell, legendLeak, leak, kill, hurt, summonPaskunji, paskReady, PASK, paskFly, bestPath
+  setPlace, placeHover, placeAt, summonHero, summonCost, magnetTarget, archerSpot, cellOf, hudInit, VIEW, hurlEnemy, LIFT, deploySquad, squadReady, SQUADS, pickSquad, champReady, KINGS, CHAMPS, renderHeroBar, motherRises, thunderStrike, REAR, dismount, startTutorial, tutStep, get TUT() { return TUT; }, DUEL, startDuel, tryDuel, duelFrame, openShop, renderShop, openChestFx, openChest, give, passState, passXp, dayState, metaEv, offersToday, skinImg, prepSkin, SKINS, WEAPONS, CHESTS, equip, grantItem, offerRevive, closeBox, playComic, comicNext, comicEnd, get COMIC() { return COMIC; }, STORY, storyIntro, storyOutro, storyWave, renderChron, readPage, storyBadge, claimChapter, LEGEND, legendInit, legendWave, legendTap, startDidgori, startAragvi, startSmiths, startDali, ringBell, legendLeak, leak, kill, hurt, summonPaskunji, paskReady, PASK, paskFly, bestPath, auRender, auInit, sfx, musicStart, musicStop, SFX, MUSIC, get AU() { return AU; }
 };
 
 })();
