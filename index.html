@@ -8092,7 +8092,7 @@ const ONLINE = {
   abc: 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789',
   gone: 10000              // a partner silent this long (no message, no presence) has left
 };
-const BUILD_ID = "953a6772e9";
+const BUILD_ID = "330e6db35e";
 const NET = { rt: null, ch: null, up: false, pc: null, dc: null, p2p: false, cand: [], remote: false, id: '', peers: {}, seen: 0, beat: null, rtcT: null, tries: 0, hostAt: 0 };
 const netReady = () => !!(NET.p2p || NET.up);
 const randCode = n => Array.from({ length: n }, () => ONLINE.abc[Math.floor(Math.random() * ONLINE.abc.length)]).join('');
@@ -8874,8 +8874,9 @@ async function start(data) {
   await loadArt(p => { $('#loadfill').style.width = Math.round(p * 100) + '%'; });
   $('#loadbar').hidden = true; $('#titleBtns').style.visibility = '';
   go('title');
-  const join = /^#join=([A-Za-z0-9]{4})$/.exec(location.hash);        // a friend's link: straight into their room
-  if (join) coopOpen(join[1].toUpperCase());
+  const join = () => { const m = /^#join=([A-Za-z0-9]{4})$/.exec(location.hash); if (m && !CO && SCREEN_NOW !== 'battle') coopOpen(m[1].toUpperCase()); };
+  join();                                                              // a friend's link: straight into their room
+  addEventListener('hashchange', join);
   // the host stepping away (another app, a locked phone) pauses the battle for both
   document.addEventListener('visibilitychange', () => {
     if (document.hidden && coopHost() && !G.over && !G.paused && G.started) { coopDo(CO.me, { c: 'pause', on: true }); SY.acc = 1; syncTick(0); }
