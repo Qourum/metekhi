@@ -1,0 +1,58 @@
+{
+ "id": "/metekhi/",
+ "name": "მეტეხი — მეფეთა ლაშქარი",
+ "short_name": "მეტეხი",
+ "lang": "ka",
+ "description": "ქართული ციხის დაცვის თამაში: ააშენე ლაბირინთი, დადგი კოშკები და წაიყვანე მეფეები.",
+ "start_url": "./",
+ "scope": "./",
+ "display": "fullscreen",
+ "orientation": "landscape",
+ "background_color": "#0d1016",
+ "theme_color": "#0d1016",
+ "icons": [
+  {
+   "src": "icon-192.png",
+   "sizes": "192x192",
+   "type": "image/png"
+  },
+  {
+   "src": "icon-512.png",
+   "sizes": "512x512",
+   "type": "image/png"
+  },
+  {
+   "src": "icon-512-maskable.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "maskable"
+  }
+ ],
+ "categories": [
+  "games",
+  "entertainment"
+ ],
+ "screenshots": [
+  {
+   "src": "screens/s1.jpg",
+   "sizes": "1280x720",
+   "type": "image/jpeg",
+   "form_factor": "wide",
+   "label": "ლაბირინთი და კოშკები"
+  },
+  {
+   "src": "screens/s2.jpg",
+   "sizes": "1280x720",
+   "type": "image/jpeg",
+   "form_factor": "wide",
+   "label": "ვახტანგ გორგასალი სპილოს ეჭიდება"
+  },
+  {
+   "src": "screens/s3.jpg",
+   "sizes": "1280x720",
+   "type": "image/jpeg",
+   "form_factor": "wide",
+   "label": "ქაჯეთი: დედოფალი და ობელისკი"
+  }
+ ]
+}
